@@ -116,6 +116,13 @@ updated: 2026-07-01
 使用Codex/Claude Code过程中积累的工程经验：
 - [[Codex/工程经验/Git SSH Windows路径解析错误规避]] — Git SSH配置、Windows路径解析问题
 
+## 实战笔记（2026-07-03新增）
+Claude Code + Obsidian 实战记录：
+- [[笔记/用Obsidian+Claude Code解决Git推送问题的实战记录]] — 知识库检索解决问题的真实案例
+
 ## 元数据
 - [[元数据/dashboard]] — 知识库仪表盘
 - [[元数据/lint-report-2026-07-01]] — 最新 lint 报告
+
+## 博客与经验分享
+- [[Codex/工程经验/用Obsidian+Claude Code解决Git推送问题的实战记录|Obsidian实战：AI从知识库检索方案解决问题]] — Claude Code + Obsidian 的真实使用案例

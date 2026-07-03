@@ -146,6 +146,13 @@
         "a": 1,
         "rgb": 1241919
       }
+    },
+    {
+      "query": "path:wiki/笔记",
+      "color": {
+        "a": 1,
+        "rgb": 16761024
+      }
     }
   ],
   "collapse-display": false,
