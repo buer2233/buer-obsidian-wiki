@@ -1,0 +1,86 @@
+{
+  "collapse-filter": false,
+  "search": "path:wiki",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": true,
+  "showOrphans": false,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:wiki/yuque/接口自动化测试",
+      "color": {
+        "a": 1,
+        "rgb": 16744448
+      }
+    },
+    {
+      "query": "path:wiki/yuque/UI自动化测试",
+      "color": {
+        "a": 1,
+        "rgb": 8421631
+      }
+    },
+    {
+      "query": "path:wiki/yuque/测试平台开发",
+      "color": {
+        "a": 1,
+        "rgb": 65345
+      }
+    },
+    {
+      "query": "path:wiki/yuque/数据结构、算法、设计模式",
+      "color": {
+        "a": 1,
+        "rgb": 16776960
+      }
+    },
+    {
+      "query": "path:wiki/yuque/性能测试",
+      "color": {
+        "a": 1,
+        "rgb": 10494192
+      }
+    },
+    {
+      "query": "path:wiki/yuque/云原生",
+      "color": {
+        "a": 1,
+        "rgb": 16711808
+      }
+    },
+    {
+      "query": "path:wiki/软件测试学习资料",
+      "color": {
+        "a": 1,
+        "rgb": 10040064
+      }
+    },
+    {
+      "query": "path:wiki file:index",
+      "color": {
+        "a": 1,
+        "rgb": 16384000
+      }
+    },
+    {
+      "query": "path:wiki file:hot",
+      "color": {
+        "a": 1,
+        "rgb": 15795204
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": true,
+  "textFadeMultiplier": -1,
+  "nodeSizeMultiplier": 1.8,
+  "lineSizeMultiplier": 1.2,
+  "collapse-forces": false,
+  "centerStrength": 0.5,
+  "repelStrength": 20,
+  "linkStrength": 1,
+  "linkDistance": 120,
+  "scale": 0.3213363860503561,
+  "close": false
+}

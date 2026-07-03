@@ -1,0 +1,295 @@
+{
+  "main": {
+    "id": "cb698273c33e48de",
+    "type": "split",
+    "children": [
+      {
+        "id": "6eec1da9f5290729",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ede242c61ed0ca5f",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "关系图谱"
+            }
+          },
+          {
+            "id": "b5255f9f4054069b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "AGENTS.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "AGENTS"
+            }
+          },
+          {
+            "id": "efb577668d0ed1bd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "wiki/软件测试学习资料/禅道与移动端测试.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "禅道与移动端测试"
+            }
+          },
+          {
+            "id": "41978d9a64d71af2",
+            "type": "leaf",
+            "state": {
+              "type": "canvas",
+              "state": {
+                "file": "wiki/Wiki Map.canvas",
+                "viewState": {
+                  "x": 215,
+                  "y": 509,
+                  "zoom": -2.0199433527746558
+                }
+              },
+              "icon": "lucide-layout-dashboard",
+              "title": "Wiki Map"
+            }
+          },
+          {
+            "id": "022b265cda52a267",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "README"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "db8d83ac47ae599f",
+    "type": "split",
+    "children": [
+      {
+        "id": "554fd2b4fa6f8741",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "5565f1231fe95c42",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "832ab43d08cf9e30",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#面试题",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "097e8347bb8aa054",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "7092b65be1e76349",
+    "type": "split",
+    "children": [
+      {
+        "id": "9f4de9402eae371b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a32b7215b7814fbb",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "反向链接"
+            }
+          },
+          {
+            "id": "7936f8ba26007091",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "ed8ccb323a603d61",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "b140a331162907cf",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "111a21e12ab1a293",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          },
+          {
+            "id": "20a272e103b5d792",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {},
+              "icon": "lucide-ghost",
+              "title": "calendar"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false
+    }
+  },
+  "active": "ede242c61ed0ca5f",
+  "lastOpenFiles": [
+    "AGENTS.md",
+    "wiki/Codex/工程经验/Git SSH Windows路径解析错误规避.md",
+    "wiki/index.md.tmp.10224.3d5eba29c2d4",
+    "wiki/Codex/工程经验/index.md",
+    "wiki/Codex/工程经验/index.md.tmp.10224.13ff9c1812db",
+    "wiki/Codex/工程经验/Git SSH Windows路径解析错误规避.md.tmp.10224.81e8633a905a",
+    "wiki/Codex/工程经验",
+    "wiki/Codex",
+    "Codex/工程经验/Git SSH Windows路径解析错误规避.md",
+    "Codex/工程经验",
+    "Codex",
+    "wiki/语雀/测试平台开发/测试平台基础.md",
+    "wiki/Wiki Map.canvas",
+    "README.md",
+    "wiki/语雀/关联分析.md",
+    "wiki/index.md.tmp.10224.ad15e8ded8f0",
+    "wiki/语雀/关联分析.md.tmp.10224.93d1305cc1c6",
+    "wiki/语雀/个人博客.md",
+    "wiki/语雀/ai-basics/vibecoding总结.md",
+    "wiki/语雀/AI自动化开发计划.md",
+    "wiki/语雀/learning/学习资料汇总.md",
+    "wiki/语雀/learning/AI产品测试.md",
+    "wiki/语雀/learning/学习要点.md",
+    "wiki/语雀/learning/学习计划和进度.md",
+    "wiki/语雀/learning/学习路线图.md",
+    "wiki/语雀/api-automation/参考Java Controller源码分析草稿.md",
+    "wiki/语雀/api-automation/capture-抓包底座使用指引.md",
+    "wiki/语雀/api-automation/接口自动化SKILL的提效记录.md",
+    "wiki/语雀/api-automation/通过AI实现全流程的接口自动化.md",
+    "wiki/语雀/api-automation/通过AI+SKILL维护用例的测试记录.md",
+    "wiki/语雀/api-automation/通过AI+SKILL编写自动化测试用例记录.md",
+    "wiki/语雀/api-automation/通过AI+SKILL编写接口用例的提效记录-表格.md",
+    "wiki/语雀/api-automation/通过Claude Code和接口用例SKILL高效编写和维护接口自动化用例.md",
+    "wiki/语雀/api-automation/SKILLS问题记录.md",
+    "wiki/语雀/claude-code/SKILL发布L站的说明.md",
+    "wiki/语雀/learning/index.md.tmp.10224.3d66c2d513df",
+    "未命名 1.canvas",
+    "未命名.canvas",
+    "wiki/canvases/youtube-explainer.canvas",
+    "wiki/canvases/welcome.canvas",
+    "wiki/canvases/main.canvas",
+    "wiki/canvases/claude-obsidian-presentation.canvas"
+  ]
+}
