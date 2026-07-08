@@ -153,3 +153,16 @@
 - /lock 和 /refTheme 虽然 JaCoCo 显示未覆盖，但 DB 中已有接口方法记录，本次不作为新增候选
 - /saveSourceCode 与已有 /save 的区别：/save 保存布局JSON，/saveSourceCode 保存源码配置
 - 类级 @WeaPermission(publicPermission=true) 表示所有接口默认公开访问，但个别接口有 @Permission 注解做细粒度权限控制
+
+## 🔗 自动关联索引
+
+<!-- AUTO-LINK-INDEX:START -->
+- [[capture-抓包底座使用指引]] — AI测试主题关联
+- [[通过AI+SKILL维护用例的测试记录]] — AI测试主题关联
+- [[通过AI+SKILL编写自动化测试用例记录]] — AI测试主题关联
+- [[通过Claude Code和接口用例SKILL高效编写和维护接口自动化用例]] — AI测试主题关联
+- [[SKILLS问题记录]] — AI测试主题关联
+- [[接口自动化SKILL的提效记录]] — AI测试主题关联
+- [[通过AI+SKILL编写接口用例的提效记录-表格]] — AI测试主题关联
+- [[通过AI实现全流程的接口自动化]] — AI测试主题关联
+<!-- AUTO-LINK-INDEX:END -->

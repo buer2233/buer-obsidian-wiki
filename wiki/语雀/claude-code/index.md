@@ -47,3 +47,16 @@ Claude Code学习笔记
 - **Plugins：** 包含Skills、Hooks、MCP等的完整工具箱
 - **Harness Engineering：** 围绕AI智能体设计约束机制的工程实践
 - **四大护栏：** 上下文工程、架构约束、反馈循环、熵管理
+
+<!-- AUTO-CATALOG:START -->
+
+## 自动页面目录
+
+- [[Claude Agent SDK学习笔记]] — Claude Agent SDK学习笔记
+- [[Claude Code学习笔记]] — Claude Code学习笔记
+- [[Harness Engineering（驾驭工程）]] — Harness Engineering（驾驭工程）
+- [[SKILL发布L站的说明]] — SKILL发布L站的说明
+- [[vibecoding经验总结]] — vibecoding经验总结
+- [[常用SKILL总结]] — 常用SKILL总结
+
+<!-- AUTO-CATALOG:END -->

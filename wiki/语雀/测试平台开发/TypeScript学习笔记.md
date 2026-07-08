@@ -509,3 +509,16 @@ function getUser() {
 }
 type UserType = ReturnType<typeof getUser>;
 ```
+
+## 🔗 自动关联索引
+
+<!-- AUTO-LINK-INDEX:START -->
+- [[Vue前端学习笔记]] — AI测试主题关联
+- [[Django 学习笔记]] — AI测试主题关联
+- [[Flask学习笔记]] — AI测试主题关联
+- [[flask平台代码简介]] — AI测试主题关联
+- [[测试平台基础]] — AI测试主题关联
+- [[个人档案]] — AI测试主题关联
+- [[vibecoding总结]] — AI测试主题关联
+- [[Claude Agent SDK学习笔记]] — AI测试主题关联
+<!-- AUTO-LINK-INDEX:END -->

@@ -395,3 +395,16 @@ curl -s http://admin:token@localhost:8080/job/my-project/lastBuild/consoleText
 ## 相关链接
 
 - [[Linux总结]] — Linux操作系统基础知识总结
+
+## 🔗 自动关联索引
+
+<!-- AUTO-LINK-INDEX:START -->
+- [[Docker]] — AI测试主题关联
+- [[Linux总结]] — AI测试主题关联
+- [[测试平台基础]] — AI测试主题关联
+- [[Git SSH Windows路径解析错误规避]] — AI测试主题关联
+- [[个人档案]] — AI测试主题关联
+- [[安卓移动端appium环境搭建流程]] — AI测试主题关联
+- [[移动端自动化框架搭建问题点记录]] — AI测试主题关联
+- [[Claude Code学习笔记]] — AI测试主题关联
+<!-- AUTO-LINK-INDEX:END -->

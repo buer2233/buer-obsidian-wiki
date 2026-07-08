@@ -1,0 +1,256 @@
+{
+  "nodes": [
+    {
+      "id": "root",
+      "type": "file",
+      "file": "wiki/index.md",
+      "x": 0,
+      "y": 0,
+      "width": 320,
+      "height": 140,
+      "color": "1"
+    },
+    {
+      "id": "folder-1",
+      "type": "file",
+      "file": "wiki/个人信息/index.md",
+      "x": -190,
+      "y": 240,
+      "width": 320,
+      "height": 140,
+      "color": "2"
+    },
+    {
+      "id": "folder-2",
+      "type": "file",
+      "file": "wiki/人脉/_index.md",
+      "x": 190,
+      "y": 240,
+      "width": 320,
+      "height": 140,
+      "color": "3"
+    },
+    {
+      "id": "folder-4",
+      "type": "file",
+      "file": "wiki/学习/_index.md",
+      "x": -570,
+      "y": 460,
+      "width": 320,
+      "height": 140,
+      "color": "5"
+    },
+    {
+      "id": "folder-5",
+      "type": "file",
+      "file": "wiki/实体/_index.md",
+      "x": -190,
+      "y": 460,
+      "width": 320,
+      "height": 140,
+      "color": "6"
+    },
+    {
+      "id": "folder-6",
+      "type": "file",
+      "file": "wiki/对比/_index.md",
+      "x": 190,
+      "y": 460,
+      "width": 320,
+      "height": 140,
+      "color": "1"
+    },
+    {
+      "id": "folder-7",
+      "type": "file",
+      "file": "wiki/来源/_index.md",
+      "x": 570,
+      "y": 460,
+      "width": 320,
+      "height": 140,
+      "color": "2"
+    },
+    {
+      "id": "folder-8",
+      "type": "file",
+      "file": "wiki/概念/_index.md",
+      "x": -570,
+      "y": 680,
+      "width": 320,
+      "height": 140,
+      "color": "3"
+    },
+    {
+      "id": "folder-9",
+      "type": "file",
+      "file": "wiki/目标/_index.md",
+      "x": -190,
+      "y": 680,
+      "width": 320,
+      "height": 140,
+      "color": "4"
+    },
+    {
+      "id": "folder-10",
+      "type": "file",
+      "file": "wiki/笔记/index.md",
+      "x": 190,
+      "y": 680,
+      "width": 320,
+      "height": 140,
+      "color": "5"
+    },
+    {
+      "id": "folder-11",
+      "type": "file",
+      "file": "wiki/语雀/index.md",
+      "x": 570,
+      "y": 680,
+      "width": 320,
+      "height": 140,
+      "color": "6"
+    },
+    {
+      "id": "folder-12",
+      "type": "file",
+      "file": "wiki/资源/_index.md",
+      "x": -570,
+      "y": 900,
+      "width": 320,
+      "height": 140,
+      "color": "1"
+    },
+    {
+      "id": "folder-13",
+      "type": "file",
+      "file": "wiki/软件测试学习资料/index.md",
+      "x": -190,
+      "y": 900,
+      "width": 320,
+      "height": 140,
+      "color": "2"
+    },
+    {
+      "id": "folder-14",
+      "type": "file",
+      "file": "wiki/软件测试学习资料-XMind/index.md",
+      "x": 190,
+      "y": 900,
+      "width": 320,
+      "height": 140,
+      "color": "3"
+    },
+    {
+      "id": "folder-15",
+      "type": "file",
+      "file": "wiki/问答/_index.md",
+      "x": 570,
+      "y": 900,
+      "width": 320,
+      "height": 140,
+      "color": "4"
+    },
+    {
+      "id": "folder-16",
+      "type": "file",
+      "file": "wiki/面试题/index.md",
+      "x": -570,
+      "y": 1120,
+      "width": 320,
+      "height": 140,
+      "color": "5"
+    },
+    {
+      "id": "folder-17",
+      "type": "file",
+      "file": "wiki/领域/_index.md",
+      "x": -190,
+      "y": 1120,
+      "width": 320,
+      "height": 140,
+      "color": "6"
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-root-1",
+      "fromNode": "root",
+      "toNode": "folder-1"
+    },
+    {
+      "id": "edge-root-2",
+      "fromNode": "root",
+      "toNode": "folder-2"
+    },
+    {
+      "id": "edge-root-4",
+      "fromNode": "root",
+      "toNode": "folder-4"
+    },
+    {
+      "id": "edge-root-5",
+      "fromNode": "root",
+      "toNode": "folder-5"
+    },
+    {
+      "id": "edge-root-6",
+      "fromNode": "root",
+      "toNode": "folder-6"
+    },
+    {
+      "id": "edge-root-7",
+      "fromNode": "root",
+      "toNode": "folder-7"
+    },
+    {
+      "id": "edge-root-8",
+      "fromNode": "root",
+      "toNode": "folder-8"
+    },
+    {
+      "id": "edge-root-9",
+      "fromNode": "root",
+      "toNode": "folder-9"
+    },
+    {
+      "id": "edge-root-10",
+      "fromNode": "root",
+      "toNode": "folder-10"
+    },
+    {
+      "id": "edge-root-11",
+      "fromNode": "root",
+      "toNode": "folder-11"
+    },
+    {
+      "id": "edge-root-12",
+      "fromNode": "root",
+      "toNode": "folder-12"
+    },
+    {
+      "id": "edge-root-13",
+      "fromNode": "root",
+      "toNode": "folder-13"
+    },
+    {
+      "id": "edge-root-14",
+      "fromNode": "root",
+      "toNode": "folder-14"
+    },
+    {
+      "id": "edge-root-15",
+      "fromNode": "root",
+      "toNode": "folder-15"
+    },
+    {
+      "id": "edge-root-16",
+      "fromNode": "root",
+      "toNode": "folder-16"
+    },
+    {
+      "id": "edge-root-17",
+      "fromNode": "root",
+      "toNode": "folder-17"
+    }
+  ]
+}

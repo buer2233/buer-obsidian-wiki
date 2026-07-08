@@ -461,3 +461,16 @@ def teardown(exception):
     if exception:
         print(f'请求异常: {exception}')
 ```
+
+## 🔗 自动关联索引
+
+<!-- AUTO-LINK-INDEX:START -->
+- [[Django 学习笔记]] — AI测试主题关联
+- [[flask平台代码简介]] — AI测试主题关联
+- [[测试平台基础]] — AI测试主题关联
+- [[Vue前端学习笔记]] — AI测试主题关联
+- [[个人档案]] — AI测试主题关联
+- [[常用SKILL总结]] — AI测试主题关联
+- [[AI产品测试]] — AI测试主题关联
+- [[02_pytest必背学习资料]] — AI测试主题关联
+<!-- AUTO-LINK-INDEX:END -->

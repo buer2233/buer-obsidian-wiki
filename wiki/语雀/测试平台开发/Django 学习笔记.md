@@ -484,3 +484,16 @@ class IsProjectOwner(BasePermission):
 ## 相关链接
 
 - [[DRF框架基础总结]] — Django REST Framework核心用法总结
+
+## 🔗 自动关联索引
+
+<!-- AUTO-LINK-INDEX:START -->
+- [[Flask学习笔记]] — AI测试主题关联
+- [[Vue前端学习笔记]] — AI测试主题关联
+- [[测试平台基础]] — AI测试主题关联
+- [[DRF框架基础总结]] — UI自动化主题关联
+- [[flask平台代码简介]] — AI测试主题关联
+- [[接口自动化测试日常问题记录]] — AI测试主题关联
+- [[TypeScript学习笔记]] — AI测试主题关联
+- [[个人档案]] — AI测试主题关联
+<!-- AUTO-LINK-INDEX:END -->

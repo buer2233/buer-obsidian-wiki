@@ -148,10 +148,17 @@
       }
     },
     {
-      "query": "path:wiki/笔记",
+      "query": "path:wiki/个人信息",
       "color": {
         "a": 1,
-        "rgb": 16761024
+        "rgb": 16711935
+      }
+    },
+    {
+      "query": "path:wiki/面试题",
+      "color": {
+        "a": 1,
+        "rgb": 16744320
       }
     }
   ],
@@ -165,6 +172,6 @@
   "repelStrength": 20,
   "linkStrength": 1,
   "linkDistance": 120,
-  "scale": 0.3213363860503503,
+  "scale": 0.3213363860503566,
   "close": false
 }

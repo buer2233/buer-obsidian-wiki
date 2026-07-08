@@ -217,3 +217,16 @@ appium --address 127.0.0.1 --port 4723
 
 - [[Web自动化总结]] — Web自动化测试Selenium完整实战
 - [[APP测试]] — APP功能测试、兼容性测试与专项测试
+
+## 🔗 自动关联索引
+
+<!-- AUTO-LINK-INDEX:START -->
+- [[UI自动化测试日常问题记录]] — AI测试主题关联
+- [[APP测试]] — AI测试主题关联
+- [[移动端自动化框架搭建问题点记录]] — AI测试主题关联
+- [[Web自动化总结]] — AI测试主题关联
+- [[Git SSH Windows路径解析错误规避]] — AI测试主题关联
+- [[个人档案]] — AI测试主题关联
+- [[SKILL发布L站的说明]] — AI测试主题关联
+- [[常用SKILL总结]] — AI测试主题关联
+<!-- AUTO-LINK-INDEX:END -->

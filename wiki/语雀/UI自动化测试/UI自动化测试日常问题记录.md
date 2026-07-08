@@ -254,3 +254,16 @@ driver.find_element(By.XPATH, "(//div[@class='item'])[3]")
 ## 相关链接
 
 - [[Web自动化总结]] — Web自动化测试Selenium完整实战
+
+## 🔗 自动关联索引
+
+<!-- AUTO-LINK-INDEX:START -->
+- [[安卓移动端appium环境搭建流程]] — AI测试主题关联
+- [[移动端自动化框架搭建问题点记录]] — AI测试主题关联
+- [[Web自动化总结]] — AI测试主题关联
+- [[个人档案]] — AI测试主题关联
+- [[通过AI+SKILL维护用例的测试记录]] — AI测试主题关联
+- [[性能测试基础]] — AI测试主题关联
+- [[01_Python语言基础学习资料]] — AI测试主题关联
+- [[02_pytest必背学习资料]] — AI测试主题关联
+<!-- AUTO-LINK-INDEX:END -->

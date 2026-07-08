@@ -1,8 +1,80 @@
 {
   "version": 1,
   "created": "2026-04-23",
+  "last_sync": "2026-07-08",
   "description": "Ingest delta tracker and address map for the claude-obsidian vault. Do not hand-edit; wiki-ingest maintains this.",
-  "sources": {},
+  "sources": {
+    "yuque/AI自动化开发计划.md": {
+      "ingested": "2026-07-08",
+      "status": "created",
+      "wiki_path": "wiki/语雀/learning/AI自动化开发计划.md"
+    },
+    "yuque/flask平台代码简介(泛微).md": {
+      "ingested": "2026-07-08",
+      "status": "created",
+      "wiki_path": "wiki/语雀/测试平台开发/flask平台代码简介.md"
+    },
+    "yuque/接口自动化测试日常问题记录.md": {
+      "ingested": "2026-07-08",
+      "status": "updated",
+      "wiki_path": "wiki/语雀/接口自动化测试/接口自动化测试日常问题记录.md"
+    },
+    "yuque/AI大模型基础知识.md": {
+      "ingested": "2026-07-01",
+      "status": "sync",
+      "wiki_path": "wiki/语雀/ai-basics/AI大模型基础知识.md"
+    },
+    "yuque/LangChain入门总结.md": {
+      "ingested": "2026-07-01",
+      "status": "sync",
+      "wiki_path": "wiki/语雀/ai-basics/LangChain入门总结.md"
+    },
+    "yuque/RAG学习笔记.md": {
+      "ingested": "2026-07-01",
+      "status": "sync",
+      "wiki_path": "wiki/语雀/ai-basics/RAG学习笔记.md"
+    },
+    "yuque/vibecoding总结.md": {
+      "ingested": "2026-07-01",
+      "status": "sync",
+      "wiki_path": "wiki/语雀/ai-basics/vibecoding总结.md"
+    },
+    "yuque/常用SKILL总结.md": {
+      "ingested": "2026-07-01",
+      "status": "sync",
+      "wiki_path": "wiki/语雀/claude-code/常用SKILL总结.md"
+    },
+    "软件测试学习资料/04-Linux总结.xmind": {
+      "ingested": "2026-07-08",
+      "status": "updated",
+      "wiki_path": "wiki/软件测试学习资料/Linux总结.md"
+    },
+    "软件测试学习资料/09-接口自动化总结.xmind": {
+      "ingested": "2026-07-08",
+      "status": "updated",
+      "wiki_path": "wiki/软件测试学习资料/接口自动化总结.md"
+    },
+    "个人信息/个人档案.md": {
+      "ingested": "2026-07-08",
+      "status": "created",
+      "wiki_path": "wiki/个人信息/个人档案.md"
+    },
+    "个人信息/邓万鹏-AI自动化测试-18584874420.md": {
+      "ingested": "2026-07-08",
+      "status": "created",
+      "wiki_path": "wiki/个人信息/邓万鹏-AI自动化测试.md"
+    },
+    "面试题/2026-07-07_阅安科技面试题整理.md": {
+      "ingested": "2026-07-08",
+      "status": "created",
+      "wiki_path": "wiki/面试题/2026-07-07_阅安科技面试题整理.md"
+    },
+    "面试题/2026-7月真实面试题.md": {
+      "ingested": "2026-07-08",
+      "status": "created",
+      "wiki_path": "wiki/面试题/2026-7月真实面试题.md"
+    }
+  },
   "address_map": {
     "wiki/concepts/DragonScale Memory.md": "c-000001"
   }

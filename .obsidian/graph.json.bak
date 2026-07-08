@@ -8,42 +8,42 @@
   "collapse-color-groups": false,
   "colorGroups": [
     {
-      "query": "path:wiki/yuque/接口自动化测试",
+      "query": "path:wiki/语雀/接口自动化测试",
       "color": {
         "a": 1,
         "rgb": 16744448
       }
     },
     {
-      "query": "path:wiki/yuque/UI自动化测试",
+      "query": "path:wiki/语雀/UI自动化测试",
       "color": {
         "a": 1,
         "rgb": 8421631
       }
     },
     {
-      "query": "path:wiki/yuque/测试平台开发",
+      "query": "path:wiki/语雀/测试平台开发",
       "color": {
         "a": 1,
         "rgb": 65345
       }
     },
     {
-      "query": "path:wiki/yuque/数据结构、算法、设计模式",
+      "query": "path:wiki/语雀/数据结构、算法、设计模式",
       "color": {
         "a": 1,
         "rgb": 16776960
       }
     },
     {
-      "query": "path:wiki/yuque/性能测试",
+      "query": "path:wiki/语雀/性能测试",
       "color": {
         "a": 1,
         "rgb": 10494192
       }
     },
     {
-      "query": "path:wiki/yuque/云原生",
+      "query": "path:wiki/语雀/云原生",
       "color": {
         "a": 1,
         "rgb": 16711808
@@ -69,6 +69,97 @@
         "a": 1,
         "rgb": 15795204
       }
+    },
+    {
+      "query": "path:wiki/目标",
+      "color": {
+        "a": 1,
+        "rgb": 255
+      }
+    },
+    {
+      "query": "path:wiki/学习",
+      "color": {
+        "a": 1,
+        "rgb": 8388863
+      }
+    },
+    {
+      "query": "path:wiki/人脉",
+      "color": {
+        "a": 1,
+        "rgb": 16776960
+      }
+    },
+    {
+      "query": "path:wiki/领域",
+      "color": {
+        "a": 1,
+        "rgb": 16744448
+      }
+    },
+    {
+      "query": "path:wiki/资源",
+      "color": {
+        "a": 1,
+        "rgb": 32768
+      }
+    },
+    {
+      "query": "path:wiki/实体",
+      "color": {
+        "a": 1,
+        "rgb": 16711680
+      }
+    },
+    {
+      "query": "path:wiki/概念",
+      "color": {
+        "a": 1,
+        "rgb": 65535
+      }
+    },
+    {
+      "query": "path:wiki/来源",
+      "color": {
+        "a": 1,
+        "rgb": 16753920
+      }
+    },
+    {
+      "query": "path:wiki/问答",
+      "color": {
+        "a": 1,
+        "rgb": 32768
+      }
+    },
+    {
+      "query": "path:wiki/元数据",
+      "color": {
+        "a": 1,
+        "rgb": 255
+      }
+    },
+    {
+      "query": "path:wiki/语雀  ",
+      "color": {
+        "a": 1,
+        "rgb": 1241919
+      }
+    },
+    {
+      "query": "path:wiki/个人信息",
+      "color": {
+        "a": 1,
+        "rgb": 16711935
+      }
+    },
+    {
+      "query": "path:wiki/面试题",
+      "color": {
+        "a": 1,
+        "rgb": 16744320
+      }
     }
   ],
   "collapse-display": false,
@@ -81,6 +172,6 @@
   "repelStrength": 20,
   "linkStrength": 1,
   "linkDistance": 120,
-  "scale": 0.3213363860503561,
+  "scale": 0.3213363860503485,
   "close": false
 }

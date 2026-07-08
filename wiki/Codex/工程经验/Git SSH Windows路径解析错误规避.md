@@ -121,3 +121,16 @@ git push
 
 - [[Docker]] — Docker使用经验
 - [[Jenkins全攻略]] — Jenkins配置经验
+
+## 🔗 自动关联索引
+
+<!-- AUTO-LINK-INDEX:START -->
+- [[Docker]] — AI测试主题关联
+- [[Jenkins全攻略]] — AI测试主题关联
+- [[个人档案]] — AI测试主题关联
+- [[安卓移动端appium环境搭建流程]] — AI测试主题关联
+- [[SKILL发布L站的说明]] — AI测试主题关联
+- [[常用SKILL总结]] — AI测试主题关联
+- [[AI产品测试]] — AI测试主题关联
+- [[接口安全测试]] — AI测试主题关联
+<!-- AUTO-LINK-INDEX:END -->

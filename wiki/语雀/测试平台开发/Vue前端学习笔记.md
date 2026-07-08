@@ -384,3 +384,16 @@ await projectStore.fetchProjects()
 console.log(projectStore.activeProjects)
 </script>
 ```
+
+## 🔗 自动关联索引
+
+<!-- AUTO-LINK-INDEX:START -->
+- [[测试平台基础]] — AI测试主题关联
+- [[TypeScript学习笔记]] — AI测试主题关联
+- [[Django 学习笔记]] — AI测试主题关联
+- [[Flask学习笔记]] — AI测试主题关联
+- [[flask平台代码简介]] — AI测试主题关联
+- [[个人档案]] — AI测试主题关联
+- [[Python基础总结]] — AI测试主题关联
+- [[01_Python语言基础学习资料]] — AI测试主题关联
+<!-- AUTO-LINK-INDEX:END -->

@@ -136,7 +136,7 @@
 
 ### #提效数据
 - [[接口自动化SKILL的提效记录]]
-- [[通过AI+SKILLL编写接口用例的提效记录-表格]]
+- [[语雀/api-automation/通过AI+SKILL编写接口用例的提效记录-表格|通过AI+SKILL编写接口用例的提效记录-表格]]
 
 ### #VibeCoding
 - [[vibecoding经验总结]]
@@ -166,3 +166,12 @@
 1. 读 [[Harness Engineering（驾驭工程）]] 了解Agent设计原则
 2. 读 [[RAG学习笔记]] 和 [[LangChain入门总结]] 了解RAG技术
 3. 读 [[vibecoding经验总结]] 了解AI编程最佳实践
+
+<!-- AUTO-CATALOG:START -->
+
+## 自动页面目录
+
+- [[个人博客]] — 个人博客
+- [[关联分析]] — 关联分析
+
+<!-- AUTO-CATALOG:END -->

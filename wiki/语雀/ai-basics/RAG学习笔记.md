@@ -238,3 +238,16 @@ Retriever 的效果不只取决于搜索算法，也强烈依赖 chunk 的质量
 ## 三、向量数据库 Vector Databases
 
 （待补充）
+
+## 🔗 自动关联索引
+
+<!-- AUTO-LINK-INDEX:START -->
+- [[设计模式]] — AI测试主题关联
+- [[AI大模型基础知识]] — AI测试主题关联
+- [[LangChain入门总结]] — AI测试主题关联
+- [[vibecoding总结]] — AI测试主题关联
+- [[个人档案]] — AI测试主题关联
+- [[通过AI+SKILL维护用例的测试记录]] — AI测试主题关联
+- [[学习路线图]] — AI测试主题关联
+- [[性能测试基础]] — AI测试主题关联
+<!-- AUTO-LINK-INDEX:END -->

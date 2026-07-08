@@ -28,3 +28,11 @@
 - **GIT_SSH_COMMAND：** Git SSH命令配置
 - **Windows路径解析：** 反斜杠vs正斜杠问题
 - **MSYS：** Git for Windows的运行时环境
+
+<!-- AUTO-CATALOG:START -->
+
+## 自动页面目录
+
+- [[Git SSH Windows路径解析错误规避]] — Git SSH Windows路径解析错误规避
+
+<!-- AUTO-CATALOG:END -->

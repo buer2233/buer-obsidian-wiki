@@ -39,3 +39,14 @@ AI大模型基础知识
 - **RAG（检索增强生成）：** 结合检索和生成的技术
 - **LangChain：** 构建LLM应用的开发框架
 - **向量数据库：** 存储和检索向量化数据的数据库
+
+<!-- AUTO-CATALOG:START -->
+
+## 自动页面目录
+
+- [[AI大模型基础知识]] — AI大模型基础知识
+- [[LangChain入门总结]] — LangChain入门总结
+- [[RAG学习笔记]] — RAG学习笔记
+- [[vibecoding总结]] — vibecoding总结
+
+<!-- AUTO-CATALOG:END -->

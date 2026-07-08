@@ -91,3 +91,16 @@
 **遇到解决不了的问题：**
 - 及时回退到上一个稳定版本，不要让 AI 一条路走到黑
 - 如果发现 AI 卡在同一个问题上反复修不好，试试换个角度描述问题
+
+## 🔗 自动关联索引
+
+<!-- AUTO-LINK-INDEX:START -->
+- [[Claude Agent SDK学习笔记]] — AI测试主题关联
+- [[Harness Engineering（驾驭工程）]] — AI测试主题关联
+- [[SKILL发布L站的说明]] — AI测试主题关联
+- [[常用SKILL总结]] — AI测试主题关联
+- [[Claude Code学习笔记]] — AI测试主题关联
+- [[Git SSH Windows路径解析错误规避]] — AI测试主题关联
+- [[个人档案]] — AI测试主题关联
+- [[邓万鹏-AI自动化测试]] — AI测试主题关联
+<!-- AUTO-LINK-INDEX:END -->

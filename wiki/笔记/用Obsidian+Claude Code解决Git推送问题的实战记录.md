@@ -301,3 +301,16 @@ Obsidian 不只是笔记软件，它是 **AI 的外部记忆**：
 ---
 
 *写于 2026-07-03，一次 Claude Code + Obsidian 的真实实战体验。*
+
+## 🔗 自动关联索引
+
+<!-- AUTO-LINK-INDEX:START -->
+- [[Git SSH Windows路径解析错误规避]] — AI测试主题关联
+- [[Docker]] — AI测试主题关联
+- [[Jenkins全攻略]] — AI测试主题关联
+- [[个人档案]] — AI测试主题关联
+- [[邓万鹏-AI自动化测试]] — AI测试主题关联
+- [[UI自动化测试日常问题记录]] — AI测试主题关联
+- [[安卓移动端appium环境搭建流程]] — AI测试主题关联
+- [[vibecoding总结]] — AI测试主题关联
+<!-- AUTO-LINK-INDEX:END -->

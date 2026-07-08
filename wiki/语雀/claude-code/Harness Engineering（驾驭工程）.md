@@ -128,3 +128,16 @@ Agent会从顺利出发，看到已有进展就宣布任务完成——即使还
 | 熵管理 | 定期清理混乱，保持系统长久健康 | Doc-Gardening Agent |
 
 **目标：** 让Agent开发更稳定、可维护、可进化！
+
+## 🔗 自动关联索引
+
+<!-- AUTO-LINK-INDEX:START -->
+- [[Claude Agent SDK学习笔记]] — AI测试主题关联
+- [[SKILL发布L站的说明]] — AI测试主题关联
+- [[vibecoding经验总结]] — AI测试主题关联
+- [[常用SKILL总结]] — AI测试主题关联
+- [[Claude Code学习笔记]] — AI测试主题关联
+- [[Git SSH Windows路径解析错误规避]] — AI测试主题关联
+- [[个人档案]] — AI测试主题关联
+- [[邓万鹏-AI自动化测试]] — AI测试主题关联
+<!-- AUTO-LINK-INDEX:END -->
