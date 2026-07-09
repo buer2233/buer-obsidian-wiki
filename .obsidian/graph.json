@@ -78,20 +78,6 @@
       }
     },
     {
-      "query": "path:wiki/学习",
-      "color": {
-        "a": 1,
-        "rgb": 8388863
-      }
-    },
-    {
-      "query": "path:wiki/人脉",
-      "color": {
-        "a": 1,
-        "rgb": 16776960
-      }
-    },
-    {
       "query": "path:wiki/领域",
       "color": {
         "a": 1,
@@ -110,13 +96,6 @@
       "color": {
         "a": 1,
         "rgb": 16711680
-      }
-    },
-    {
-      "query": "path:wiki/概念",
-      "color": {
-        "a": 1,
-        "rgb": 65535
       }
     },
     {
@@ -172,6 +151,6 @@
   "repelStrength": 20,
   "linkStrength": 1,
   "linkDistance": 120,
-  "scale": 0.3213363860503566,
+  "scale": 0.22920135941749026,
   "close": false
 }
