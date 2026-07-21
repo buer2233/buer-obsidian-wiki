@@ -129,6 +129,13 @@ Agent会从顺利出发，看到已有进展就宣布任务完成——即使还
 
 **目标：** 让Agent开发更稳定、可维护、可进化！
 
+## 🔗 关联文档
+
+- [[Loop Engineering（循环工程）]] — 互补概念：Harness 是安全网，Loop 是动力引擎
+- [[Claude Code学习笔记]] — Claude Code 核心机制
+- [[常用SKILL总结]] — Skills 使用指南
+- [[index|返回分类索引]]
+
 ## 🔗 自动关联索引
 
 <!-- AUTO-LINK-INDEX:START -->
