@@ -14,6 +14,7 @@ status: active
 
 ## 自动页面目录
 
+- [[image-example-wiki-map-view.png]] — image-example-wiki-map-view.png
 - [[用Obsidian+Claude Code解决Git推送问题的实战记录]] — 用Obsidian+Claude Code解决Git推送问题的实战记录
 
 <!-- AUTO-CATALOG:END -->

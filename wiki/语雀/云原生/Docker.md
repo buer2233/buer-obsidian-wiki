@@ -593,10 +593,10 @@ CMD ["./main"]
 <!-- AUTO-LINK-INDEX:START -->
 - [[Jenkins全攻略]] — AI测试主题关联
 - [[Linux总结]] — AI测试主题关联
+- [[Pi与AI编程Agent对比分析]] — AI测试主题关联
 - [[个人档案]] — AI测试主题关联
+- [[邓万鹏-AI自动化测试]] — AI测试主题关联
 - [[常用SKILL总结]] — AI测试主题关联
 - [[AI产品测试]] — AI测试主题关联
 - [[Flask学习笔记]] — AI测试主题关联
-- [[测试平台基础]] — AI测试主题关联
-- [[02_pytest必背学习资料]] — AI测试主题关联
 <!-- AUTO-LINK-INDEX:END -->

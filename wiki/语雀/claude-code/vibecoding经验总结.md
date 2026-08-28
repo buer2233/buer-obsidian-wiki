@@ -100,7 +100,7 @@
 - [[SKILL发布L站的说明]] — AI测试主题关联
 - [[常用SKILL总结]] — AI测试主题关联
 - [[Claude Code学习笔记]] — AI测试主题关联
+- [[Loop Engineering（循环工程）]] — AI测试主题关联
 - [[Git SSH Windows路径解析错误规避]] — AI测试主题关联
 - [[个人档案]] — AI测试主题关联
-- [[邓万鹏-AI自动化测试]] — AI测试主题关联
 <!-- AUTO-LINK-INDEX:END -->

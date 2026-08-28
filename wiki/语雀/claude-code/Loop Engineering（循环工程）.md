@@ -432,3 +432,16 @@ Loop Engineering 和 Harness Engineering 不是竞争关系，而是**互补关�
 - [[vibecoding经验总结]] — AI 编程实践经验，含 Agent 边界控制
 - [[Harness Engineering（驾驭工程）#4. 驾驭工程的四大护栏|四大护栏]] — 与 Loop 六大要素的对比参照
 - [[index|返回分类索引]]
+
+## 🔗 自动关联索引
+
+<!-- AUTO-LINK-INDEX:START -->
+- [[Claude Code学习笔记]] — AI测试主题关联
+- [[Harness Engineering（驾驭工程）]] — AI测试主题关联
+- [[vibecoding经验总结]] — AI测试主题关联
+- [[Claude Agent SDK学习笔记]] — AI测试主题关联
+- [[SKILL发布L站的说明]] — AI测试主题关联
+- [[常用SKILL总结]] — AI测试主题关联
+- [[AI产品测试进阶路线与面试考点-进阶版]] — AI测试主题关联
+- [[AI产品测试进阶路线与面试考点]] — AI测试主题关联
+<!-- AUTO-LINK-INDEX:END -->

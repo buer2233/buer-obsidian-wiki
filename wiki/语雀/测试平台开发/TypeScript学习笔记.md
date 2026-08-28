@@ -518,7 +518,7 @@ type UserType = ReturnType<typeof getUser>;
 - [[Flask学习笔记]] — AI测试主题关联
 - [[flask平台代码简介]] — AI测试主题关联
 - [[测试平台基础]] — AI测试主题关联
+- [[Pi与AI编程Agent对比分析]] — AI测试主题关联
 - [[个人档案]] — AI测试主题关联
-- [[vibecoding总结]] — AI测试主题关联
-- [[Claude Agent SDK学习笔记]] — AI测试主题关联
+- [[邓万鹏-AI自动化测试]] — AI测试主题关联
 <!-- AUTO-LINK-INDEX:END -->

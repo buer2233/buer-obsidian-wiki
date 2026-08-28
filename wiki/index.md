@@ -2,7 +2,7 @@
 type: meta
 title: "知识库索引"
 created: 2026-07-01
-updated: 2026-07-08
+updated: 2026-08-27
 ---
 
 # 知识库索引
@@ -97,6 +97,13 @@ updated: 2026-07-08
 - [[vibecoding总结|vibecoding总结]] — 使用过程总结
 - [[语雀/个人博客|个人博客]] — 博客规划
 
+## AI相关学习资料（2026-08-27新增）
+AI 产品测试与 AI 编码 Agent 的进阶学习资料（源自 `.raw/AI相关学习资料/`）：
+- [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点|AI产品测试进阶路线与面试考点]] — LLM评测原理、RAG指标、Agent四维、框架选型（概念版）
+- [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点-进阶版|进阶版：eval体系工程化落地]] — 三层评分器、五维评测、双套件、基线管理
+- [[wiki/AI相关学习资料/Pi与AI编程Agent对比分析|Pi与AI编程Agent对比分析]] — 四大编码 Agent 可测性横向对比
+- [[wiki/AI相关学习资料/index|AI相关学习资料索引]]
+
 ## Codex工程经验（2026-07-03新增）
 使用Codex/Claude Code过程中积累的工程经验：
 - [[Codex/工程经验/Git SSH Windows路径解析错误规避]] — Git SSH配置、Windows路径解析问题
@@ -116,6 +123,12 @@ Claude Code + Obsidian 实战记录：
 
 ## 全量页面索引
 
+### AI相关学习资料
+- [[AI产品测试进阶路线与面试考点]]
+- [[AI产品测试进阶路线与面试考点-进阶版]]
+- [[Pi与AI编程Agent对比分析]]
+- [[AI相关学习资料/index|index]]
+
 ### Codex/工程经验
 - [[Git SSH Windows路径解析错误规避]]
 - [[Codex/工程经验/index|index]]
@@ -125,16 +138,10 @@ Claude Code + Obsidian 实战记录：
 - [[个人档案]]
 - [[邓万鹏-AI自动化测试]]
 
-### 人脉
-- [[人脉/_index|_index]]
-
 ### 元数据
 - [[dashboard]]
 - [[lint-report-2026-07-01]]
 - [[lint-report-2026-07-08]]
-
-### 学习
-- [[学习/_index|_index]]
 
 ### 实体
 - [[实体/_index|_index]]
@@ -148,13 +155,11 @@ Claude Code + Obsidian 实战记录：
 ### 根目录
 - [[overview]]
 
-### 概念
-- [[概念/_index|_index]]
-
 ### 目标
 - [[目标/_index|_index]]
 
 ### 笔记
+- [[image-example-wiki-map-view.png]]
 - [[笔记/index|index]]
 - [[用Obsidian+Claude Code解决Git推送问题的实战记录]]
 
@@ -192,6 +197,7 @@ Claude Code + Obsidian 实战记录：
 - [[Claude Agent SDK学习笔记]]
 - [[Claude Code学习笔记]]
 - [[Harness Engineering（驾驭工程）]]
+- [[Loop Engineering（循环工程）]]
 - [[SKILL发布L站的说明]]
 - [[语雀/claude-code/index|index]]
 - [[vibecoding经验总结]]

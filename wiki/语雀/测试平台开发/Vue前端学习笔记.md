@@ -393,7 +393,7 @@ console.log(projectStore.activeProjects)
 - [[Django 学习笔记]] — AI测试主题关联
 - [[Flask学习笔记]] — AI测试主题关联
 - [[flask平台代码简介]] — AI测试主题关联
+- [[Pi与AI编程Agent对比分析]] — AI测试主题关联
 - [[个人档案]] — AI测试主题关联
-- [[Python基础总结]] — AI测试主题关联
-- [[01_Python语言基础学习资料]] — AI测试主题关联
+- [[邓万鹏-AI自动化测试]] — AI测试主题关联
 <!-- AUTO-LINK-INDEX:END -->

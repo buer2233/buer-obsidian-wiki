@@ -353,9 +353,9 @@ Agent 模式还太超前，Copilot 是当前主流。
 - [[LangChain入门总结]] — AI测试主题关联
 - [[RAG学习笔记]] — AI测试主题关联
 - [[vibecoding总结]] — AI测试主题关联
+- [[AI产品测试进阶路线与面试考点-进阶版]] — AI测试主题关联
+- [[AI产品测试进阶路线与面试考点]] — AI测试主题关联
+- [[Pi与AI编程Agent对比分析]] — AI测试主题关联
 - [[Git SSH Windows路径解析错误规避]] — AI测试主题关联
 - [[个人档案]] — AI测试主题关联
-- [[邓万鹏-AI自动化测试]] — AI测试主题关联
-- [[用Obsidian+Claude Code解决Git推送问题的实战记录]] — AI测试主题关联
-- [[UI自动化测试日常问题记录]] — AI测试主题关联
 <!-- AUTO-LINK-INDEX:END -->

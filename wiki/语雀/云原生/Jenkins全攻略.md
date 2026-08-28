@@ -402,9 +402,9 @@ curl -s http://admin:token@localhost:8080/job/my-project/lastBuild/consoleText
 - [[Docker]] — AI测试主题关联
 - [[Linux总结]] — AI测试主题关联
 - [[测试平台基础]] — AI测试主题关联
+- [[AI产品测试进阶路线与面试考点-进阶版]] — AI测试主题关联
+- [[Pi与AI编程Agent对比分析]] — AI测试主题关联
 - [[Git SSH Windows路径解析错误规避]] — AI测试主题关联
 - [[个人档案]] — AI测试主题关联
-- [[安卓移动端appium环境搭建流程]] — AI测试主题关联
-- [[移动端自动化框架搭建问题点记录]] — AI测试主题关联
-- [[Claude Code学习笔记]] — AI测试主题关联
+- [[邓万鹏-AI自动化测试]] — AI测试主题关联
 <!-- AUTO-LINK-INDEX:END -->

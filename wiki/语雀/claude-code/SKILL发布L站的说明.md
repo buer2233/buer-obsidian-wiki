@@ -64,8 +64,8 @@ https://github.com/buer2233/api-test-dwp
 - [[Claude Code学习笔记]] — AI测试主题关联
 - [[Git SSH Windows路径解析错误规避]] — AI测试主题关联
 - [[个人档案]] — AI测试主题关联
+- [[邓万鹏-AI自动化测试]] — AI测试主题关联
 - [[安卓移动端appium环境搭建流程]] — AI测试主题关联
 - [[AI产品测试]] — AI测试主题关联
 - [[接口安全测试]] — AI测试主题关联
-- [[02_pytest必背学习资料]] — AI测试主题关联
 <!-- AUTO-LINK-INDEX:END -->

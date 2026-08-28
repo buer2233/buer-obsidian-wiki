@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pi 极简 Coding Harness 学习指南（测试开发工程师版）</title>
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --card: #ffffff;
+    --text: #1f2329;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --brand: #4f46e5;
+    --pi: #10b981;
+    --claude: #d97706;
+    --codex: #111827;
+    --dsh: #2563eb;
+    --red: #d92d20;
+    --green: #039855;
+    --code-bg: #f6f8fa;
+    --accent-bg: #eef2ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.75;
+    padding: 32px 16px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+
+  /* 顶部横幅 */
+  header {
+    background: linear-gradient(135deg, #4f46e5, #10b981);
+    color: #fff; border-radius: 16px; padding: 36px 32px; margin-bottom: 24px;
+  }
+  header h1 { font-size: 27px; margin-bottom: 10px; }
+  header p { opacity: 0.94; font-size: 14px; }
+  .tag { display: inline-block; background: rgba(255,255,255,0.2); border-radius: 20px; padding: 2px 12px; font-size: 12px; margin-right: 6px; margin-top: 8px; }
+
+  /* 目录 */
+  .toc {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 22px; margin-bottom: 20px;
+  }
+  .toc h4 { font-size: 14px; margin-bottom: 10px; color: var(--muted); }
+  .toc a { display: inline-block; color: var(--brand); text-decoration: none; font-size: 13.5px; margin: 4px 14px 4px 0; }
+  .toc a:hover { text-decoration: underline; }
+
+  h2 {
+    font-size: 20px; margin: 34px 0 16px; padding-left: 12px;
+    border-left: 4px solid var(--brand);
+  }
+  h3 { font-size: 16px; margin: 22px 0 10px; }
+  h4 { font-size: 14.5px; margin: 16px 0 8px; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 22px; margin-bottom: 16px;
+  }
+
+  /* 学习目标 */
+  .goal {
+    background: linear-gradient(135deg, #eef2ff, #ecfdf5);
+    border: 1px solid #dbeafe; border-radius: 12px; padding: 18px 22px; margin-bottom: 16px;
+  }
+  .goal li { margin: 6px 0; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { border: 1px solid var(--border); padding: 9px 11px; text-align: left; vertical-align: top; }
+  th { background: #f3f4f6; font-weight: 600; white-space: nowrap; }
+  tr:nth-child(even) td { background: #fafafa; }
+
+  .pi-c { color: var(--pi); font-weight: 700; }
+  .claude-c { color: var(--claude); font-weight: 700; }
+  .codex-c { color: var(--codex); font-weight: 700; }
+  .dsh-c { color: var(--dsh); font-weight: 700; }
+  .pro { color: var(--green); font-weight: 600; }
+  .con { color: var(--red); font-weight: 600; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 720px) { .grid2 { grid-template-columns: 1fr; } }
+
+  .box-title {
+    font-weight: 700; font-size: 15px; margin-bottom: 8px;
+    padding: 4px 10px; border-radius: 8px; display: inline-block;
+  }
+  .box.pi { border-top: 4px solid var(--pi); }
+  .box.claude { border-top: 4px solid var(--claude); }
+  .box.codex { border-top: 4px solid var(--codex); }
+  .box.dsh { border-top: 4px solid var(--dsh); }
+
+  ul, ol { padding-left: 22px; }
+  li { margin: 5px 0; }
+
+  .highlight { background: var(--accent-bg); border-left: 3px solid var(--brand); padding: 12px 16px; border-radius: 8px; font-size: 14px; margin: 12px 0; }
+  .warn { background: #fef3c7; border-left: 3px solid #d97706; padding: 12px 16px; border-radius: 8px; font-size: 14px; margin: 12px 0; }
+
+  .note { font-size: 12.5px; color: var(--muted); margin-top: 24px; }
+  .pill { display:inline-block; padding:1px 8px; border-radius:12px; font-size:12px; margin:2px 3px 2px 0; background:#f3f4f6; color:#374151; }
+
+  /* 代码块 */
+  pre {
+    background: var(--code-bg); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px; overflow-x: auto; font-size: 13px; line-height: 1.6;
+    margin: 10px 0;
+  }
+  code {
+    font-family: "SF Mono", "Consolas", "JetBrains Mono", "Courier New", monospace;
+    font-size: 0.92em; background: #eef0f3; border-radius: 4px; padding: 1px 5px;
+  }
+  pre code { background: none; padding: 0; }
+  .code-label {
+    display: inline-block; font-size: 12px; color: var(--muted); margin-top: 8px;
+    font-weight: 600;
+  }
+
+  /* 面试考点卡片 */
+  .exam {
+    border: 1px solid var(--border); border-left: 4px solid var(--brand); border-radius: 10px;
+    padding: 14px 18px; margin-bottom: 14px; background: #fcfcff;
+  }
+  .exam .q { font-weight: 700; font-size: 14.5px; margin-bottom: 6px; }
+  .exam .lbl { font-weight: 600; color: var(--brand); font-size: 13px; }
+
+  /* 练习清单 */
+  .task-list { list-style: none; padding-left: 0; }
+  .task-list li {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 14px; margin: 8px 0;
+  }
+  .task-list input { margin-right: 10px; transform: scale(1.2); vertical-align: middle; }
+
+  /* 流程步骤 */
+  .steps { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
+  .step {
+    flex: 1 1 180px; background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px; text-align: center; font-size: 13px;
+  }
+  .step .n {
+    display: inline-block; width: 24px; height: 24px; line-height: 24px; border-radius: 50%;
+    background: var(--brand); color: #fff; font-weight: 700; margin-bottom: 6px; font-size: 13px;
+  }
+  .step b { display: block; margin-bottom: 3px; }
+  .step span { color: var(--muted); font-size: 12.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Pi 极简 Coding Harness 学习指南</h1>
+  <p>面向测试开发工程师（SDET）· 怎么学 · 怎么用 · 怎么测</p>
+  <div>
+    <span class="tag">Pi（Armin Ronacher）</span>
+    <span class="tag">对比 Claude Code</span>
+    <span class="tag">对比 OpenAI Codex</span>
+    <span class="tag">对比 DeepSeek Harness</span>
+  </div>
+</header>
+
+<div class="toc">
+  <h4>📑 目录</h4>
+  <a href="#s1">一、为什么 SDET 要关注 Pi</a>
+  <a href="#s2">二、快速认知：什么是 Harness</a>
+  <a href="#s3">三、Pi 的可测性分析</a>
+  <a href="#s4">四、实战：测试工程师怎么用 Pi</a>
+  <a href="#s5">五、四大 Agent 横向对比</a>
+  <a href="#s6">六、各自优缺点</a>
+  <a href="#s7">七、测试面试考点</a>
+  <a href="#s8">八、练习任务</a>
+  <a href="#s9">九、参考资料</a>
+</div>
+
+<div class="goal">
+  <h3 style="margin-top:0;">🎯 学完本文你能</h3>
+  <ul>
+    <li>说清 Pi 的 harness 定位与「极简核心 + 可扩展」哲学，理解它和 Claude Code / Codex 的本质区别</li>
+    <li>看懂 Pi 的 5 包 monorepo 架构与 4 种运行模式，知道它的「可测性」来自哪里</li>
+    <li>会用 TypeScript 给 Pi 写测试工具 Extension，用 JSON/RPC 模式把它接进 pytest / CI 自动化流水线</li>
+    <li>能把 Pi 及其他 Agent 当作「被测对象」，设计行为评测（eval）与安全测试方案</li>
+    <li>应对「Agent 测试 / harness / MCP 测试」方向的面试考点</li>
+  </ul>
+</div>
+
+<!-- ============ 一、为什么 SDET 要关注 Pi ============ -->
+<h2 id="s1">一、为什么 SDET 要关注 Pi</h2>
+<div class="card">
+  <p>对测试开发人员来说，Pi 的价值不在「它能不能写代码」，而在三点：</p>
+  <ol>
+    <li><b>它是理解「AI 编码 Agent 分层架构」的最佳样本</b>——Pi 把「核心 harness」「扩展层」「供应商层」拆得最干净，读懂它 = 读懂这一类工具的设计骨架，这是做 AI 测试的地基。</li>
+    <li><b>它天生可编程、可集成</b>——Print/JSON、RPC、SDK 三种非交互模式，让 Agent 能被脚本、pytest、CI 直接驱动，是少见的「开箱即可当测试引擎」的 Agent。</li>
+    <li><b>它把「能力留白」变成测试机会</b>——没有内置权限系统，正意味着权限/安全测试的边界要由你（测试工程师）来定义和验证。</li>
+  </ol>
+  <div class="highlight">一句话：用 <b>Claude Code / Codex 是「用产品」</b>，用 <b>Pi 是「研究 Agent 怎么被构造、怎么被测」</b>。前者提升效率，后者积累测试能力。</div>
+</div>
+
+<!-- ============ 二、快速认知 ============ -->
+<h2 id="s2">二、快速认知：什么是 Harness</h2>
+<div class="card">
+  <p>Pi 官方对自己的定义是 <b>minimal terminal coding harness</b>（极简终端编码脚手架），作者是 <b>Armin Ronacher</b>（Flask 作者，GitHub 名 <code>mitsuhiko</code>），<b>MIT 开源</b>。</p>
+  <div class="highlight">核心理念：「Adapt pi to your workflows, not the other way around.」——让 pi 适配你的工作流，而不是反过来；无需 fork、无需改内核即可扩展。</div>
+
+  <h3>2.1 理解「Harness」这个词（面试常考）</h3>
+  <p>「harness」本义是「马具/线束」。在测试领域，<b>test harness（测试脚手架/测试框架）</b>指的是：<i>把被测对象挂起来、驱动它运行、观察它输出的那一层基础设施</i>。Pi 借用了这个思路——它只负责「把模型挂起来、给它最小工具集、驱动它跑」，其余能力全部外置。</p>
+
+  <h3>2.2 三条核心理念</h3>
+  <ul>
+    <li><b>核心最小化</b>：默认只给模型 4 个工具——<code>read</code> / <code>write</code> / <code>edit</code> / <code>bash</code>。</li>
+    <li><b>刻意留白</b>：不内置子代理（sub-agents）、plan mode、权限系统、容器化。想要？自己造或装第三方 package。</li>
+    <li><b>可扩展优先</b>：Extension / Skill / Prompt Template / Theme / Package 五层扩展机制完全打开。</li>
+  </ul>
+
+  <h3>2.3 五包架构（npm workspaces Monorepo）</h3>
+  <table>
+    <thead><tr><th>包名</th><th>作用</th><th>测试视角</th></tr></thead>
+    <tbody>
+      <tr><td><code>@earendil-works/pi-telemetry</code></td><td>供应商中立的遥测契约、参考适配器、一致性测试</td><td>⭐ 事件契约，可观测性的源头</td></tr>
+      <tr><td><code>@earendil-works/pi-ai</code></td><td>统一多提供商 LLM API</td><td>模型适配层，可做跨模型对比</td></tr>
+      <tr><td><code>@earendil-works/pi-agent-core</code></td><td>Agent 运行时，工具调用 + 状态管理</td><td>⭐ 被测对象的核心</td></tr>
+      <tr><td><code>@earendil-works/pi-coding-agent</code></td><td>交互式编码 Agent CLI</td><td>面向用户的入口</td></tr>
+      <tr><td><code>@earendil-works/pi-tui</code></td><td>终端 UI 库（差分渲染）</td><td>UI 层</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2.4 四种运行模式</h3>
+  <table>
+    <thead><tr><th>模式</th><th>说明</th><th>测试/集成场景</th></tr></thead>
+    <tbody>
+      <tr><td><b>Interactive</b></td><td>交互式 TUI</td><td>日常手工编码、探索</td></tr>
+      <tr><td><b>Print / JSON</b></td><td>打印 / 结构化 JSON 输出（无交互）</td><td>⭐ 脚本、pytest、CI、管道</td></tr>
+      <tr><td><b>RPC</b></td><td>stdin/stdout JSONL 协议</td><td>⭐ 进程级集成、测试驱动</td></tr>
+      <tr><td><b>SDK</b></td><td>Node.js 库嵌入</td><td>⭐ 二次开发测框架（如 openclaw）</td></tr>
+    </tbody>
+  </table>
+
+  <h3>2.5 安全与隔离 ⚠️</h3>
+  <p>Pi <b>默认不内置权限系统</b>，以启动用户权限运行。如需隔离，官方提供三种外部方案：<b>Gondolin micro-VM</b>（工具与 <code>!</code> 命令路由到本地 Linux micro-VM）、<b>Plain Docker</b>（整个进程跑容器里）、<b>OpenShell</b>（策略控制沙箱）。</p>
+  <div class="warn">⚠️ 对测试工程师的提醒：Pi 的安全边界是「外挂」而非「内置」，意味着<b>权限测试、路径保护、凭据隔离</b>这些测试点需要你自行架设。这与 Codex 的内核级沙箱形成鲜明对比（详见第五节）。</div>
+</div>
+
+<!-- ============ 三、可测性分析 ============ -->
+<h2 id="s3">三、Pi 的可测性分析（SDET 核心视角）</h2>
+<div class="card">
+  <p>「可测性（Testability）」是测试工程师评估任何系统/工具的通用标准。下面用四条可测性维度拆解 Pi 及同类工具。</p>
+
+  <h3>3.1 可观测性（Observability）</h3>
+  <table>
+    <thead><tr><th>工具</th><th>可观测能力</th><th>测试意义</th></tr></thead>
+    <tbody>
+      <tr><td><b>dsh</b></td><td class="pro">仅追加（append-only）事件日志：消息/工具调用/中间推理/Token 指标/子 Agent 派发全记录，可回放、隔离错误</td><td>最强，直接支撑「过程追溯」类测试</td></tr>
+      <tr><td><b>Codex</b></td><td>日志 + 引文 citations + 审批信任档案 <code>.codex/approvals.json</code></td><td>可做审批行为分析</td></tr>
+      <tr><td><b>Claude Code</b></td><td>session 历史、hooks、auto memory</td><td>中等</td></tr>
+      <tr><td><b>Pi</b></td><td><code>pi-telemetry</code> 定义了事件契约 + TUI 展示；事件流可被 Extension 拦截</td><td>契约清晰但需自行采集</td></tr>
+    </tbody>
+  </table>
+
+  <h3>3.2 可控制性（Controllability）</h3>
+  <p>能否从外部精确驱动、注入、断点？</p>
+  <ul>
+    <li><b>Pi</b>：Extension 可拦截 <code>tool_call</code>、注入上下文、自定义 compaction——<b>控制粒度细</b>，适合做「桩/拦截」式测试。</li>
+    <li><b>dsh</b>：插件即单元，可替换模型/工具/会话/UI，控制面同样强。</li>
+    <li><b>Codex / Claude Code</b>：以 hooks 为主，控制面相对固定。</li>
+  </ul>
+
+  <h3>3.3 可断言性（Assertability）</h3>
+  <p>输出是否结构化、可解析、可对比？</p>
+  <ul>
+    <li><b>Pi</b>：<code>Print/JSON</code> 与 <code>RPC</code> 输出结构化 JSON/JSONL，<b>可直接被 pytest 断言</b>——这是它作为测试引擎的最大资产。</li>
+    <li><b>dsh</b>：事件日志为统一结构格式，适合回放与基准对比。</li>
+  </ul>
+
+  <h3>3.4 可隔离性（Isolability）</h3>
+  <p>能否在干净、受限环境中复现？</p>
+  <ul>
+    <li><b>Codex</b>：内核级沙箱（Seatbelt/Landlock），隔离最强。</li>
+    <li><b>Pi</b>：靠外挂 Gondolin/Docker/OpenShell 实现隔离。</li>
+  </ul>
+
+  <div class="highlight">结论：<b>Pi 的「可控制性 + 可断言性」顶尖、可观测性中等、可隔离性靠外部</b>。它最适合的角色是<b>「可编程的测试驱动引擎」</b>，而 dsh 更适合做<b>「过程可追溯的被测对象」</b>。</div>
+</div>
+
+<!-- ============ 四、实战 ============ -->
+<h2 id="s4">四、实战：测试工程师怎么用 Pi</h2>
+
+<div class="card">
+  <h3 style="margin-top:0;">场景一：写一个「测试守护」Extension（最推荐入手）</h3>
+  <p>用 TypeScript 给 Pi 注册一个 <code>run_tests</code> 工具，让 Agent 一次调用完成「改代码 → 跑测试 → 拿结构化结果」；同时加权限门控拦截危险命令。</p>
+  <p class="code-label">~/.pi/agent/extensions/test-guard.ts</p>
+  <pre><code>import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { Type } from "typebox";
+
+export default function (pi: ExtensionAPI) {
+  // ① 注册"运行测试"工具：Agent 可主动调用，返回结构化结果
+  pi.registerTool({
+    name: "run_tests",
+    label: "Run Tests",
+    description: "运行项目测试并返回结构化摘要（通过/失败统计 + 失败用例名）",
+    parameters: Type.Object({
+      path: Type.Optional(Type.String({ description: "测试文件或目录" })),
+    }),
+    async execute(toolCallId, params, signal, onUpdate, ctx) {
+      onUpdate({ status: "running", message: "正在运行 pytest ..." });
+      // 此处调用 pytest/别的测试框架并解析结果（示意）
+      const result = { passed: 12, failed: 2, failures: ["test_login", "test_pay"] };
+      return {
+        content: [{
+          type: "text",
+          text: `passed: ${result.passed}, failed: ${result.failed}\n${result.failures.join("\n")}`,
+        }],
+        details: result, // 结构化数据，方便后续断言
+      };
+    },
+  });
+
+  // ② 权限门控：拦截危险 bash 命令（安全测试视角）
+  pi.on("tool_call", async (event, ctx) => {
+    if (event.toolName === "bash" && event.input?.command?.includes("rm -rf")) {
+      const ok = await ctx.ui.confirm("危险操作!", "确认执行 rm -rf?");
+      if (!ok) return { block: true, reason: "用户拒绝" };
+    }
+  });
+}</code></pre>
+  <p>用法：把文件放进 <code>~/.pi/agent/extensions/</code>，Pi 启动自动发现；或用 <code>pi -e ./test-guard.ts</code> 快速测试。</p>
+</div>
+
+<div class="card">
+  <h3>场景二：用 Print/JSON 模式接入 pytest / CI</h3>
+  <p>Pi 支持无交互的 print / JSON 输出，可在测试脚本中把它当作一个「返回 JSON 的命令」来调用和断言。</p>
+  <p class="code-label">test_pi_agent.py（示意）</p>
+  <pre><code>import json, subprocess
+
+def test_pi_agent_produces_valid_json():
+    # 无交互运行一个任务，捕获结构化输出（flag 以官方文档为准）
+    out = subprocess.run(
+        ["pi", "-p", "--json", "阅读 changes/ 下的变更，跑受影响用例并总结失败原因"],
+        capture_output=True, text=True, timeout=120,
+    ).stdout
+    result = json.loads(out)
+    assert "tool_calls" in result          # 存在工具调用轨迹
+    assert any("pytest" in str(t) for t in result["tool_calls"])  # 确实跑了测试</code></pre>
+  <p class="code-label">CI 里的一行用法（示意）</p>
+  <pre><code>pi -p "review 这些改动文件的测试覆盖" --json &gt; pi_result.json  # 结果落盘，供后续门槛判断</code></pre>
+  <div class="warn">注：print/JSON 模式的具体 flag（<code>-p</code> / <code>--json</code>）以 <a href="https://pi.dev/docs/latest" target="_blank">官方文档</a>为准，此处为示意。</div>
+</div>
+
+<div class="card">
+  <h3>场景三：把 Pi 当作「被测对象」做 Agent 评测</h3>
+  <p>通用 Agent 评测思路同样适用于 Pi / Claude Code / Codex / dsh，四步走：</p>
+  <div class="steps">
+    <div class="step"><div class="n">1</div><b>定义任务集</b><span>真实编码/测试任务，而非玩具基准</span></div>
+    <div class="step"><div class="n">2</div><b>注入输入</b><span>用 JSON/RPC 批量驱动</span></div>
+    <div class="step"><div class="n">3</div><b>采集轨迹</b><span>telemetry/事件日志</span></div>
+    <div class="step"><div class="n">4</div><b>打分断言</b><span>结果正确性 + 过程合理性</span></div>
+  </div>
+  <p>评分维度参考（离线评测 eval 的通用指标）：</p>
+  <table>
+    <thead><tr><th>维度</th><th>指标</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>结果正确性</td><td>任务完成率 / 用例通过率</td><td>最终产物对不对</td></tr>
+      <tr><td>过程合理性</td><td>工具调用是否冗余/越权</td><td>有没有绕路、有害操作</td></tr>
+      <tr><td>安全合规</td><td>危险命令拦截率、越权次数</td><td>权限边界是否守住</td></tr>
+      <tr><td>稳定性</td><td>同任务多次重复的一致性</td><td>是否幻觉/结果漂移</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============ 五、横向对比 ============ -->
+<h2 id="s5">五、四大 Agent 横向对比</h2>
+
+<div class="card">
+  <h3 style="margin-top:0;">5.1 总体速览</h3>
+  <table>
+    <thead><tr><th>维度</th><th>Pi</th><th>Claude Code</th><th>OpenAI Codex</th><th>DeepSeek Harness (dsh)</th></tr></thead>
+    <tbody>
+      <tr><td><b>厂商/作者</b></td><td class="pi-c">Armin Ronacher（Flask 作者）</td><td>Anthropic</td><td>OpenAI</td><td>DeepSeek</td></tr>
+      <tr><td><b>开源</b></td><td>✅ MIT</td><td>❌ 闭源（CLI）</td><td>✅ Apache 2.0</td><td>✅ MIT（开发者预览）</td></tr>
+      <tr><td><b>核心语言</b></td><td>TypeScript</td><td>TypeScript</td><td>Rust（重写后）</td><td>微内核 + 插件（Cordis）</td></tr>
+      <tr><td><b>定位</b></td><td>极简 coding harness</td><td>完整终端编码 Agent</td><td>高性能终端编码 Agent</td><td>微内核 Agent 运行时</td></tr>
+      <tr><td><b>Stars（约）</b></td><td>活跃开发（v0.84）</td><td>广泛采用</td><td>9 万+</td><td>5 天 13.5 万+</td></tr>
+      <tr><td><b>主要模型</b></td><td>供应商中立（近 30 家）</td><td>Claude 系列</td><td>GPT-Codex 系列</td><td>DeepSeek 系列</td></tr>
+      <tr><td><b>首次发布</b></td><td>2025.08</td><td>2024.11</td><td>2025 中</td><td>2026.08.13 预览</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h3>5.2 相同点（底层范式高度一致）</h3>
+  <ul>
+    <li><b>终端优先</b>：都跑在终端，能读代码库、跨文件编辑、执行 Shell、跑测试、操作 git。</li>
+    <li><b>Agent Loop</b>：感知 → 思考 → 工具调用 → 观察 → 再决策，核心范式一致。</li>
+    <li><b>支持 MCP</b>：Model Context Protocol 已是跨工具通用接入标准。</li>
+    <li><b>支持 AGENTS.md / 配置记忆</b>：项目级约定文件已是跨工具通用规范。</li>
+    <li><b>可编程平台化</b>：都从「单一工具」走向「可编程平台」（Hooks/Extensions/Skills/SDK）。</li>
+    <li><b>争夺 Agent 协议层</b>：ACP / JSON-RPC 成为编辑器、CI、企业接入标准接口。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>5.3 关键差异（含测试视角）</h3>
+  <table>
+    <thead><tr><th>差异点</th><th>Pi</th><th>Claude Code</th><th>Codex</th><th>dsh</th></tr></thead>
+    <tbody>
+      <tr><td><b>设计哲学</b></td><td>极简核心 + 完全扩展</td><td>开箱即用全家桶</td><td>高性能 + 内核安全</td><td>微内核 + 一切皆插件</td></tr>
+      <tr><td><b>性能</b></td><td>中（TS）</td><td>中（TS）</td><td class="pro">最强（Rust，180ms / 28MB / 1000+ tok/s）</td><td>中（思链折叠显快）</td></tr>
+      <tr><td><b>安全模型</b></td><td>无内置（外部方案）</td><td>应用层审批</td><td class="pro">内核级沙箱（最强）</td><td>审批 + 守卫 + 凭据隔离</td></tr>
+      <tr><td><b>模型绑定</b></td><td class="pro">中立（近 30 家）</td><td>绑定 Claude</td><td>绑定 GPT</td><td class="pro">中立（DeepSeek + OpenAI 兼容）</td></tr>
+      <tr><td><b>可观测性</b></td><td>契约清晰，需自行采集</td><td>中（hooks/memory）</td><td>中（citations/信任档案）</td><td class="pro">最强（仅追加事件日志）</td></tr>
+      <tr><td><b>可控制性</b></td><td class="pro">细（Extension 拦截）</td><td>中（hooks）</td><td>中（hooks）</td><td class="pro">强（插件可替换）</td></tr>
+      <tr><td><b>可断言性</b></td><td class="pro">强（JSON/RPC 输出）</td><td>中</td><td>中</td><td class="pro">强（统一事件结构）</td></tr>
+      <tr><td><b>子代理</b></td><td>不内置</td><td>成熟（团队编排）</td><td>GA（worktree 隔离）</td><td>Standard 含派发</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============ 六、优缺点 ============ -->
+<h2 id="s6">六、各自优缺点</h2>
+<div class="grid2">
+  <div class="card box pi">
+    <div class="box-title pi-c">Pi</div>
+    <p class="pro">优点</p>
+    <ul>
+      <li>极简哲学，学习曲线平滑，符合 Unix 哲学</li>
+      <li>五层扩展机制，定制灵活到极致</li>
+      <li>模型中立，近 30 家供应商</li>
+      <li>四种运行模式，JSON/RPC/SDK 集成能力最强</li>
+      <li>供应链安全加固，MIT 开源</li>
+    </ul>
+    <p class="con">缺点</p>
+    <ul>
+      <li>不内置权限系统，安全需自行承担</li>
+      <li>无子代理、无 plan mode</li>
+      <li>性能不如 Rust 实现</li>
+      <li>核心留白，对「开箱即用」是负担</li>
+    </ul>
+  </div>
+
+  <div class="card box claude">
+    <div class="box-title claude-c">Claude Code</div>
+    <p class="pro">优点</p>
+    <ul>
+      <li>代码质量口碑领先（配合 Claude 模型）</li>
+      <li>生态最成熟（subagents/CLAUDE.md/hooks/MCP/Routines）</li>
+      <li>全流程闭环，Agentic 体验标杆</li>
+      <li>企业支持完善（Bedrock/Vertex）</li>
+    </ul>
+    <p class="con">缺点</p>
+    <ul>
+      <li>闭源</li>
+      <li>深度绑定 Claude 模型</li>
+      <li>token 消耗高（约 Codex 的 3–4 倍）</li>
+      <li>TS 实现，启动和内存偏重</li>
+    </ul>
+  </div>
+
+  <div class="card box codex">
+    <div class="box-title codex-c" style="color:#fff;background:#111827;">OpenAI Codex</div>
+    <p class="pro">优点</p>
+    <ul>
+      <li>性能最强（Rust 单二进制 8MB）</li>
+      <li>安全最强（内核级沙箱）</li>
+      <li>成本最低（token 约为 CC 的 1/3–1/4）</li>
+      <li>基础设施友好（codex exec / GH Action / CI）</li>
+      <li>开源，迭代极快</li>
+    </ul>
+    <p class="con">缺点</p>
+    <ul>
+      <li>绑定 GPT（专用 Codex 模型不开放）</li>
+      <li>真实 bug 修复质量略逊 CC</li>
+      <li>输出啰嗦，审批日志噪音多</li>
+      <li>迭代过快，稳定性存疑</li>
+    </ul>
+  </div>
+
+  <div class="card box dsh">
+    <div class="box-title dsh-c">DeepSeek Harness (dsh)</div>
+    <p class="pro">优点</p>
+    <ul>
+      <li>微内核 + 一切皆插件，扩展天花板极高</li>
+      <li>仅追加事件日志，可追溯性最强</li>
+      <li>社区爆发力惊人（5 天 13.5 万星）</li>
+      <li>模型中立</li>
+      <li>Hooks 桥复用 CC/Codex 钩子，内置 ACP</li>
+    </ul>
+    <p class="con">缺点</p>
+    <ul>
+      <li>仍处开发者预览（0.1.x），契约可能破坏性变更</li>
+      <li>插件生态刚起步，长期维护存疑</li>
+      <li>需配合 DeepSeek 模型效果才好</li>
+      <li>未经历生产大规模验证</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h3>选型建议</h3>
+  <table>
+    <thead><tr><th>你的需求</th><th>推荐</th></tr></thead>
+    <tbody>
+      <tr><td>极致可定制、模型中立、要自己拼装测试工具</td><td class="pi-c">Pi</td></tr>
+      <tr><td>开箱即用、代码质量最好、生态最全</td><td class="claude-c">Claude Code</td></tr>
+      <tr><td>性能最强、最安全、最省钱、上 CI</td><td class="codex-c">OpenAI Codex</td></tr>
+      <tr><td>研究 Agent 架构、过程可追溯、插件生态 / 用 DeepSeek 模型</td><td class="dsh-c">DeepSeek Harness (dsh)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============ 七、面试考点 ============ -->
+<h2 id="s7">七、测试面试考点（考点 → 考察点 → 答题要点）</h2>
+
+<div class="exam">
+  <div class="q">Q1：什么是 coding harness？Pi 为什么不叫「编码助手」而叫 harness？</div>
+  <p><span class="lbl">考察点</span> 对 AI 编码 Agent 分层架构的理解，极简 vs 全家桶的工程权衡。</p>
+  <p><span class="lbl">答题要点</span> harness 是「驱动 + 脚手架」层，只做最小的事（read/write/edit/bash）并开放扩展机制。类比 pytest：核心只负责发现与执行，插件机制才是生态。好处是可审计、可定制、依赖少；代价是能力要靠自己拼装。</p>
+</div>
+
+<div class="exam">
+  <div class="q">Q2：如何对一个 Agent 做「过程可追溯」的测试？（AI 测试核心）</div>
+  <p><span class="lbl">考察点</span> 是否理解 AI 测试「不只测结果，更要测过程」。</p>
+  <p><span class="lbl">答题要点</span> 关键在事件/轨迹采集：dsh 的仅追加事件日志、Pi 的 telemetry 事件契约。记录 tool_call + 中间推理，做到①历史回放 ②错误隔离 ③跨模型基准对比 ④审计合规。落点是「结果正确性 + 过程合理性」双维度评分。</p>
+</div>
+
+<div class="exam">
+  <div class="q">Q3：对一个「无内置权限系统」的 Agent（如 Pi），安全测试怎么做？</div>
+  <p><span class="lbl">考察点</span> 安全边界设计 + 权限测试用例设计。</p>
+  <p><span class="lbl">答题要点</span> Pi 的安全是外挂（Gondolin/Docker/OpenShell），测试点就在边界上：①危险命令拦截（rm -rf / sudo）②敏感路径保护（.env、node_modules）③凭据隔离 ④越权/逃逸尝试。举例用 Extension 的 tool_call 拦截做门控并验证。</p>
+</div>
+
+<div class="exam">
+  <div class="q">Q4：模型中立 vs 模型绑定，对测试有什么影响？</div>
+  <p><span class="lbl">考察点</span> 模型供应商对测试策略的影响。</p>
+  <p><span class="lbl">答题要点</span> 中立工具（Pi/dsh）可对「同一任务」跨多家模型做 A/B 对比评测，适合横向基准；绑定工具（CC/Codex）有「模型-工具协同优化」红利，质量/速度更优，但难以做纯模型维度的对照实验。测试时要先想清楚测的是「工具」还是「模型」。</p>
+</div>
+
+<!-- ============ 八、练习任务 ============ -->
+<h2 id="s8">八、练习任务</h2>
+<div class="card">
+  <ul class="task-list">
+    <li><input type="checkbox"> 安装 Pi（<code>npm install -g --ignore-scripts @earendil-works/pi-coding-agent</code>），跑通第一个会话</li>
+    <li><input type="checkbox"> 手写一个 <code>run_tests</code> Extension，让 Agent 能调用 pytest 并返回结构化结果</li>
+    <li><input type="checkbox"> 用 print/JSON 模式非交互跑一个任务，观察输出 JSON 结构，思考可断言哪些字段</li>
+    <li><input type="checkbox"> 阅读 <code>packages/pi-telemetry</code> 的事件契约，理解 telemetry 如何用于测试断言</li>
+    <li><input type="checkbox"> 对比 dsh 的「仅追加日志」与 Pi 的 telemetry，写一段「过程可追溯」测试方案</li>
+    <li><input type="checkbox"> 针对「Agent 安全测试」，列出 3 条 Pi 权限边界的测试用例</li>
+    <li><input type="checkbox"> 挑一个任务，用 Pi 与任一绑定模型的工具做一次 A/B 评测，记录差异</li>
+  </ul>
+</div>
+
+<!-- ============ 九、参考 ============ -->
+<h2 id="s9">九、参考资料</h2>
+<div class="card">
+  <ul>
+    <li>Pi 官方仓库：<a href="https://github.com/earendil-works/pi" target="_blank">github.com/earendil-works/pi</a></li>
+    <li>Pi 官方文档：<a href="https://pi.dev/docs/latest" target="_blank">pi.dev/docs/latest</a>（Quickstart / Extensions / Providers / Security）</li>
+    <li>Pi 扩展文档：<a href="https://pi.dev/docs/latest/extensions" target="_blank">pi.dev/docs/latest/extensions</a></li>
+    <li>Claude Code 官方：<a href="https://code.claude.com/docs/en/overview" target="_blank">code.claude.com/docs/en/overview</a></li>
+    <li>Codex 官方：<a href="https://developers.openai.com/codex/" target="_blank">developers.openai.com/codex</a> / <a href="https://github.com/openai/codex" target="_blank">github.com/openai/codex</a></li>
+    <li>DeepSeek Harness：<a href="https://github.com/deepseek-ai/deepseek-harness" target="_blank">github.com/deepseek-ai/deepseek-harness</a></li>
+  </ul>
+  <p class="note">注：Stars、版本号、性能指标等为检索时点（2026-08-27）快照，这些工具迭代极快，实际以官方仓库为准；文中代码为教学示意，具体 flag/API 以官方文档为准。</p>
+</div>
+
+</div>
+</body>
+</html>

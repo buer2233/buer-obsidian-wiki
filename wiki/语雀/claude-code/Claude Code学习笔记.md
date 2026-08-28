@@ -324,10 +324,10 @@ Anthropic 在推出 Skills 之后，发现单纯一个 .md 文件还不够用。
 <!-- AUTO-LINK-INDEX:START -->
 - [[SKILL发布L站的说明]] — AI测试主题关联
 - [[常用SKILL总结]] — AI测试主题关联
+- [[AI产品测试进阶路线与面试考点-进阶版]] — AI测试主题关联
+- [[Pi与AI编程Agent对比分析]] — AI测试主题关联
 - [[Git SSH Windows路径解析错误规避]] — AI测试主题关联
 - [[个人档案]] — AI测试主题关联
+- [[邓万鹏-AI自动化测试]] — AI测试主题关联
 - [[安卓移动端appium环境搭建流程]] — AI测试主题关联
-- [[AI产品测试]] — AI测试主题关联
-- [[接口安全测试]] — AI测试主题关联
-- [[02_pytest必背学习资料]] — AI测试主题关联
 <!-- AUTO-LINK-INDEX:END -->

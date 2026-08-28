@@ -495,5 +495,5 @@ class IsProjectOwner(BasePermission):
 - [[flask平台代码简介]] — AI测试主题关联
 - [[接口自动化测试日常问题记录]] — AI测试主题关联
 - [[TypeScript学习笔记]] — AI测试主题关联
-- [[个人档案]] — AI测试主题关联
+- [[Pi与AI编程Agent对比分析]] — AI测试主题关联
 <!-- AUTO-LINK-INDEX:END -->

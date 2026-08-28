@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 产品测试进阶路线与面试考点</title>
+<style>
+:root{
+  --bg:#f7f7f5; --card:#ffffff; --ink:#1f2430; --muted:#5f6470; --line:#e6e6e2;
+  --purple:#534AB7; --purple-bg:#EEEDFE;
+  --blue:#185FA5; --blue-bg:#E6F1FB;
+  --teal:#0F6E56; --teal-bg:#E1F5EE;
+  --amber:#BA7517; --amber-bg:#FAEEDA;
+  --red:#A32D2D; --red-bg:#FCEBEB;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px;}
+.wrap{max-width:980px;margin:0 auto;padding:40px 24px 80px;}
+header{background:linear-gradient(180deg,#EEEDFE 0%,#f7f7f5 100%);border:1px solid var(--line);border-radius:16px;padding:36px 32px;margin-bottom:28px;}
+header h1{font-size:26px;font-weight:600;color:#26215C;margin-bottom:10px;}
+header .sub{color:var(--muted);font-size:15px;}
+.tag{display:inline-block;background:var(--purple-bg);color:var(--purple);border-radius:20px;padding:3px 12px;font-size:12px;margin-right:8px;margin-top:14px;font-weight:500;}
+h2{font-size:20px;font-weight:600;margin:36px 0 16px;padding-left:12px;border-left:4px solid var(--purple);}
+h3{font-size:16px;font-weight:600;margin:22px 0 10px;color:#26215C;}
+p{color:var(--muted);margin:6px 0;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px;margin:14px 0;}
+.stage{display:flex;gap:14px;margin:14px 0;}
+.stage .phase{flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;border-top:4px solid var(--purple);}
+.stage .phase.b{border-top-color:var(--blue);}
+.stage .phase.c{border-top-color:var(--teal);}
+.phase h4{font-size:15px;font-weight:600;margin-bottom:8px;}
+.phase .en{font-size:12px;color:var(--muted);margin-bottom:10px;}
+.phase ul{list-style:none;}
+.phase li{font-size:13.5px;color:var(--ink);padding:5px 0 5px 18px;position:relative;border-bottom:1px dashed var(--line);}
+.phase li:last-child{border-bottom:none;}
+.phase li::before{content:"";position:absolute;left:2px;top:12px;width:6px;height:6px;border-radius:50%;background:var(--purple);}
+.phase.b li::before{background:var(--blue);}
+.phase.c li::before{background:var(--teal);}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;}
+th{background:#f0efe9;text-align:left;font-weight:600;padding:10px 12px;border:1px solid var(--line);}
+td{padding:10px 12px;border:1px solid var(--line);vertical-align:top;}
+tr:nth-child(even) td{background:#fafaf8;}
+.qa{border-left:3px solid var(--purple);background:#fafafe;padding:14px 18px;border-radius:0 12px 12px 0;margin:12px 0;}
+.qa.rag{border-left-color:var(--blue);background:#f6fafe;}
+.qa.agent{border-left-color:var(--teal);background:#f4fbf8;}
+.qa.eng{border-left-color:var(--amber);background:#fdfaf2;}
+.qa h4{font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.qa .k{display:inline-block;font-size:12px;color:#fff;background:var(--purple);border-radius:4px;padding:1px 8px;margin-right:8px;font-weight:500;}
+.qa.rag .k{background:var(--blue);}
+.qa.agent .k{background:var(--teal);}
+.qa.eng .k{background:var(--amber);}
+.qa ul{margin:6px 0 4px 18px;}
+.qa li{font-size:13.5px;color:var(--muted);margin:3px 0;}
+.hl{background:#fff8e1;border-radius:4px;padding:1px 6px;color:var(--amber);font-weight:500;}
+.code{background:#1f2430;color:#e6e6e2;border-radius:10px;padding:16px 20px;font-family:"SF Mono",Consolas,monospace;font-size:13px;line-height:1.6;overflow-x:auto;margin:10px 0;}
+.code .cm{color:#8b93a3;}
+.note{background:var(--amber-bg);border-left:4px solid var(--amber);padding:12px 16px;border-radius:0 10px 10px 0;font-size:13.5px;color:#633806;margin:12px 0;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>AI 产品测试（LLM 评测 + eval 体系）进阶学习路线与面试考点</h1>
+  <div class="sub">面向测试开发工程师（SDET）的进阶路径梳理 · 结合 Python / pytest / requests / Playwright / LangChain 技术栈</div>
+  <div>
+    <span class="tag">LLM 评测</span>
+    <span class="tag">RAG 测试</span>
+    <span class="tag">Agent 测试</span>
+    <span class="tag">eval 体系</span>
+    <span class="tag">面试考点</span>
+  </div>
+</header>
+
+<h2>一、核心认知：为什么 AI 测试不一样</h2>
+<div class="card">
+  <p>传统软件是<b>确定性</b>的：输入 A 必然输出 B，失败会抛异常、断言会明确失败。而 LLM 是<b>概率性、非确定性</b>的：同一个输入可能产生不同输出，<b>正确性是一个分布，而不是二值</b>。LLM 不会“大声”失败——它会生成一段语法完美、语气自信、但事实完全错误的回答，而传统断言什么都抓不到。</p>
+  <p>这决定了 AI 测试的核心命题：<span class="hl">用「指标 + 阈值 + 评测集」替代「精确断言」</span>，用「评测（evaluation，eval）体系」替代「单点测试用例」。这也是面试官最想听到的第一句话。</p>
+</div>
+
+<h2>二、进阶学习路线（三阶段）</h2>
+
+<div class="stage">
+  <div class="phase">
+    <h4>阶段一 · LLM 基础与评测原理</h4>
+    <div class="en">LLM evaluation fundamentals</div>
+    <ul>
+      <li>理解 LLM 的生成机制与不确定性来源</li>
+      <li>幻觉检测（Hallucination Detection）</li>
+      <li>一致性评估（Consistency）</li>
+      <li>传统指标：BLEU / ROUGE / BERTScore 及局限</li>
+      <li>LLM-as-a-Judge 与 G-Eval 评分法</li>
+      <li>golden dataset（黄金评测集）构建</li>
+      <li>离线评测 vs 在线评测</li>
+    </ul>
+  </div>
+  <div class="phase b">
+    <h4>阶段二 · RAG 工程与评测</h4>
+    <div class="en">Retrieval-Augmented Generation</div>
+    <ul>
+      <li>RAG 链路：检索（Retriever）+ 生成（Generator）</li>
+      <li>检索质量：召回率 Recall / 精确率 Precision</li>
+      <li>Faithfulness（忠实度/可信度）</li>
+      <li>Answer Relevancy（回答相关性）</li>
+      <li>RAGAS 五指标体系</li>
+      <li>检索器与生成器<b>分离测试</b></li>
+      <li>上下文相关性（Context Relevance）</li>
+    </ul>
+  </div>
+  <div class="phase c">
+    <h4>阶段三 · Agent 架构与测试</h4>
+    <div class="en">Agent &amp; multi-agent testing</div>
+    <ul>
+      <li>Agent 与纯 LLM 评测的本质区别</li>
+      <li>任务完成率 / success rate / pass@k</li>
+      <li>工具调用正确性（tool use）</li>
+      <li>轨迹追踪与可观测性（LangSmith）</li>
+      <li>多 Agent 协作验证</li>
+      <li>AI 自动化测试（browser-use）</li>
+      <li>抓包驱动 / 提示词工程 / prompt injection</li>
+    </ul>
+  </div>
+</div>
+
+<h3>技术栈迁移对照（你的存量能力直接复用）</h3>
+<table>
+  <tr><th>你已掌握</th><th>迁移到 AI 测试</th></tr>
+  <tr><td>pytest / requests</td><td>DeepEval 本质就是「LLM 的 pytest」，评测用例 = 测试函数 + 指标断言</td></tr>
+  <tr><td>Playwright / Selenium</td><td>Agent 浏览器自动化测试（browser-use / WebArena 类任务）</td></tr>
+  <tr><td>mitmproxy 抓包</td><td>mock 抓包驱动，控制 LLM 外部依赖，做确定性测试</td></tr>
+  <tr><td>LangChain / SKILL</td><td>Agent 编排与提示词工程，落地 AI 自动化测试</td></tr>
+  <tr><td>接口测试 / 断言思维</td><td>转成「指标阈值门禁（threshold gate）」+ 回归评测集</td></tr>
+</table>
+
+<h2>三、面试考点（考点 → 考察点 → 答题要点）</h2>
+
+<div class="qa">
+  <h4><span class="k">概念</span>考点 1：LLM 测试与传统软件测试的本质区别是什么？</h4>
+  <p><b>考察点：</b>是否理解“非确定性”这一核心难点，能否跳出“精确断言”的思维定式。</p>
+  <ul>
+    <li><b>答题要点：</b>LLM 输出是概率分布而非二值；正确性是统计性的，需通过指标（指标分数）而非布尔断言来度量。</li>
+    <li>失败模式是“安静失败”（confident wrong answer），传统断言无法捕获。</li>
+    <li>因此要建立「评测指标 + 阈值门禁 + 黄金评测集」三件套，回归测试用评测集而非单条用例。</li>
+  </ul>
+</div>
+
+<div class="qa">
+  <h4><span class="k">概念</span>考点 2：什么是幻觉检测？有哪些方法？</h4>
+  <p><b>考察点：</b>对 Hallucination 的定义与方法体系的掌握程度。</p>
+  <ul>
+    <li><b>答题要点：</b>幻觉 = 模型生成与事实/上下文不符但表述自信的内容；分为内在幻觉（与给定上下文矛盾）与外在幻觉（与外部事实矛盾）。</li>
+    <li>方法：基于上下文一致性（Faithfulness 指标）、基于外部知识检索验证、LLM-as-a-Judge 打分、人工抽检。</li>
+    <li>工具落地：DeepEval 的 HallucinationMetric、RAGAS 的 Faithfulness。</li>
+  </ul>
+</div>
+
+<div class="qa">
+  <h4><span class="k">概念</span>考点 3：离线评测 vs 在线评测，怎么选？</h4>
+  <p><b>考察点：</b>是否理解两条评测链路的分工与适用场景。</p>
+  <ul>
+    <li><b>答题要点：</b>离线评测（offline）= 用标注好的黄金数据集在发布前批量打分，可控、可复现，适合回归与版本对比。</li>
+    <li>在线评测（online）= 对线上真实流量采样，用无参考评测器（reference-free）打分，捕获离线没预料到的输入。</li>
+    <li>两者是互补的分层关系：离线做门禁（发布前），在线做持续监控（上线后），互相反哺——线上异常沉淀为离线回归用例。</li>
+  </ul>
+</div>
+
+<div class="qa">
+  <h4><span class="k">概念</span>考点 4：LLM-as-a-Judge 有哪些偏差？如何缓解？</h4>
+  <p><b>考察点：</b>这是高分题，考察对评测方法局限性的深度认知。</p>
+  <ul>
+    <li><b>答题要点（三类经典偏差）：</b>位置偏差（position bias，偏好排在前面的回答）、冗长偏差（verbosity bias，偏好更长回答）、自偏好（self-preference，模型给自己的输出打更高分）。</li>
+    <li>缓解：固定评分 rubric（明确评分标准）、随机交换答案顺序、使用更强的 judge 模型并固定版本、引入少量人工校准（gold label 对照）。</li>
+  </ul>
+</div>
+
+<div class="qa">
+  <h4><span class="k">概念</span>考点 5：BLEU / ROUGE / BERTScore 为什么不适合开放域评测？</h4>
+  <p><b>考察点：</b>是否理解“词面重叠”指标的局限，以及何时该用语义类指标。</p>
+  <ul>
+    <li><b>答题要点：</b>三者都是基于参考（ground truth）的词面/嵌入相似度，奖励“字面重合”而非“事实正确”。</li>
+    <li>BLEU 适合翻译、ROUGE 适合摘要——这些任务有标准参考答案；开放问答、RAG 生成没有唯一标准答案，用它们会漏判“语义对但措辞不同”的好答案。</li>
+    <li>替代方案：LLM-as-a-Judge（G-Eval）或任务专用指标（如 RAGAS 的 Faithfulness / Answer Correctness）。</li>
+  </ul>
+</div>
+
+<div class="qa rag">
+  <h4><span class="k">RAG</span>考点 6：RAG 评测的核心指标有哪些？各自测什么？</h4>
+  <p><b>考察点：</b>对 RAGAS 标准指标体系的掌握，能否说清每个指标“回答什么问题”。</p>
+  <ul>
+    <li><b>答题要点（RAGAS 五指标）：</b>Faithfulness（忠实度，回答是否被检索到的上下文支撑）、Answer Relevancy（回答相关性，是否切题）、Context Precision（上下文精确率，检索到的内容是否相关）、Context Recall（上下文召回率，必要信息是否都被检索到）、Answer Correctness（回答正确性，与 ground truth 对比）。</li>
+    <li>一句话分层：Precision/Recall 测<b>检索器</b>，Faithfulness/Relevancy 测<b>生成器</b>，Correctness 测<b>端到端</b>。</li>
+  </ul>
+</div>
+
+<div class="qa rag">
+  <h4><span class="k">RAG</span>考点 7：RAG 出问题，怎么定位是检索器还是生成器的锅？</h4>
+  <p><b>考察点：</b>工程化的排查思维，能否将系统拆成组件分别测（component-wise evaluation）。</p>
+  <ul>
+    <li><b>答题要点：</b>关键在“分离测试”——把 RAG 拆成检索段和生成段分别评估。</li>
+    <li>检索器用 Context Precision / Context Recall 衡量；生成器用 Faithfulness / Answer Relevancy 衡量。</li>
+    <li>若检索召回高但回答仍错 → 生成器/提示词问题；若忠实度低但检索相关 → 生成没用好上下文。这样能精准定位是索引、嵌入、还是 prompt 的问题。</li>
+  </ul>
+</div>
+
+<div class="qa agent">
+  <h4><span class="k">Agent</span>考点 8：Agent 评测和纯 LLM 评测有什么不同？</h4>
+  <p><b>考察点：</b>是否理解 Agent 的“多步、带工具、有环境反馈”特性带来的评测差异。</p>
+  <ul>
+    <li><b>答题要点：</b>Agent 是“多轮交互 + 工具调用 + 环境状态变化”，比单轮文本生成更复杂。</li>
+    <li>评测目标分四维：行为（黑盒任务完成）、能力（工具调用/规划/记忆）、可靠性（重复执行一致性）、安全对齐。</li>
+    <li>核心指标：任务完成率/success rate、pass@k（k 次尝试至少一次成功，测能力上限）、pass^k（k 次全成功，测稳定性）。</li>
+  </ul>
+</div>
+
+<div class="qa agent">
+  <h4><span class="k">Agent</span>考点 9：怎么测 Agent 的可靠性与工具调用正确性？</h4>
+  <p><b>考察点：</b>对 Agent 可观测性（observability）与轨迹追踪的实践理解。</p>
+  <ul>
+    <li><b>答题要点：</b>可靠性用 pass^k（多次重复全成功）衡量一致性；工具调用正确性通过轨迹追踪检查每一步 action 是否正确选择了工具、参数是否合理。</li>
+    <li>落地：用 LangSmith / Langfuse / Phoenix 等做轨迹追踪（tracing），把 Agent 的每一步（思考、工具调用、观察）记录为可审计的 span。</li>
+    <li>同时关注 prompt injection（注入攻击）：Agent 可能被用户输入诱导执行危险工具调用，需做安全对抗测试。</li>
+  </ul>
+</div>
+
+<div class="qa agent">
+  <h4><span class="k">Agent</span>考点 10：多 Agent 协作场景怎么测？</h4>
+  <p><b>考察点：</b>高阶题，考察对 2025-2026 多 Agent 评测前沿的了解。</p>
+  <ul>
+    <li><b>答题要点：</b>多 Agent 评测不仅看最终任务完成，还看协作过程——通信质量、规划一致性、任务分配合理性。</li>
+    <li>指标：任务完成里程碑 + 通信得分 + 规划得分，加权成 Coordination Score（协调分）。</li>
+    <li>参考基准：MultiAgentBench / MARBLE（合作与竞争场景，支持 star/chain/graph 多种协作结构）。</li>
+  </ul>
+</div>
+
+<div class="qa eng">
+  <h4><span class="k">工程</span>考点 11：给你一个 LLM 产品，怎么从 0 搭一套 eval 体系？</h4>
+  <p><b>考察点：</b>这是最常见的“开放设计题”，考察体系化落地的完整思路。</p>
+  <ul>
+    <li><b>答题要点（六步法）：</b>① 明确评测目标与关键维度（正确性/忠实度/安全性/成本延迟）；② 构建黄金评测集（含边界与对抗用例）；③ 选指标与评测框架（DeepEval / RAGAS / Promptfoo）；④ 设定阈值门禁，接入 CI/CD；⑤ 做 LLM-as-a-Judge 并做人工校准；⑥ 上线后持续在线采样 + 漂移监控。</li>
+    <li>强调“分层”：开发期用评测框架做门禁，生产期用可观测平台（LangSmith/Phoenix）做持续监控，两套并行。</li>
+  </ul>
+</div>
+
+<div class="qa eng">
+  <h4><span class="k">工程</span>考点 12：怎么把 eval 接入 CI/CD，又不被 LLM 的非确定性搞崩？</h4>
+  <p><b>考察点：</b>工程稳健性，考察对“flaky 评测”的控制经验。</p>
+  <ul>
+    <li><b>答题要点：</b>不要用精确阈值，用<b>容差带（tolerance band）</b>——如 faithfulness ≥ 0.7 且不较上次下降超 0.05。</li>
+    <li>固定 judge 模型版本（pin version）、固定黄金评测集、用稳定采样，避免噪声波动导致构建随机失败。</li>
+    <li>评测作为独立 pipeline 阶段，跑在每次 push 上，超阈值才 fail。</li>
+  </ul>
+</div>
+
+<div class="qa eng">
+  <h4><span class="k">工程</span>考点 13：评测框架怎么选？（DeepEval / RAGAS / Promptfoo / LangSmith）</h4>
+  <p><b>考察点：</b>对主流框架定位的判断力。</p>
+  <ul>
+    <li><b>答题要点：</b>DeepEval = 开发期评测库（pytest 风格，指标最全）；RAGAS = RAG 专用指标（学术标准词汇）；Promptfoo = CI 门禁与红队/多模型对比（YAML 声明式）；LangSmith = 生产期追踪 + 评测平台（LangChain 生态）。</li>
+    <li>成熟团队通常<b>两套并行</b>：开发期用 DeepEval/Promptfoo 做门禁，生产期用 LangSmith/Phoenix 做监控。</li>
+  </ul>
+</div>
+
+<h2>四、主流 LLM 评测框架选型对比（2026）</h2>
+<table>
+  <tr><th>框架</th><th>定位</th><th>开源/协议</th><th>适用场景</th></tr>
+  <tr><td><b>DeepEval</b></td><td>开发期评测库（“LLM 的 pytest”）</td><td>开源（Apache 2.0）</td><td>CI 门禁、指标最全（14+ 内置，含 G-Eval、DAG 自定义）</td></tr>
+  <tr><td><b>RAGAS</b></td><td>RAG 专用指标，学术标准词汇</td><td>开源（Apache 2.0）</td><td>RAG 检索/生成质量，无需 ground truth</td></tr>
+  <tr><td><b>Promptfoo</b></td><td>CI-first、提示词回归 + 红队</td><td>开源（MIT）</td><td>YAML 声明式、多模型矩阵对比、500+ 对抗攻击向量</td></tr>
+  <tr><td><b>LangSmith</b></td><td>生产期追踪 + 评测平台</td><td>商业（有免费 tier）</td><td>LangChain/LangGraph 应用，轨迹追踪、在线评测</td></tr>
+  <tr><td><b>Braintrust</b></td><td>商业评测平台</td><td>商业</td><td>实验追踪、评分历史、人工标注工作流</td></tr>
+  <tr><td><b>Arize Phoenix</b></td><td>可观测 + 评测（OpenTelemetry）</td><td>开源核心</td><td>嵌入漂移检测、生产监控、可自托管</td></tr>
+  <tr><td><b>lm-eval-harness</b></td><td>基座模型基准测评</td><td>开源（MIT）</td><td>选基座模型（MMLU 等 200+ 学术基准），非应用评测</td></tr>
+</table>
+<div class="note">
+  <b>关键提醒：</b>区分「评测应用」和「基准测评」——HELM / lm-eval-harness / MMLU-Pro / GPQA 是选基座模型的，不是评价你应用好坏的。混淆两者是最常见的认知错误，也是面试官爱挖的坑。
+</div>
+
+<h2>五、阶段学习资源建议</h2>
+<div class="card">
+  <h3>阶段一（LLM 基础）</h3>
+  <ul>
+    <li>深入理解 LLM 生成机制：Transformer 注意力、采样策略（temperature/top-p）与输出不确定性。</li>
+    <li>动手：用 DeepEval 写第一个评测用例，跑 HallucinationMetric / AnswerRelevancyMetric。</li>
+  </ul>
+  <h3>阶段二（RAG）</h3>
+  <ul>
+    <li>掌握 RAGAS 五指标定义与计算原理，能说出每个指标“回答什么问题”。</li>
+    <li>动手：搭一个最小 RAG 应用，分别测检索器和生成器，做一次“分离测试”定位。</li>
+  </ul>
+  <h3>阶段三（Agent）</h3>
+  <ul>
+    <li>研究 Agent 评测四维目标与 pass@k / pass^k 指标，理解轨迹追踪。</li>
+    <li>动手：用 browser-use + Playwright 做一次 Agent 浏览器任务评测，接入 LangSmith 看轨迹。</li>
+  </ul>
+</div>
+
+<p style="margin-top:28px;color:var(--muted);font-size:13px;">
+  说明：框架定位与能力信息参考 2026 年公开发表的评测框架对比资料；具体指标定义以 RAGAS / DeepEval 官方文档为准。建议结合你的 E9 接口自动化项目，把「评测门禁 + 回归评测集」的理念迁移到实际工作中验证。
+</p>
+
+</div>
+</body>
+</html>

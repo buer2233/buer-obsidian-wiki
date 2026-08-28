@@ -1,7 +1,7 @@
 {
   "version": 1,
   "created": "2026-04-23",
-  "last_sync": "2026-07-21",
+  "last_sync": "2026-08-27",
   "description": "Ingest delta tracker and address map for the claude-obsidian vault. Do not hand-edit; wiki-ingest maintains this.",
   "sources": {
     "yuque/AI自动化开发计划.md": {
@@ -83,6 +83,21 @@
       "ingested": "2026-07-21",
       "status": "created",
       "wiki_path": "wiki/语雀/claude-code/Loop Engineering（循环工程）.md"
+    },
+    "AI相关学习资料/AI产品测试进阶路线与面试考点.html": {
+      "ingested": "2026-08-27",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/AI产品测试进阶路线与面试考点.md"
+    },
+    "AI相关学习资料/AI产品测试进阶路线与面试考点-进阶版.md": {
+      "ingested": "2026-08-27",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/AI产品测试进阶路线与面试考点-进阶版.md"
+    },
+    "AI相关学习资料/Pi与AI编程Agent对比分析.html": {
+      "ingested": "2026-08-27",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/Pi与AI编程Agent对比分析.md"
     }
   },
   "address_map": {

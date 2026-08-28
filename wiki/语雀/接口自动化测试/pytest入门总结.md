@@ -228,7 +228,7 @@ def test_addition(a, b, expected):
 - [[Django 学习笔记]] — AI测试主题关联
 - [[Flask学习笔记]] — AI测试主题关联
 - [[接口自动化总结]] — AI测试主题关联
+- [[邓万鹏-AI自动化测试]] — AI测试主题关联
 - [[AI自动化开发计划]] — AI测试主题关联
 - [[flask平台代码简介]] — AI测试主题关联
-- [[个人档案]] — AI测试主题关联
 <!-- AUTO-LINK-INDEX:END -->

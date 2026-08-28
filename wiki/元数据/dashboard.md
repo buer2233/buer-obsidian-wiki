@@ -1,7 +1,7 @@
 ---
 type: meta
 title: "知识库仪表盘"
-updated: 2026-07-08
+updated: 2026-08-27
 tags:
   - meta/dashboard
 status: active
@@ -10,8 +10,8 @@ status: active
 # 知识库仪表盘
 
 ## 链接健康
-- 页面总数：119
-- 待处理死链：0
+- 页面总数：122
+- 待处理死链：13
 - 无入链页面：0
 
 ## 最近活动
