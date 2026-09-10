@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>邓万鹏 · 数字生活策展人</title>
+<style>
+/* ===== Reset & Base ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAF7F0;--bg-2:#F5F0E8;--card:#FFFFFF;
+  --ink:#1A2B23;--ink-2:#2D5A40;--ink-3:#4A6B5C;
+  --amber:#C8860D;--amber-l:#E0A82E;--amber-bg:#FDF6E3;
+  --green:#1B4332;--green-l:#2D5A40;--green-bg:#E8F0EA;
+  --t1:#1A2B23;--t2:#5C6B63;--t3:#8A9A90;
+  --border:#E5DDD0;--border-2:#D8CFBE;
+  --radius:16px;--radius-sm:10px;
+  --shadow:0 2px 12px rgba(26,43,35,.06);
+  --shadow-lg:0 8px 32px rgba(26,43,35,.1);
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --max-w:680px;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font);background:var(--bg);color:var(--t1);
+  line-height:1.7;font-size:16px;overflow-x:hidden;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ===== Layout ===== */
+.page{max-width:var(--max-w);margin:0 auto;padding:0 20px}
+.section{padding:56px 0;position:relative}
+.section-label{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--amber);background:var(--amber-bg);
+  padding:5px 14px;border-radius:20px;margin-bottom:16px;
+}
+.section-title{
+  font-size:clamp(22px,5.5vw,30px);font-weight:800;
+  color:var(--ink);line-height:1.3;margin-bottom:8px;
+}
+.section-sub{font-size:14px;color:var(--t2);margin-bottom:32px}
+
+/* ===== Scroll Reveal ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.08s}.reveal-d2{transition-delay:.16s}
+.reveal-d3{transition-delay:.24s}.reveal-d4{transition-delay:.32s}
+
+/* ===== Nav Dots ===== */
+.nav-dots{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:10px}
+.nav-dots a{width:8px;height:8px;border-radius:50%;background:var(--border-2);transition:all .3s;display:block}
+.nav-dots a.active{background:var(--amber);transform:scale(1.4)}
+@media(max-width:480px){.nav-dots{display:none}}
+
+/* ===== 1. HeroCard ===== */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  text-align:center;padding:60px 0;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-40%;left:-20%;width:140%;height:120%;
+  background:radial-gradient(ellipse at 50% 30%,rgba(224,168,46,.08) 0%,transparent 55%),
+             radial-gradient(ellipse at 80% 70%,rgba(27,67,50,.06) 0%,transparent 50%);
+  z-index:0;
+}
+.hero>*{position:relative;z-index:1}
+.hero-frame{
+  border:1px solid var(--border);border-radius:24px;
+  background:linear-gradient(145deg,rgba(255,255,255,.9),rgba(253,246,227,.4));
+  padding:48px 28px;backdrop-filter:blur(10px);
+  box-shadow:var(--shadow-lg);
+}
+.hero-badge{
+  display:inline-block;font-size:11px;font-weight:600;letter-spacing:.15em;
+  color:var(--green);background:var(--green-bg);
+  padding:5px 14px;border-radius:20px;margin-bottom:20px;
+  border:1px solid rgba(27,67,50,.12);
+}
+.hero-name{font-size:clamp(36px,10vw,54px);font-weight:900;letter-spacing:-.02em;color:var(--ink);margin-bottom:6px}
+.hero-identity{font-size:clamp(14px,3.8vw,18px);font-weight:600;color:var(--amber);margin-bottom:18px;line-height:1.5}
+.hero-identity span{color:var(--ink-2)}
+.hero-slogan{font-size:clamp(15px,4vw,18px);color:var(--t2);margin-bottom:28px;line-height:1.6;max-width:420px;margin-left:auto;margin-right:auto}
+.hero-vibes{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.vibe-tag{
+  font-size:12px;font-weight:500;padding:6px 14px;border-radius:20px;
+  background:var(--card);border:1px solid var(--border);color:var(--ink-3);
+  transition:all .25s;
+}
+.vibe-tag:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-2px)}
+.hero-scroll{margin-top:40px;font-size:12px;color:var(--t3);letter-spacing:.1em}
+.hero-scroll span{display:inline-block;animation:bounce 1.8s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* ===== 2. StatsBoard ===== */
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.stat-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:24px 18px;text-align:center;transition:all .3s;position:relative;overflow:hidden;
+}
+.stat-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--amber),var(--amber-l));transform:scaleX(0);transform-origin:left;transition:transform .4s;
+}
+.stat-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);border-color:var(--border-2)}
+.stat-card:hover::before{transform:scaleX(1)}
+.stat-num{font-size:clamp(28px,7vw,38px);font-weight:900;color:var(--ink);line-height:1.1;margin-bottom:4px}
+.stat-num .unit{font-size:.5em;font-weight:600;color:var(--amber);margin-left:2px}
+.stat-label{font-size:12px;color:var(--t2);line-height:1.5}
+.stat-card.amber .stat-num{color:var(--amber)}
+.stat-card.green .stat-num{color:var(--green)}
+
+/* ===== 3. TimelinePro ===== */
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--amber),var(--green-l),var(--border))}
+.tl-item{position:relative;margin-bottom:28px}
+.tl-item:last-child{margin-bottom:0}
+.tl-dot{
+  position:absolute;left:-28px;top:4px;width:18px;height:18px;border-radius:50%;
+  background:var(--card);border:3px solid var(--amber);z-index:1;
+  transition:all .3s;
+}
+.tl-item:hover .tl-dot{background:var(--amber);transform:scale(1.15)}
+.tl-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px 20px;transition:all .3s;
+}
+.tl-card:hover{box-shadow:var(--shadow);border-color:var(--border-2)}
+.tl-year{font-size:13px;font-weight:700;color:var(--amber);margin-bottom:4px;letter-spacing:.05em}
+.tl-title{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:4px}
+.tl-note{font-size:13px;color:var(--t2);line-height:1.6}
+.tl-tag{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;margin-top:8px;font-weight:500}
+.tl-tag.work{background:var(--green-bg);color:var(--green)}
+.tl-tag.life{background:var(--amber-bg);color:var(--amber)}
+.tl-tag.milestone{background:#F3E8FF;color:#7C3AED}
+
+/* ===== 4. BentoGallery ===== */
+.bento{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;grid-auto-rows:1fr}
+.bento-cell{
+  border-radius:var(--radius);padding:22px 18px;position:relative;overflow:hidden;
+  min-height:130px;display:flex;flex-direction:column;justify-content:space-between;
+  transition:all .35s;cursor:default;
+}
+.bento-cell:hover{transform:translateY(-4px) scale(1.02);box-shadow:var(--shadow-lg)}
+.bento-cell.large{grid-column:span 2}
+.bento-icon{font-size:28px;margin-bottom:8px;line-height:1}
+.bento-title{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px}
+.bento-quote{font-size:12px;color:var(--t2);line-height:1.5}
+.bento-cell:nth-child(1){background:linear-gradient(135deg,#FDF6E3,#FAEFD0)}
+.bento-cell:nth-child(2){background:linear-gradient(135deg,#E8F0EA,#D4E6D8)}
+.bento-cell:nth-child(3){background:linear-gradient(135deg,#FFF3E0,#FFE0B2)}
+.bento-cell:nth-child(4){background:linear-gradient(135deg,#E0F2F1,#B2DFDB)}
+.bento-cell:nth-child(5){background:linear-gradient(135deg,#F3E5F5,#E1BEE7)}
+.bento-cell:nth-child(6){background:linear-gradient(135deg,#FFF8E1,#FFECB3)}
+
+/* ===== 5. SkillRadar ===== */
+.radar-wrap{display:flex;flex-direction:column;align-items:center;gap:24px}
+.radar-svg{width:100%;max-width:340px;height:auto}
+.radar-legend{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 16px;width:100%;max-width:380px}
+.legend-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--t1)}
+.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.legend-bar{flex:1;height:5px;background:var(--bg-2);border-radius:3px;overflow:hidden}
+.legend-fill{height:100%;border-radius:3px;transition:width 1s ease}
+.legend-val{font-size:11px;color:var(--t3);font-weight:600;min-width:28px;text-align:right}
+
+/* ===== 6. Testimonial ===== */
+.testi-wall{display:flex;flex-wrap:wrap;gap:10px}
+.testi-tag{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:14px 16px;transition:all .3s;flex:1 1 auto;max-width:100%;
+  display:flex;flex-direction:column;gap:6px;
+}
+.testi-tag:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.testi-tag:nth-child(odd){border-left:3px solid var(--amber)}
+.testi-tag:nth-child(even){border-left:3px solid var(--green-l)}
+.testi-text{font-size:14px;color:var(--ink);line-height:1.6;font-weight:500}
+.testi-text::before{content:'"';color:var(--amber);font-size:18px;font-weight:800;margin-right:2px}
+.testi-text::after{content:'"';color:var(--amber);font-size:18px;font-weight:800;margin-left:2px}
+.testi-from{font-size:12px;color:var(--t3);display:flex;align-items:center;gap:6px}
+.testi-from::before{content:'—';color:var(--t3)}
+
+/* ===== 7. ContactSocial ===== */
+.contact-grid{display:grid;grid-template-columns:1fr;gap:12px}
+.contact-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px 20px;display:flex;align-items:flex-start;gap:14px;
+  transition:all .3s;text-decoration:none;color:inherit;
+}
+.contact-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);border-color:var(--amber)}
+.contact-icon{
+  width:42px;height:42px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.contact-icon.gh{background:#F6F8FA;color:#1F2328}
+.contact-icon.csdn{background:#FFF1F0;color:#FC5531}
+.contact-icon.yq{background:#E8F5E9;color:#259B36}
+.contact-icon.mail{background:#E3F2FD;color:#1565C0}
+.contact-icon.city{background:var(--amber-bg);color:var(--amber)}
+.contact-icon.wx{background:var(--green-bg);color:var(--green)}
+.contact-body{flex:1;min-width:0}
+.contact-name{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:3px}
+.contact-ice{font-size:13px;color:var(--t2);line-height:1.5}
+.contact-ice strong{color:var(--amber);font-weight:600}
+.contact-cta{font-size:12px;color:var(--t3);margin-top:4px;display:flex;align-items:center;gap:4px}
+.contact-cta::after{content:'→';transition:transform .3s}
+.contact-card:hover .contact-cta::after{transform:translateX(4px)}
+.contact-val{font-size:12px;color:var(--t3);font-family:monospace;margin-top:2px;word-break:break-all}
+
+/* ===== Footer ===== */
+.footer{text-align:center;padding:40px 0 32px;color:var(--t3);font-size:12px;line-height:1.8}
+.footer a{color:var(--amber);font-weight:600}
+.footer-heart{display:inline-block;animation:beat 1.4s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+
+/* ===== Back to Top ===== */
+.back-top{
+  position:fixed;bottom:24px;right:24px;width:42px;height:42px;
+  background:var(--card);border:1px solid var(--border);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:var(--ink-2);cursor:pointer;z-index:100;
+  opacity:0;transform:translateY(10px);transition:all .3s;box-shadow:var(--shadow);
+}
+.back-top.show{opacity:1;transform:translateY(0)}
+.back-top:hover{background:var(--amber);color:#fff;border-color:var(--amber)}
+
+/* ===== Reduced Motion ===== */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav-dots" id="navDots">
+  <a href="#hero" data-sec="hero" class="active" title="首页"></a>
+  <a href="#stats" data-sec="stats" title="数据"></a>
+  <a href="#timeline" data-sec="timeline" title="时间轴"></a>
+  <a href="#bento" data-sec="bento" title="兴趣"></a>
+  <a href="#skills" data-sec="skills" title="技能"></a>
+  <a href="#testimonials" data-sec="testimonials" title="评价"></a>
+  <a href="#contact" data-sec="contact" title="联系"></a>
+</nav>
+
+<div class="page">
+
+<!-- ===== 1. HeroCard ===== -->
+<section class="section hero" id="hero">
+  <div class="hero-frame reveal">
+    <span class="hero-badge">DIGITAL LIFE CURATOR</span>
+    <h1 class="hero-name">邓万鹏</h1>
+    <p class="hero-identity">AI测试炼金术师 <span>×</span> Obsidian策展人 <span>×</span> VibeCoder</p>
+    <p class="hero-slogan">用AI写测试，用Obsidian整理人生，<br>用代码交朋友</p>
+    <div class="hero-vibes">
+      <span class="vibe-tag">#VibeCoder</span>
+      <span class="vibe-tag">#AI测试先驱</span>
+      <span class="vibe-tag">#知识管理控</span>
+      <span class="vibe-tag">#开源贡献者</span>
+      <span class="vibe-tag">#成都</span>
+      <span class="vibe-tag">#Python八年选手</span>
+    </div>
+  </div>
+  <p class="hero-scroll reveal reveal-d2">向下滚动探索 <span>↓</span></p>
+</section>
+
+<!-- ===== 2. StatsBoard ===== -->
+<section class="section" id="stats">
+  <span class="section-label reveal">02 / STATS</span>
+  <h2 class="section-title reveal">生活化数据</h2>
+  <p class="section-sub reveal">不是KPI，是一些有趣的数字</p>
+  <div class="stats-grid">
+    <div class="stat-card amber reveal">
+      <div class="stat-num" data-target="93"><span class="count">0</span><span class="unit">%</span></div>
+      <div class="stat-label">AI帮我砍掉的<br>用例编写时间</div>
+    </div>
+    <div class="stat-card green reveal reveal-d1">
+      <div class="stat-num" data-target="93"><span class="count">0</span><span class="unit">篇</span></div>
+      <div class="stat-label">语雀知识库文档<br>（测试29 + AI64）</div>
+    </div>
+    <div class="stat-card reveal reveal-d2">
+      <div class="stat-num" data-target="8"><span class="count">0</span><span class="unit">年</span></div>
+      <div class="stat-label">和Python的稳定关系<br>比大部分恋情都长</div>
+    </div>
+    <div class="stat-card amber reveal reveal-d3">
+      <div class="stat-num" data-target="90"><span class="count">0</span><span class="unit">+</span></div>
+      <div class="stat-label">GitHub Star<br>每颗都是凌晨的头发</div>
+    </div>
+    <div class="stat-card green reveal">
+      <div class="stat-num" data-target="131"><span class="count">0</span><span class="unit">个</span></div>
+      <div class="stat-label">2024年提前逮住的Bug<br>平均3天搞掉一个</div>
+    </div>
+    <div class="stat-card reveal reveal-d1">
+      <div class="stat-num" data-target="20000"><span class="count">0</span><span class="unit">+</span></div>
+      <div class="stat-label">CSDN阅读量<br>不是在自嗨</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3. TimelinePro ===== -->
+<section class="section" id="timeline">
+  <span class="section-label reveal">03 / TIMELINE</span>
+  <h2 class="section-title reveal">双轨时间轴</h2>
+  <p class="section-sub reveal">工作与生活的交错节点</p>
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-year">2014</div>
+        <div class="tl-title">考入西昌学院 · 市场营销专业</div>
+        <div class="tl-note">谁说营销人不能写代码？命运的齿轮从这里开始转动</div>
+        <span class="tl-tag life">生活</span>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-year">2018</div>
+        <div class="tl-title">第一份测试工作 · 安心养老平台</div>
+        <div class="tl-note">和Python正式确认关系，从print('hello')开始了8年长跑</div>
+        <span class="tl-tag work">职业起点</span>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-year">2019</div>
+        <div class="tl-title">搭建第一个UI自动化框架</div>
+        <div class="tl-note">Python + Selenium + pytest + PO模式，从此入坑自动化不回头</div>
+        <span class="tl-tag work">技术成长</span>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-year">2021</div>
+        <div class="tl-title">加入泛微 · 负责E10低代码平台</div>
+        <div class="tl-note">分布式微服务架构教做人，也在这里开始了AI测试的探索</div>
+        <span class="tl-tag work">职业进阶</span>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-year">2023</div>
+        <div class="tl-title">All in AI测试</div>
+        <div class="tl-note">Claude Code成为新搭档，开始设计SKILL系统。公司内首批把AI融进测试流程的工程师</div>
+        <span class="tl-tag milestone">关键转折</span>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-year">2024</div>
+        <div class="tl-title">SKILL系统全公司推广</div>
+        <div class="tl-note">接口用例编写效率提升93%，综合提升46%。同事开始改口叫"鹏哥"</div>
+        <span class="tl-tag milestone">高光时刻</span>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-year">2025</div>
+        <div class="tl-title">Obsidian知识库上线</div>
+        <div class="tl-note">93篇笔记 + 双语雀知识库，把脑子里的东西全搬进电脑。知识管理玩出花</div>
+        <span class="tl-tag life">生活方式</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. BentoGallery ===== -->
+<section class="section" id="bento">
+  <span class="section-label reveal">04 / GALLERY</span>
+  <h2 class="section-title reveal">兴趣宫格</h2>
+  <p class="section-sub reveal">把爱好包装成项目，每格一句心得</p>
+  <div class="bento">
+    <div class="bento-cell large reveal">
+      <div>
+        <div class="bento-icon">🔬</div>
+        <div class="bento-title">AI测试炼金术</div>
+      </div>
+      <div class="bento-quote">让AI帮你写测试用例，省下来的时间用来喝咖啡和发呆。效率+93%不是吹的</div>
+    </div>
+    <div class="bento-cell reveal reveal-d1">
+      <div>
+        <div class="bento-icon">📚</div>
+        <div class="bento-title">Obsidian知识管理</div>
+      </div>
+      <div class="bento-quote">93篇笔记，把脑子搬进电脑</div>
+    </div>
+    <div class="bento-cell reveal reveal-d2">
+      <div>
+        <div class="bento-icon">🐍</div>
+        <div class="bento-title">Python八年情缘</div>
+      </div>
+      <div class="bento-quote">从print到AI Agent，没分手</div>
+    </div>
+    <div class="bento-cell reveal reveal-d1">
+      <div>
+        <div class="bento-icon">🌐</div>
+        <div class="bento-title">开源贡献者</div>
+      </div>
+      <div class="bento-quote">Star不嫌多，PR不嫌少，issue也欢迎</div>
+    </div>
+    <div class="bento-cell reveal reveal-d2">
+      <div>
+        <div class="bento-icon">⚡</div>
+        <div class="bento-title">VibeCoder</div>
+      </div>
+      <div class="bento-quote">不是在写代码，是在和AI对话</div>
+    </div>
+    <div class="bento-cell large reveal">
+      <div>
+        <div class="bento-icon">☕</div>
+        <div class="bento-title">咖啡因驱动开发</div>
+      </div>
+      <div class="bento-quote">Bug和灵感一样，都在第三杯咖啡之后出现。成都的咖啡馆是我的第二办公室</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5. SkillRadar ===== -->
+<section class="section" id="skills">
+  <span class="section-label reveal">05 / SKILLS</span>
+  <h2 class="section-title reveal">技能雷达</h2>
+  <p class="section-sub reveal">8项能力，混入了几项软技能</p>
+  <div class="radar-wrap">
+    <svg class="radar-svg reveal" id="radarSvg" viewBox="0 0 320 320"></svg>
+    <div class="radar-legend reveal reveal-d2" id="radarLegend"></div>
+  </div>
+</section>
+
+<!-- ===== 6. Testimonial ===== -->
+<section class="section" id="testimonials">
+  <span class="section-label reveal">06 / VOICES</span>
+  <h2 class="section-title reveal">朋友说</h2>
+  <p class="section-sub reveal">来自同事、网友和朋友的真实声音</p>
+  <div class="testi-wall">
+    <div class="testi-tag reveal">
+      <div class="testi-text">鹏哥那个SKILL系统真的牛，我们组用了之后效率直接翻倍</div>
+      <div class="testi-from">组内同事 · 泛微</div>
+    </div>
+    <div class="testi-tag reveal reveal-d1">
+      <div class="testi-text">他不是在写代码，是在跟AI谈一场旷世恋爱</div>
+      <div class="testi-from">前同事老王</div>
+    </div>
+    <div class="testi-tag reveal reveal-d2">
+      <div class="testi-text">面试的时候他的知识库比我们公司wiki还全，惊了</div>
+      <div class="testi-from">某面试官</div>
+    </div>
+    <div class="testi-tag reveal">
+      <div class="testi-text">有问题找邓哥准没错，他脑子里装了个搜索引擎</div>
+      <div class="testi-from">团队小弟</div>
+    </div>
+    <div class="testi-tag reveal reveal-d1">
+      <div class="testi-text">CSDN那篇browser-use教程，照着做一次就跑通了，良心博主</div>
+      <div class="testi-from">匿名网友</div>
+    </div>
+    <div class="testi-tag reveal reveal-d2">
+      <div class="testi-text">他Obsidian用得比我刷抖音还熟练，知识库比我的收藏夹还乱但有用</div>
+      <div class="testi-from">室友</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 7. ContactSocial ===== -->
+<section class="section" id="contact">
+  <span class="section-label reveal">07 / CONNECT</span>
+  <h2 class="section-title reveal">来交个朋友</h2>
+  <p class="section-sub reveal">每个渠道都有破冰话题，别害羞</p>
+  <div class="contact-grid">
+    <a class="contact-card reveal" href="https://github.com/buer2233" target="_blank" rel="noopener">
+      <div class="contact-icon gh">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.11-.75.41-1.27.74-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.2-3.1-.12-.29-.52-1.46.11-3.05 0 0 .98-.31 3.2 1.18a11.1 11.1 0 0 1 5.83 0c2.22-1.49 3.2-1.18 3.2-1.18.63 1.59.23 2.76.11 3.05.75.81 1.2 1.84 1.2 3.1 0 4.43-2.69 5.41-5.25 5.69.42.36.79 1.08.79 2.18v3.23c0 .31.21.68.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+      </div>
+      <div class="contact-body">
+        <div class="contact-name">GitHub @buer2233</div>
+        <div class="contact-ice">破冰话题：<strong>AI+接口自动化SKILL系统</strong>怎么设计的？或者聊聊 browser-use 二次开发</div>
+        <div class="contact-cta">来提个Issue或PR</div>
+      </div>
+    </a>
+    <a class="contact-card reveal reveal-d1" href="https://blog.csdn.net/m0_56232078" target="_blank" rel="noopener">
+      <div class="contact-icon csdn">C</div>
+      <div class="contact-body">
+        <div class="contact-name">CSDN 博客</div>
+        <div class="contact-ice">破冰话题：那篇<strong>browser-use AI自动化</strong>文章看完了，有个参数想问下</div>
+        <div class="contact-cta">文章有问题直接评论</div>
+      </div>
+    </a>
+    <a class="contact-card reveal reveal-d2" href="https://www.yuque.com/bbuer" target="_blank" rel="noopener">
+      <div class="contact-icon yq">语</div>
+      <div class="contact-body">
+        <div class="contact-name">语雀知识库</div>
+        <div class="contact-ice">破冰话题：想聊<strong>AI测试落地</strong>或<strong>Obsidian知识管理</strong>，随时来</div>
+        <div class="contact-cta">93篇文档等你翻</div>
+      </div>
+    </a>
+    <a class="contact-card reveal" href="mailto:dwanpeng@gmail.com">
+      <div class="contact-icon mail">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg>
+      </div>
+      <div class="contact-body">
+        <div class="contact-name">Email</div>
+        <div class="contact-val">dwanpeng@gmail.com</div>
+        <div class="contact-ice">找合作或者单纯交朋友都行，<strong>邮件比微信正式一点</strong></div>
+        <div class="contact-cta">写封邮件聊聊</div>
+      </div>
+    </a>
+    <div class="contact-card reveal reveal-d1">
+      <div class="contact-icon city">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="contact-body">
+        <div class="contact-name">成都 · 面基 welcome</div>
+        <div class="contact-ice">破冰话题：<strong>找个咖啡馆聊聊AI</strong>，或者去玉林路喝一杯也行</div>
+        <div class="contact-cta">成都本地的约起来</div>
+      </div>
+    </div>
+    <div class="contact-card reveal reveal-d2">
+      <div class="contact-icon wx">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 4C4.36 4 1 6.69 1 10c0 1.89 1.08 3.56 2.78 4.66L3 17l2.5-1.32c.95.28 1.96.42 3 .42h.27a5.5 5.5 0 0 1-.27-1.72c0-3.2 3.13-5.8 7-5.8.25 0 .5.01.74.04C15.87 5.87 12.5 4 8.5 4zm-2 3.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm5 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM16 10c-3.31 0-6 2.24-6 5s2.69 5 6 5c.83 0 1.62-.15 2.36-.41L21 21l-.9-1.84C21.29 18.3 22 17.22 22 15c0-2.76-2.69-5-6-5zm-2 3.5a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5zm4 0a.75.75 0 1 1 0 1.5.75.75 0 0 1 0-1.5z"/></svg>
+      </div>
+      <div class="contact-body">
+        <div class="contact-name">微信 / 电话</div>
+        <div class="contact-val">18584874420（微信同号）</div>
+        <div class="contact-ice">加好友请备注：<strong>AI测试 / Obsidian / 开源</strong>，不然我可能不通过</div>
+        <div class="contact-cta">扫码或搜索加好友</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <p>邓万鹏 · 数字生活策展人 · 2026</p>
+  <p>用 <span class="footer-heart">♥</span> 和 AI 在成都构建 · <a href="https://github.com/buer2233">GitHub</a> · <a href="https://www.yuque.com/bbuer">语雀</a></p>
+  <p style="margin-top:8px;opacity:.6">这个页面是单文件H5，可以离线打开</p>
+</footer>
+
+</div>
+
+<button class="back-top" id="backTop" aria-label="返回顶部">↑</button>
+
+<script>
+(function(){
+'use strict';
+var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ===== Scroll Reveal ===== */
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add('in'); }
+  });
+},{threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+
+/* ===== Stats Count-Up ===== */
+var statsObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting) return;
+    var el = e.target;
+    var target = parseInt(el.dataset.target, 10);
+    var span = el.querySelector('.count');
+    if(!span || span.dataset.done) return;
+    span.dataset.done = '1';
+    if(reduceMotion){ span.textContent = target.toLocaleString(); return; }
+    var duration = 1200, start = 0, startTime = null;
+    function tick(ts){
+      if(!startTime) startTime = ts;
+      var p = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      var val = Math.floor(start + (target - start) * eased);
+      span.textContent = val.toLocaleString();
+      if(p < 1) requestAnimationFrame(tick);
+      else span.textContent = target.toLocaleString();
+    }
+    requestAnimationFrame(tick);
+  });
+},{threshold:0.5});
+document.querySelectorAll('.stat-num[data-target]').forEach(function(el){ statsObserver.observe(el); });
+
+/* ===== Radar Chart ===== */
+var skills = [
+  {name:'Python编程', val:95, color:'#C8860D', soft:false},
+  {name:'自动化测试', val:90, color:'#2D5A40', soft:false},
+  {name:'AI/LLM应用', val:88, color:'#C8860D', soft:false},
+  {name:'测试平台开发', val:82, color:'#2D5A40', soft:false},
+  {name:'知识管理', val:85, color:'#E0A82E', soft:false},
+  {name:'持续学习', val:92, color:'#7C3AED', soft:true},
+  {name:'技术分享', val:78, color:'#7C3AED', soft:true},
+  {name:'沟通协作', val:80, color:'#7C3AED', soft:true}
+];
+
+var radarDrawn = false;
+var radarObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting && !radarDrawn){
+      radarDrawn = true;
+      drawRadar();
+    }
+  });
+},{threshold:0.3});
+var radarEl = document.getElementById('radarSvg');
+if(radarEl) radarObserver.observe(radarEl);
+
+function drawRadar(){
+  var svg = document.getElementById('radarSvg');
+  if(!svg) return;
+  var cx = 160, cy = 160, maxR = 110, n = skills.length;
+  var ns = 'http://www.w3.org/2000/svg';
+  var html = '';
+
+  // Background rings
+  [0.25, 0.5, 0.75, 1.0].forEach(function(ratio){
+    var r = maxR * ratio;
+    var pts = [];
+    for(var i = 0; i < n; i++){
+      var angle = (i * 360 / n - 90) * Math.PI / 180;
+      pts.push((cx + r * Math.cos(angle)).toFixed(1) + ',' + (cy + r * Math.sin(angle)).toFixed(1));
+    }
+    html += '<polygon points="' + pts.join(' ') + '" fill="none" stroke="#E5DDD0" stroke-width="1" opacity="' + (ratio === 1 ? 0.6 : 0.35) + '"/>';
+  });
+
+  // Axis lines + labels
+  for(var i = 0; i < n; i++){
+    var angle = (i * 360 / n - 90) * Math.PI / 180;
+    var x2 = cx + maxR * Math.cos(angle);
+    var y2 = cy + maxR * Math.sin(angle);
+    html += '<line x1="' + cx + '" y1="' + cy + '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '" stroke="#E5DDD0" stroke-width="1"/>';
+
+    // Label
+    var lx = cx + (maxR + 22) * Math.cos(angle);
+    var ly = cy + (maxR + 22) * Math.sin(angle);
+    var anchor = 'middle';
+    if(Math.cos(angle) > 0.3) anchor = 'start';
+    else if(Math.cos(angle) < -0.3) anchor = 'end';
+    var fontSize = skills[i].soft ? 10 : 11;
+    var fontWeight = skills[i].soft ? '400' : '600';
+    var fontColor = skills[i].soft ? '#7C3AED' : '#1A2B23';
+    html += '<text x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) + '" text-anchor="' + anchor + '" dominant-baseline="middle" font-size="' + fontSize + '" font-weight="' + fontWeight + '" fill="' + fontColor + '" font-family="inherit">' + skills[i].name + '</text>';
+  }
+
+  // Data polygon
+  var dataPts = [];
+  for(var i = 0; i < n; i++){
+    var angle = (i * 360 / n - 90) * Math.PI / 180;
+    var r = (skills[i].val / 100) * maxR;
+    dataPts.push((cx + r * Math.cos(angle)).toFixed(1) + ',' + (cy + r * Math.sin(angle)).toFixed(1));
+  }
+
+  if(reduceMotion){
+    html += '<polygon points="' + dataPts.join(' ') + '" fill="rgba(200,134,13,0.15)" stroke="#C8860D" stroke-width="2" stroke-linejoin="round"/>';
+    // Dots
+    for(var i = 0; i < n; i++){
+      var angle = (i * 360 / n - 90) * Math.PI / 180;
+      var r = (skills[i].val / 100) * maxR;
+      var dx = cx + r * Math.cos(angle);
+      var dy = cy + r * Math.sin(angle);
+      html += '<circle cx="' + dx.toFixed(1) + '" cy="' + dy.toFixed(1) + '" r="4" fill="' + skills[i].color + '" stroke="#fff" stroke-width="1.5"/>';
+    }
+  } else {
+    // Animated draw
+    html += '<polygon id="radarPoly" points="' + dataPts.join(' ') + '" fill="rgba(200,134,13,0.15)" stroke="#C8860D" stroke-width="2" stroke-linejoin="round" style="opacity:0;transition:opacity 0.8s ease 0.3s"/>';
+    for(var i = 0; i < n; i++){
+      var angle = (i * 360 / n - 90) * Math.PI / 180;
+      var r = (skills[i].val / 100) * maxR;
+      var dx = cx + r * Math.cos(angle);
+      var dy = cy + r * Math.sin(angle);
+      html += '<circle cx="' + dx.toFixed(1) + '" cy="' + dy.toFixed(1) + '" r="0" fill="' + skills[i].color + '" stroke="#fff" stroke-width="1.5" style="transition:r 0.4s ease ' + (0.5 + i * 0.08) + 's"/>';
+    }
+  }
+
+  svg.innerHTML = html;
+
+  if(!reduceMotion){
+    // Trigger animation
+    setTimeout(function(){
+      var poly = document.getElementById('radarPoly');
+      if(poly) poly.style.opacity = '1';
+      var dots = svg.querySelectorAll('circle');
+      dots.forEach(function(d){ d.setAttribute('r', '4'); });
+    }, 100);
+  }
+
+  // Legend
+  var legend = document.getElementById('radarLegend');
+  if(legend){
+    var lh = '';
+    skills.forEach(function(s){
+      var pct = s.val + '%';
+      var labelSuffix = s.soft ? ' <span style="color:#7C3AED;font-size:10px">软技能</span>' : '';
+      lh += '<div class="legend-item">';
+      lh += '<span class="legend-dot" style="background:' + s.color + '"></span>';
+      lh += '<span style="min-width:72px">' + s.name + labelSuffix + '</span>';
+      lh += '<div class="legend-bar"><div class="legend-fill" style="width:0;background:' + s.color + '" data-w="' + s.val + '%"></div></div>';
+      lh += '<span class="legend-val">' + pct + '</span>';
+      lh += '</div>';
+    });
+    legend.innerHTML = lh;
+    // Animate bars
+    if(!reduceMotion){
+      setTimeout(function(){
+        legend.querySelectorAll('.legend-fill').forEach(function(bar){
+          bar.style.width = bar.dataset.w;
+        });
+      }, 300);
+    } else {
+      legend.querySelectorAll('.legend-fill').forEach(function(bar){
+        bar.style.width = bar.dataset.w;
+      });
+    }
+  }
+}
+
+/* ===== Nav Dots ===== */
+var sections = document.querySelectorAll('.section');
+var navLinks = document.querySelectorAll('.nav-dots a');
+var navObserver = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      var id = e.target.id;
+      navLinks.forEach(function(l){
+        l.classList.toggle('active', l.dataset.sec === id);
+      });
+    }
+  });
+},{threshold:0.4});
+sections.forEach(function(s){ navObserver.observe(s); });
+
+/* ===== Back to Top ===== */
+var backTop = document.getElementById('backTop');
+window.addEventListener('scroll', function(){
+  backTop.classList.toggle('show', window.scrollY > 400);
+}, {passive:true});
+backTop.addEventListener('click', function(){
+  if(reduceMotion){ window.scrollTo(0, 0); }
+  else { window.scrollTo({top:0, behavior:'smooth'}); }
+});
+
+})();
+</script>
+</body>
+</html>

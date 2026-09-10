@@ -10,9 +10,6 @@
 # Excalidraw main.js is 8MB — downloaded by setup-vault.sh, not tracked in git
 .obsidian/plugins/obsidian-excalidraw-plugin/main.js
 
-# WorkBuddy working data (session memory, not vault content)
-.workbuddy/
-
 # Large binary assets — add your own images to _attachments/images/
 # Uncomment the line below to exclude images from git (recommended for large vaults)
 # _attachments/images/
