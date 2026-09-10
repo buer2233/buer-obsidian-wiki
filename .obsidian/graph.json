@@ -139,6 +139,20 @@
         "a": 1,
         "rgb": 16744320
       }
+    },
+    {
+      "query": "path:wiki/测试开发相关学习资料  ",
+      "color": {
+        "a": 1,
+        "rgb": 847225
+      }
+    },
+    {
+      "query": "path:wiki/AI相关学习资料  ",
+      "color": {
+        "a": 1,
+        "rgb": 15010549
+      }
     }
   ],
   "collapse-display": false,
@@ -151,6 +165,6 @@
   "repelStrength": 20,
   "linkStrength": 1,
   "linkDistance": 120,
-  "scale": 0.1634837056722032,
+  "scale": 0.22920135941749037,
   "close": false
 }
