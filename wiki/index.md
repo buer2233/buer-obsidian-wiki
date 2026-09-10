@@ -2,7 +2,7 @@
 type: meta
 title: "知识库索引"
 created: 2026-07-01
-updated: 2026-08-27
+updated: 2026-09-10
 ---
 
 # 知识库索引
@@ -97,12 +97,33 @@ updated: 2026-08-27
 - [[vibecoding总结|vibecoding总结]] — 使用过程总结
 - [[语雀/个人博客|个人博客]] — 博客规划
 
-## AI相关学习资料（2026-08-27新增）
+## AI相关学习资料（2026-08-27 新增，2026-09-10 扩充）
 AI 产品测试与 AI 编码 Agent 的进阶学习资料（源自 `.raw/AI相关学习资料/`）：
-- [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点|AI产品测试进阶路线与面试考点]] — LLM评测原理、RAG指标、Agent四维、框架选型（概念版）
-- [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点-进阶版|进阶版：eval体系工程化落地]] — 三层评分器、五维评测、双套件、基线管理
-- [[wiki/AI相关学习资料/Pi与AI编程Agent对比分析|Pi与AI编程Agent对比分析]] — 四大编码 Agent 可测性横向对比
+
+**大模型基础**
+- [[wiki/AI相关学习资料/大模型核心原理|大模型核心原理]] — Transformer/Attention/Token/训练三阶段
+- [[wiki/AI相关学习资料/大模型必学基础知识|大模型必学基础知识]] — 四层知识体系、采样参数、提示词与上下文工程、Agent/Skill/MCP、RAG、评测七维
+
+**AI 编码 Agent 调研**
+- [[wiki/AI相关学习资料/AI编码Agent五工具对比分析报告|AI编码Agent五工具对比分析报告]] — OMP/Pi/DSH/Claude Code/Codex 横向对比
+- [[wiki/AI相关学习资料/Pi与AI编程Agent对比分析|Pi与AI编程Agent对比分析]] — 四大编码 Agent 可测性横向对比（九包架构）
+- [[wiki/AI相关学习资料/Pi的AI设计经验|Pi的AI设计经验]] — faux provider、evals 框架
+- [[wiki/AI相关学习资料/Pi源码精读顺序清单|Pi源码精读顺序清单]] — L0–L9 阅读路径
+- [[wiki/AI相关学习资料/OMP使用手册|OMP使用手册]] — oh-my-pi 配置与使用
+- [[wiki/AI相关学习资料/OMP的设计经验|OMP的设计经验]] — 架构设计取舍
+
+**AI 测试与工程范式**
+- [[wiki/AI相关学习资料/测试开发如何使用DSH|测试开发如何使用DSH]] — 五大测试领域落地方案
+- [[wiki/AI相关学习资料/Graph Engineering从概念到测试落地|Graph Engineering从概念到测试落地]] — Loop→Graph 范式跃迁与测试落地
+- [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点|AI产品测试进阶路线与面试考点]] — LLM评测原理、RAG指标、Agent四维（概念版）
+- [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点-进阶版|进阶版：eval体系工程化落地]] — 三层评分器、五维评测、双套件
 - [[wiki/AI相关学习资料/index|AI相关学习资料索引]]
+
+## 测试开发相关学习资料（2026-09-10 新增）
+补齐「被测系统技术栈知识面」的学习资料（源自 `.raw/测试开发相关学习资料/`），面向「Python 测试工程师 → 白盒化测试能力」：
+- [[wiki/测试开发相关学习资料/Flask-DRF与Java后端框架对照学习|Flask-DRF与Java后端框架对照学习]] — Spring 全家桶、IoC/AOP、严格分层、MyBatis、5 道面试问答
+- [[wiki/测试开发相关学习资料/JaCoCo代码覆盖率工具从入门到工程落地|JaCoCo代码覆盖率工具从入门到工程落地]] — 插桩机制、覆盖维度、CI 门禁、多服务聚合、远程采集、AI 补测闭环
+- [[wiki/测试开发相关学习资料/index|测试开发相关学习资料索引]]
 
 ## Codex工程经验（2026-07-03新增）
 使用Codex/Claude Code过程中积累的工程经验：
@@ -124,10 +145,24 @@ Claude Code + Obsidian 实战记录：
 ## 全量页面索引
 
 ### AI相关学习资料
-- [[AI产品测试进阶路线与面试考点]]
-- [[AI产品测试进阶路线与面试考点-进阶版]]
-- [[Pi与AI编程Agent对比分析]]
-- [[AI相关学习资料/index|index]]
+- [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点|AI产品测试进阶路线与面试考点]]
+- [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点-进阶版|AI产品测试进阶路线与面试考点-进阶版]]
+- [[wiki/AI相关学习资料/AI编码Agent五工具对比分析报告|AI编码Agent五工具对比分析报告]]
+- [[wiki/AI相关学习资料/Graph Engineering从概念到测试落地|Graph Engineering从概念到测试落地]]
+- [[wiki/AI相关学习资料/OMP使用手册|OMP使用手册]]
+- [[wiki/AI相关学习资料/OMP的设计经验|OMP的设计经验]]
+- [[wiki/AI相关学习资料/Pi与AI编程Agent对比分析|Pi与AI编程Agent对比分析]]
+- [[wiki/AI相关学习资料/Pi源码精读顺序清单|Pi源码精读顺序清单]]
+- [[wiki/AI相关学习资料/Pi的AI设计经验|Pi的AI设计经验]]
+- [[wiki/AI相关学习资料/大模型必学基础知识|大模型必学基础知识]]
+- [[wiki/AI相关学习资料/大模型核心原理|大模型核心原理]]
+- [[wiki/AI相关学习资料/测试开发如何使用DSH|测试开发如何使用DSH]]
+- [[wiki/AI相关学习资料/index|index]]
+
+### 测试开发相关学习资料
+- [[wiki/测试开发相关学习资料/Flask-DRF与Java后端框架对照学习|Flask-DRF与Java后端框架对照学习]]
+- [[wiki/测试开发相关学习资料/JaCoCo代码覆盖率工具从入门到工程落地|JaCoCo代码覆盖率工具从入门到工程落地]]
+- [[wiki/测试开发相关学习资料/index|index]]
 
 ### Codex/工程经验
 - [[Git SSH Windows路径解析错误规避]]

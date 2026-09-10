@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pi 源码精读顺序清单（SDET 版）</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #fff; --text: #1f2329; --muted: #6b7280;
+    --border: #e5e7eb; --brand: #4f46e5; --gold: #b45309; --green: #039855;
+    --code-bg: #f6f8fa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); line-height: 1.75; padding: 28px 16px; }
+  .wrap { max-width: 960px; margin: 0 auto; }
+  header { background: linear-gradient(135deg, #4f46e5, #10b981); color: #fff; border-radius: 14px; padding: 30px 28px; margin-bottom: 22px; }
+  header h1 { font-size: 24px; margin-bottom: 8px; }
+  header p { opacity: .94; font-size: 13.5px; }
+  .tag { display:inline-block; background: rgba(255,255,255,.2); border-radius:20px; padding:1px 11px; font-size:11.5px; margin:6px 5px 0 0; }
+  .toc { background: var(--card); border:1px solid var(--border); border-radius:12px; padding:16px 20px; margin-bottom:18px; }
+  .toc h4 { font-size:13px; color:var(--muted); margin-bottom:8px; }
+  .toc a { display:inline-block; color:var(--brand); text-decoration:none; font-size:13px; margin:3px 12px 3px 0; }
+  .toc a:hover { text-decoration:underline; }
+  h2 { font-size:19px; margin:30px 0 14px; padding-left:11px; border-left:4px solid var(--brand); }
+  h3 { font-size:15px; margin:18px 0 8px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px 20px; margin-bottom:14px; }
+  .step { display:flex; align-items:flex-start; gap:12px; margin:10px 0; }
+  .step .n { flex:0 0 30px; height:30px; border-radius:50%; background:var(--brand); color:#fff; font-weight:600; display:flex; align-items:center; justify-content:center; font-size:14px; }
+  .step .n.s-low { background:#10b981; }
+  .step .n.s-mid { background:#d97706; }
+  .step .n.s-gold { background:#b45309; }
+  .step .body { flex:1; }
+  .step .f { font-family:"SF Mono",Consolas,"Courier New",monospace; font-size:12.5px; background:#eef0f3; padding:1px 7px; border-radius:5px; color:#111827; }
+  .step .why { color:var(--muted); font-size:13px; margin-top:2px; }
+  .step .out { color:#185FA5; font-size:12.5px; margin-top:3px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th,td { border:1px solid var(--border); padding:8px 10px; text-align:left; vertical-align:top; }
+  th { background:#f3f4f6; font-weight:600; }
+  tr:nth-child(even) td { background:#fafafa; }
+  pre { background:var(--code-bg); border:1px solid var(--border); border-radius:10px; padding:13px 15px; overflow-x:auto; font-size:12.5px; line-height:1.6; margin:10px 0; }
+  code { font-family:"SF Mono",Consolas,"Courier New",monospace; font-size:.92em; background:#eef0f3; border-radius:4px; padding:1px 5px; }
+  pre code { background:none; padding:0; }
+  .gold { background:#fef3c7; border-left:3px solid #d97706; padding:12px 15px; border-radius:8px; font-size:13.5px; margin:12px 0; }
+  .hl { background:#eef2ff; border-left:3px solid var(--brand); padding:12px 15px; border-radius:8px; font-size:13.5px; margin:12px 0; }
+  .note { font-size:12px; color:var(--muted); margin-top:22px; }
+  .dur { font-size:11.5px; color:var(--muted); margin-left:6px; font-weight:400; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Pi 源码精读顺序清单</h1>
+  <p>面向测试开发工程师（SDET）· clone 之后按这个顺序读，少走弯路</p>
+  <div>
+    <span class="tag">9 个包的真实结构</span>
+    <span class="tag">含官方 evals 评测包</span>
+    <span class="tag">由浅入深 10 层</span>
+  </div>
+</header>
+
+<div class="toc">
+  <h4>📑 目录（共 10 层 + 动手产出）</h4>
+  <a href="#l0">L0 准备</a><a href="#l1">L1 入口</a><a href="#l2">L2 架构总览</a><a href="#l3">L3 运行时</a><a href="#l4">L4 交互扩展</a><a href="#l5">L5 UI</a><a href="#l6">L6 AI 适配</a><a href="#l7">L7 评测（金矿）</a><a href="#l8">L8 测试工程</a><a href="#l9">L9 供应链</a><a href="#out">动手产出</a>
+</div>
+
+<div class="gold">
+  <b>说明 ①：真实目录已重构。</b>官网 README 早期提到的 5 包（pi-telemetry / pi-ai / pi-agent-core / pi-coding-agent / pi-tui）<b>已过时</b>。当前 <code>packages/</code> 下实际是 <b>9 个包</b>：<code>agent</code>、<code>ai</code>、<code>client</code>、<code>coding-agent</code>、<code>evals</code>、<code>protocol</code>、<code>server</code>、<code>session-backends/sqlite-node</code>、<code>tui</code>。
+</div>
+<div class="gold">
+  <b>说明 ②：SDET 必读的重头戏是 <code>packages/evals</code>。</b>这是 Pi 官方的<b>行为评测框架</b>（基于 <code>vitest-evals</code>），教你怎么把 Agent 当被测对象、怎么写评测 harness、怎么做 baseline vs candidate 的对比评测（含 pass-rate 提升、token/延迟/成本增量）。<b>这是市面上最难得的「官方 Agent 测试」活教材</b>，建议单独花 2 小时精读。
+</div>
+
+<!-- L0 -->
+<h2 id="l0">L0 · 准备：先跑起来<span class="dur">约 15 分钟</span></h2>
+<div class="card">
+  <pre><code>git clone https://github.com/earendil-works/pi.git
+cd pi
+npm install --ignore-scripts   # 装依赖，跳过生命周期脚本
+npm run build                  # 构建所有包（首次较久）
+./pi-test.sh                   # 从源码直接运行 pi，无需全局安装</code></pre>
+  <div class="step"><div class="n s-low">✓</div><div class="body"><span class="f">./pi-test.sh</span>（Windows 用 <span class="f">pi-test.ps1</span> 或 <span class="f">pi-test.bat</span>）<div class="why">先跑通一次交互，建立「它到底怎么工作」的直觉，再开始读代码。</div></div></div>
+</div>
+
+<!-- L1 -->
+<h2 id="l1">L1 · 入口层：先看全局<span class="dur">约 30 分钟</span></h2>
+<div class="card">
+  <div class="step"><div class="n s-low">1</div><div class="body"><span class="f">README.md</span><div class="why">项目定位「minimal terminal coding harness」、四种运行模式、设计哲学。建立全局图景。</div><div class="out">产出：能一句话说清 Pi 是什么</div></div></div>
+  <div class="step"><div class="n s-low">2</div><div class="body"><span class="f">AGENTS.md</span><div class="why">⭐ SDET 视角的宝藏：看他们<b>怎么给 AI 写项目约束</b>——这就是活生生的「prompt/约定工程」范例，比你简历里的任何描述都有说服力。</div><div class="out">产出：理解「给 Agent 写约定」到底写什么</div></div></div>
+  <div class="step"><div class="n s-low">3</div><div class="body"><span class="f">package.json</span><div class="why">workspaces 列表（9 个包）、scripts：<code>build</code> / <code>check</code> / <code>eval</code> 等命令入口。</div><div class="out">产出：知道有哪些命令、9 个包分别叫什么</div></div></div>
+</div>
+
+<!-- L2 -->
+<h2 id="l2">L2 · 架构总览：9 包分工<span class="dur">约 1 小时</span></h2>
+<div class="card">
+  <h3 style="margin-top:0;">9 个包一句话定位</h3>
+  <table>
+    <thead><tr><th>包</th><th>定位（测试视角）</th><th>优先级</th></tr></thead>
+    <tbody>
+      <tr><td><code>agent</code></td><td>Agent 运行时：工具调用 + 状态管理 —— <b>被测对象核心</b></td><td>⭐⭐⭐</td></tr>
+      <tr><td><code>evals</code></td><td>官方评测框架（行为评测 + 对比评测）</td><td>⭐⭐⭐</td></tr>
+      <tr><td><code>coding-agent</code></td><td>交互式 CLI 主包（用户入口）</td><td>⭐⭐⭐</td></tr>
+      <tr><td><code>protocol</code></td><td>事件 / 协议类型定义（telemetry 契约的演化）</td><td>⭐⭐</td></tr>
+      <tr><td><code>server</code></td><td>RPC / 进程集成服务端</td><td>⭐⭐</td></tr>
+      <tr><td><code>ai</code></td><td>统一多提供商 LLM API 适配层</td><td>⭐⭐</td></tr>
+      <tr><td><code>tui</code></td><td>终端 UI（差分渲染）</td><td>⭐</td></tr>
+      <tr><td><code>client</code></td><td>客户端 / 连接层（以官方 README 为准）</td><td>⭐</td></tr>
+      <tr><td><code>session-backends/sqlite-node</code></td><td>会话存储后端（SQLite）</td><td>⭐</td></tr>
+    </tbody>
+  </table>
+  <div class="step"><div class="n s-low">4</div><div class="body"><span class="f">tsconfig.base.json</span> + <span class="f">vitest.base.ts</span><div class="why">整个 monorepo 的工程基础配置，看懂它就懂这套工程的「骨架」。</div></div></div>
+</div>
+
+<!-- L3 -->
+<h2 id="l3">L3 · 运行时：Agent 怎么跑<span class="dur">约 1.5 小时</span></h2>
+<div class="card">
+  <div class="step"><div class="n s-mid">5</div><div class="body"><span class="f">packages/agent/src/</span><div class="why">Agent Loop 的核心实现：怎么读上下文、怎么调度工具调用、怎么管理状态。<b>这是「被测对象」本体</b>，读懂它才知道要测什么。</div><div class="out">产出：画出 Agent Loop 的流程图</div></div></div>
+  <div class="step"><div class="n s-mid">6</div><div class="body"><span class="f">packages/protocol/</span><div class="why">事件类型、会话格式、工具调用 schemas 的定义。<b>可观测性的源头</b>——事件契约全在这。</div><div class="out">产出：列出「可断言的关键事件类型」清单</div></div></div>
+  <div class="step"><div class="n s-mid">7</div><div class="body"><span class="f">packages/server/</span><div class="why">RPC 服务端，第三方进程如何通过 stdin/stdout JSONL 驱动 Pi。</div><div class="out">产出：理解「进程级测试驱动」的原理</div></div></div>
+</div>
+
+<!-- L4 -->
+<h2 id="l4">L4 · 交互与扩展：怎么写 Extension<span class="dur">约 1.5 小时</span></h2>
+<div class="card">
+  <div class="step"><div class="n s-mid">8</div><div class="body"><span class="f">packages/coding-agent/README.md</span><div class="why">CLI 完整参考：命令、快捷键、模式、Providers。这是官方文档的「源码版」。</div></div></div>
+  <div class="step"><div class="n s-mid">9</div><div class="body"><span class="f">packages/coding-agent/examples/</span><div class="why">⭐ 官方示例：<code>extensions/</code> 下有 <code>summarize.ts</code>、<code>snake.ts</code> 等可运行实现。<b>照着抄一遍，胜过读十篇教程</b>。</div><div class="out">产出：把 <code>summarize.ts</code> 改成自己的「测试守护」Extension</div></div></div>
+  <div class="step"><div class="n s-mid">10</div><div class="body"><span class="f">packages/coding-agent/docs/</span><div class="why">文档源：containerization、extensions 等主题。比网页版更全、更细。</div></div></div>
+</div>
+
+<!-- L5 -->
+<h2 id="l5">L5 · UI 层<span class="dur">约 40 分钟 / 可选</span></h2>
+<div class="card">
+  <div class="step"><div class="n s-low">11</div><div class="body"><span class="f">packages/tui/</span> + 根目录 <span class="f">tui-plan.md</span>（约 36KB 设计文档）<div class="why">差分渲染终端 UI 怎么设计的。若非 UI 方向可略读，重点理解「UI 与逻辑解耦」。</div></div></div>
+</div>
+
+<!-- L6 -->
+<h2 id="l6">L6 · AI 适配层<span class="dur">约 1 小时</span></h2>
+<div class="card">
+  <div class="step"><div class="n s-mid">12</div><div class="body"><span class="f">packages/ai/</span><div class="why">统一多提供商 LLM API：OpenAI/Anthropic/Google 等如何被抽象成统一接口。<b>「模型中立」的实现原理在这</b>。</div></div></div>
+  <div class="step"><div class="n s-low">13</div><div class="body"><span class="f">packages/client/</span><div class="why">连接/客户端层（具体职责以包内 README 为准）。</div></div></div>
+</div>
+
+<!-- L7 -->
+<h2 id="l7">L7 · ⭐ 评测层（SDET 金矿）<span class="dur">约 2~3 小时，重点</span></h2>
+<div class="card">
+  <div class="hl">这是全仓库对测试工程师<b>价值最高</b>的部分：Pi 官方把「怎么评测一个 Agent」写成了可运行的代码。</div>
+  <div class="step"><div class="n s-gold">14</div><div class="body"><span class="f">packages/evals/README.md</span><div class="why">评测框架总纲：行为评测（behavioral）、隔离临时目录运行、自动附上原生 session 产物。<code>npm run eval -- --provider openai --model ...</code>。</div><div class="out">产出：理解「Agent 评测 harness」长什么样</div></div></div>
+  <div class="step"><div class="n s-gold">15</div><div class="body"><span class="f">packages/evals/src/pi-harness.ts</span><div class="why">⭐ <code>createPiCodingAgentHarness(...)</code>：把一个真实 <code>AgentSession</code> 包装成可评测对象，支持 <code>noTools</code>、<code>transformSystemPrompt</code>、<code>output</code> 转换、多步 prompt/reload 序列。<b>这就是「被测对象适配器」的标准写法</b>。</div></div></div>
+  <div class="step"><div class="n s-gold">16</div><div class="body"><span class="f">packages/evals/src/*.eval.ts</span><div class="why">真实的评测用例，例如用 <code>describeEval("Pi smoke", { harness }, ...)</code> 写断言。</div></div></div>
+  <div class="step"><div class="n s-gold">17</div><div class="body"><span class="f">packages/evals/src/vitest-evals/harness-table.ts</span><div class="why">⭐ <b>对比评测</b>：<code>evalHarnessTable(baseline vs candidate)</code>，跑重复次数（repetitions），用 judge 打分，算<b> pass-rate 提升、token/延迟/成本增量</b>。这是你做「A/B 评测 Pi vs 其他工具」的现成方法论。</div></div></div>
+  <div class="step"><div class="n s-gold">18</div><div class="body"><span class="f">packages/evals/test/</span><div class="why">评测框架自己的测试，看它怎么验证「评测代码」本身。</div></div></div>
+  <p style="font-size:13px;color:var(--muted);margin-top:8px;">关键概念对照（面试会考）：<code>harness</code>（被测对象适配器）、<code>judge</code>（打分器）、<code>judgeThreshold</code>（阈值）、<code>describeEval</code>（评测套件）、<code>repetitions</code>（重复次数）、<code>pass-rate lift</code>（通过率提升）、paired deltas（token/延迟/成本成对增量）。</p>
+</div>
+
+<!-- L8 -->
+<h2 id="l8">L8 · 测试工程：他们怎么测自己<span class="dur">约 1.5 小时</span></h2>
+<div class="card">
+  <div class="step"><div class="n s-mid">19</div><div class="body"><span class="f">各包的 test/ 目录</span><div class="why">逐个看：<code>agent/test/</code>、<code>coding-agent/test/</code>、<code>evals/test/</code>……<b>读别人怎么测一个 Agent runtime，是最实在的测试能力积累</b>。</div></div></div>
+  <div class="step"><div class="n s-low">20</div><div class="body"><span class="f">vitest.config.ts</span> / <span class="f">vitest.test.config.ts</span> / <span class="f">test.sh</span><div class="why">测试编排入口：<code>./test.sh</code> 跑全量（无 API Key 时自动跳过依赖 LLM 的用例）。</div></div></div>
+</div>
+
+<!-- L9 -->
+<h2 id="l9">L9 · 供应链与工程化<span class="dur">约 40 分钟</span></h2>
+<div class="card">
+  <div class="step"><div class="n s-low">21</div><div class="body"><span class="f">.npmrc</span>、<span class="f">npm-shrinkwrap.json</span>、<span class="f">scripts/build-binaries.sh</span><div class="why">供应链安全加固（<code>save-exact</code>、<code>min-release-age</code>、shrinkwrap 锁传递依赖）。学习「工程化 + 安全」。</div></div></div>
+  <div class="step"><div class="n s-low">22</div><div class="body"><span class="f">.github/workflows/</span>、<span class="f">.husky/</span>、<span class="f">biome.json</span>、<span class="f">SECURITY.md</span><div class="why">CI 流程、git hooks、lint/format、漏洞上报规范。<b>看一个开源项目怎么管质量门禁</b>。</div></div></div>
+</div>
+
+<!-- 动手产出 -->
+<h2 id="out">动手产出（把知识变成简历项目）</h2>
+<div class="card">
+  <ul style="padding-left:20px;">
+    <li>✅ 手写一个 Extension（如 <code>run_tests</code>），用 <code>pi -e ./my-ext.ts</code> 验证</li>
+    <li>✅ 用 <code>npm run eval</code> 跑通一个官方评测，读懂输出里的 <code>runs.jsonl</code> + <code>sessions/</code></li>
+    <li>✅ 基于 <code>evalHarnessTable</code> 写一个自己的对比评测（baseline vs candidate）</li>
+    <li>✅ 写一篇「Pi 评测机制源码分析」笔记，沉淀到你的知识库</li>
+  </ul>
+  <div class="hl" style="margin-bottom:0;">💡 面试加分项：能说出「我读过 Pi 的 <code>packages/evals</code> 源码，它用 <code>vitest-evals</code> 把 AgentSession 包装成 harness，用 judge + baseline/candidate 做行为对比评测」——这句话足以证明你的 AI 测试能力不是背的，是拆过源码的。</div>
+</div>
+
+<p class="note">注：以上目录结构为 2026-08-27 检索时点快照，仓库迭代快，若路径略有出入以 <code>git pull</code> 后的实际为准；<code>client</code>/<code>server</code> 的精确职责建议以各自包内 README 为准。仓库地址：github.com/earendil-works/pi</p>
+
+</div>
+</body>
+</html>

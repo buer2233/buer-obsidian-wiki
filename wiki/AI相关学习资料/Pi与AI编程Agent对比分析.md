@@ -57,15 +57,21 @@ sources:
 - **刻意留白**：不内置子代理、plan mode、权限系统、容器化。
 - **可扩展优先**：Extension / Skill / Prompt Template / Theme / Package 五层扩展机制。
 
-### 五包架构（npm workspaces Monorepo）
+### 九包架构（npm workspaces Monorepo）
+
+> ⚠️ **架构演进说明**：早期 README 的 **5 包**架构（`pi-telemetry` / `pi-ai` / `pi-agent-core` / `pi-coding-agent` / `pi-tui`）**已重构**，当前 `packages/` 下为 **9 个包**。其中 **`evals` 评测包是 SDET 必读金矿**。
 
 | 包名 | 作用 | 测试视角 |
 |------|------|---------|
-| `@earendil-works/pi-telemetry` | 供应商中立的遥测契约、参考适配器、一致性测试 | ⭐ 事件契约，可观测性源头 |
-| `@earendil-works/pi-ai` | 统一多提供商 LLM API | 模型适配层，跨模型对比 |
-| `@earendil-works/pi-agent-core` | Agent 运行时，工具调用 + 状态管理 | ⭐ 被测对象核心 |
-| `@earendil-works/pi-coding-agent` | 交互式编码 Agent CLI | 面向用户入口 |
-| `@earendil-works/pi-tui` | 终端 UI 库（差分渲染） | UI 层 |
+| `agent` | Agent 运行时，工具调用 + 状态管理 | ⭐ 被测对象的核心 |
+| `evals` | 官方行为评测框架（vitest-evals + 对比评测） | ⭐⭐ 官方 Agent 测试活教材 |
+| `coding-agent` | 交互式编码 Agent CLI（用户入口） | 面向用户的入口 |
+| `protocol` | 事件 / 协议类型定义 | ⭐ 事件契约，可观测性的源头 |
+| `server` | RPC / 进程集成服务端 | 进程级测试驱动 |
+| `ai` | 统一多提供商 LLM API 适配层 | 模型适配，可做跨模型对比 |
+| `tui` | 终端 UI 库（差分渲染） | UI 层 |
+| `client` | 客户端 / 连接层 | ⭐ |
+| `session-backends/sqlite-node` | 会话存储后端（SQLite） | 会话持久化 |
 
 ### 四种运行模式
 
@@ -89,7 +95,7 @@ Pi **默认不内置权限系统**，以启动用户权限运行。外部隔离�
 | **dsh** | 仅追加（append-only）事件日志：消息/工具调用/中间推理/Token 指标/子 Agent 派发全记录，可回放、隔离错误 | 最强，直接支撑过程追溯 |
 | **Codex** | 日志 + citations + 审批信任档案 `.codex/approvals.json` | 审批行为分析 |
 | **Claude Code** | session 历史、hooks、auto memory | 中等 |
-| **Pi** | `pi-telemetry` 定义事件契约 + TUI 展示；事件流可被 Extension 拦截 | 契约清晰但需自行采集 |
+| **Pi** | `protocol` 定义事件契约 + `evals` 官方评测框架 + TUI 展示；事件流可被 Extension 拦截 | 契约清晰，且自带评测框架 |
 
 ### 3.2 可控制性（Controllability）
 
@@ -209,7 +215,7 @@ def test_pi_agent_produces_valid_json():
 ## 七、测试面试考点
 
 - **Q1 什么是 coding harness？** harness 是「驱动 + 脚手架」层，类比 pytest：核心只负责发现与执行，插件机制才是生态。
-- **Q2 如何对 Agent 做「过程可追溯」的测试？** 事件/轨迹采集：dsh 仅追加事件日志、Pi telemetry 事件契约；记录 tool_call + 中间推理，做到回放/错误隔离/跨模型基准对比/审计合规。
+- **Q2 如何对 Agent 做「过程可追溯」的测试？** 事件/轨迹采集：dsh 仅追加事件日志、Pi `protocol` 事件契约 + `evals` 评测框架；记录 tool_call + 中间推理，做到回放/错误隔离/跨模型基准对比/审计合规。
 - **Q3 对「无内置权限系统」的 Agent（如 Pi）安全测试怎么做？** 测试点就在边界：危险命令拦截、敏感路径保护（.env/node_modules）、凭据隔离、越权/逃逸尝试。
 - **Q4 模型中立 vs 模型绑定对测试有什么影响？** 中立工具可做跨模型 A/B 对比评测；绑定工具难做纯模型维度的对照实验。先想清楚测的是「工具」还是「模型」。
 
@@ -218,8 +224,8 @@ def test_pi_agent_produces_valid_json():
 - 安装 Pi 跑通第一个会话
 - 手写 `run_tests` Extension 让 Agent 调用 pytest 返回结构化结果
 - 用 print/JSON 模式非交互跑任务，思考可断言字段
-- 阅读 `pi-telemetry` 事件契约，理解 telemetry 如何用于测试断言
-- 对比 dsh 仅追加日志与 Pi telemetry，写「过程可追溯」测试方案
+- 阅读 `packages/protocol` 的事件契约和 `packages/evals` 评测框架，理解 Agent 如何被断言
+- 对比 dsh 仅追加日志与 Pi `protocol` + `evals`，写「过程可追溯」测试方案
 - 针对 Pi 权限边界列 3 条安全测试用例
 - 用 Pi 与绑定模型工具做一次 A/B 评测
 
@@ -243,12 +249,12 @@ def test_pi_agent_produces_valid_json():
 ## 🔗 自动关联索引
 
 <!-- AUTO-LINK-INDEX:START -->
-- [[AI产品测试进阶路线与面试考点-进阶版]] — AI测试主题关联
-- [[16_AI_UI自动化_browser-use二次开发学习资料]] — AI测试主题关联
-- [[AI产品测试进阶路线与面试考点]] — AI测试主题关联
-- [[Claude Code学习笔记]] — AI测试主题关联
-- [[AI产品测试]] — AI测试主题关联
-- [[11_Agent测试必背学习资料]] — AI测试主题关联
-- [[个人档案]] — AI测试主题关联
-- [[邓万鹏-AI自动化测试]] — AI测试主题关联
+- [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点-进阶版|AI产品测试进阶路线与面试考点-进阶版]] — AI测试主题关联
+- [[wiki/软件测试学习资料/16_AI_UI自动化_browser-use二次开发学习资料|16_AI_UI自动化_browser-use二次开发学习资料]] — AI测试主题关联
+- [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点|AI产品测试进阶路线与面试考点]] — AI测试主题关联
+- [[wiki/语雀/claude-code/Claude Code学习笔记|Claude Code学习笔记]] — AI测试主题关联
+- [[wiki/语雀/learning/AI产品测试|AI产品测试]] — AI测试主题关联
+- [[wiki/软件测试学习资料/11_Agent测试必背学习资料|11_Agent测试必背学习资料]] — AI测试主题关联
+- [[wiki/个人信息/个人档案|个人档案]] — AI测试主题关联
+- [[wiki/个人信息/邓万鹏-AI自动化测试|邓万鹏-AI自动化测试]] — AI测试主题关联
 <!-- AUTO-LINK-INDEX:END -->

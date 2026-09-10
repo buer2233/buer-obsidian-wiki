@@ -1,7 +1,7 @@
 {
   "version": 1,
   "created": "2026-04-23",
-  "last_sync": "2026-08-27",
+  "last_sync": "2026-09-10",
   "description": "Ingest delta tracker and address map for the claude-obsidian vault. Do not hand-edit; wiki-ingest maintains this.",
   "sources": {
     "yuque/AI自动化开发计划.md": {
@@ -95,9 +95,64 @@
       "wiki_path": "wiki/AI相关学习资料/AI产品测试进阶路线与面试考点-进阶版.md"
     },
     "AI相关学习资料/Pi与AI编程Agent对比分析.html": {
-      "ingested": "2026-08-27",
-      "status": "created",
+      "ingested": "2026-09-10",
+      "status": "updated",
       "wiki_path": "wiki/AI相关学习资料/Pi与AI编程Agent对比分析.md"
+    },
+    "AI相关学习资料/大模型核心原理.md": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/大模型核心原理.md"
+    },
+    "AI相关学习资料/大模型必学基础知识.md": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/大模型必学基础知识.md"
+    },
+    "AI相关学习资料/AI编码Agent五工具对比分析报告.md": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/AI编码Agent五工具对比分析报告.md"
+    },
+    "AI相关学习资料/OMP使用手册.md": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/OMP使用手册.md"
+    },
+    "AI相关学习资料/OMP的设计经验.md": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/OMP的设计经验.md"
+    },
+    "AI相关学习资料/Pi的AI设计经验.md": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/Pi的AI设计经验.md"
+    },
+    "AI相关学习资料/Pi源码精读顺序清单.html": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/Pi源码精读顺序清单.md"
+    },
+    "AI相关学习资料/测试开发如何使用DSH.md": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/测试开发如何使用DSH.md"
+    },
+    "AI相关学习资料/Graph Engineering从概念到测试落地.md": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/Graph Engineering从概念到测试落地.md"
+    },
+    "测试开发相关学习资料/Flask-DRF与Java后端框架对照学习.md": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/测试开发相关学习资料/Flask-DRF与Java后端框架对照学习.md"
+    },
+    "测试开发相关学习资料/JaCoCo代码覆盖率工具从入门到工程落地.md": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/测试开发相关学习资料/JaCoCo代码覆盖率工具从入门到工程落地.md"
     }
   },
   "address_map": {

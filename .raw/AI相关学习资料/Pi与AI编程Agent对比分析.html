@@ -211,15 +211,20 @@
     <li><b>可扩展优先</b>：Extension / Skill / Prompt Template / Theme / Package 五层扩展机制完全打开。</li>
   </ul>
 
-  <h3>2.3 五包架构（npm workspaces Monorepo）</h3>
+  <h3>2.3 九包架构（npm workspaces Monorepo）</h3>
+  <p style="font-size:13px;color:var(--muted);margin:4px 0 10px;">注：早期 README 的 5 包（pi-telemetry / pi-ai / pi-agent-core 等）已重构，当前 <code>packages/</code> 下为 9 个包，其中 <b><code>evals</code> 评测包是 SDET 必读金矿</b>。</p>
   <table>
     <thead><tr><th>包名</th><th>作用</th><th>测试视角</th></tr></thead>
     <tbody>
-      <tr><td><code>@earendil-works/pi-telemetry</code></td><td>供应商中立的遥测契约、参考适配器、一致性测试</td><td>⭐ 事件契约，可观测性的源头</td></tr>
-      <tr><td><code>@earendil-works/pi-ai</code></td><td>统一多提供商 LLM API</td><td>模型适配层，可做跨模型对比</td></tr>
-      <tr><td><code>@earendil-works/pi-agent-core</code></td><td>Agent 运行时，工具调用 + 状态管理</td><td>⭐ 被测对象的核心</td></tr>
-      <tr><td><code>@earendil-works/pi-coding-agent</code></td><td>交互式编码 Agent CLI</td><td>面向用户的入口</td></tr>
-      <tr><td><code>@earendil-works/pi-tui</code></td><td>终端 UI 库（差分渲染）</td><td>UI 层</td></tr>
+      <tr><td><code>agent</code></td><td>Agent 运行时，工具调用 + 状态管理</td><td>⭐ 被测对象的核心</td></tr>
+      <tr><td><code>evals</code></td><td>官方行为评测框架（vitest-evals + 对比评测）</td><td>⭐⭐ 官方 Agent 测试活教材</td></tr>
+      <tr><td><code>coding-agent</code></td><td>交互式编码 Agent CLI（用户入口）</td><td>面向用户的入口</td></tr>
+      <tr><td><code>protocol</code></td><td>事件 / 协议类型定义</td><td>⭐ 事件契约，可观测性的源头</td></tr>
+      <tr><td><code>server</code></td><td>RPC / 进程集成服务端</td><td>进程级测试驱动</td></tr>
+      <tr><td><code>ai</code></td><td>统一多提供商 LLM API 适配层</td><td>模型适配，可做跨模型对比</td></tr>
+      <tr><td><code>tui</code></td><td>终端 UI 库（差分渲染）</td><td>UI 层</td></tr>
+      <tr><td><code>client</code></td><td>客户端 / 连接层</td><td>⭐</td></tr>
+      <tr><td><code>session-backends/sqlite-node</code></td><td>会话存储后端（SQLite）</td><td>会话持久化</td></tr>
     </tbody>
   </table>
 
@@ -251,7 +256,7 @@
       <tr><td><b>dsh</b></td><td class="pro">仅追加（append-only）事件日志：消息/工具调用/中间推理/Token 指标/子 Agent 派发全记录，可回放、隔离错误</td><td>最强，直接支撑「过程追溯」类测试</td></tr>
       <tr><td><b>Codex</b></td><td>日志 + 引文 citations + 审批信任档案 <code>.codex/approvals.json</code></td><td>可做审批行为分析</td></tr>
       <tr><td><b>Claude Code</b></td><td>session 历史、hooks、auto memory</td><td>中等</td></tr>
-      <tr><td><b>Pi</b></td><td><code>pi-telemetry</code> 定义了事件契约 + TUI 展示；事件流可被 Extension 拦截</td><td>契约清晰但需自行采集</td></tr>
+      <tr><td><b>Pi</b></td><td><code>protocol</code> 定义了事件契约 + <code>evals</code> 官方评测框架 + TUI 展示；事件流可被 Extension 拦截</td><td>契约清晰，且自带评测框架</td></tr>
     </tbody>
   </table>
 
@@ -539,7 +544,7 @@ def test_pi_agent_produces_valid_json():
     <li><input type="checkbox"> 安装 Pi（<code>npm install -g --ignore-scripts @earendil-works/pi-coding-agent</code>），跑通第一个会话</li>
     <li><input type="checkbox"> 手写一个 <code>run_tests</code> Extension，让 Agent 能调用 pytest 并返回结构化结果</li>
     <li><input type="checkbox"> 用 print/JSON 模式非交互跑一个任务，观察输出 JSON 结构，思考可断言哪些字段</li>
-    <li><input type="checkbox"> 阅读 <code>packages/pi-telemetry</code> 的事件契约，理解 telemetry 如何用于测试断言</li>
+    <li><input type="checkbox"> 阅读 <code>packages/protocol</code> 的事件契约和 <code>packages/evals</code> 评测框架，理解 Agent 如何被断言</li>
     <li><input type="checkbox"> 对比 dsh 的「仅追加日志」与 Pi 的 telemetry，写一段「过程可追溯」测试方案</li>
     <li><input type="checkbox"> 针对「Agent 安全测试」，列出 3 条 Pi 权限边界的测试用例</li>
     <li><input type="checkbox"> 挑一个任务，用 Pi 与任一绑定模型的工具做一次 A/B 评测，记录差异</li>
