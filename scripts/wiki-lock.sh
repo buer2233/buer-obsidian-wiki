@@ -149,13 +149,44 @@ is_alive() {
 
 # Atomic meta-lock wrapper. Funcs that mutate LOCK_DIR call under this lock so
 # acquire/release/clear-stale don't race against each other.
+#
+# flock(1) is Linux-only; Git Bash / MSYS on Windows ships without it. That
+# absence used to abort EVERY wiki-lock command with rc=1, and the PostToolUse
+# auto-commit hook reads a failed `list` as "lock state unknown" — so on Windows
+# it deferred forever and auto-commit silently stopped working. Fall back to a
+# mkdir-based mutex, which is atomic on every platform that has a filesystem.
+HAVE_FLOCK=0
+command -v flock >/dev/null 2>&1 && HAVE_FLOCK=1
+META_LOCK_DIR="${META_LOCK}.d"
+
 with_meta_lock() {
   ensure_dirs
-  # Use flock under bash's redirect; meta lock is short-lived per command.
-  (
-    flock -x -w 5 9 || die "could not acquire meta-lock within 5s" 1
-    "$@"
-  ) 9>"$META_LOCK"
+  if [ "$HAVE_FLOCK" = "1" ]; then
+    # Use flock under bash's redirect; meta lock is short-lived per command.
+    (
+      flock -x -w 5 9 || die "could not acquire meta-lock within 5s" 1
+      "$@"
+    ) 9>"$META_LOCK"
+    return $?
+  fi
+
+  local waited=0 held
+  until mkdir "$META_LOCK_DIR" 2>/dev/null; do
+    # A crashed holder must not wedge the vault forever.
+    held="$(cat "${META_LOCK_DIR}/pid" 2>/dev/null || true)"
+    if [ -n "$held" ] && ! is_alive "$held"; then
+      rm -rf "$META_LOCK_DIR" 2>/dev/null || true
+      continue
+    fi
+    sleep 0.2
+    waited=$((waited + 1))
+    [ "$waited" -lt 25 ] || die "could not acquire meta-lock within 5s" 1
+  done
+  printf '%s' "$$" > "${META_LOCK_DIR}/pid" 2>/dev/null || true
+  local rc=0
+  "$@" || rc=$?
+  rm -rf "$META_LOCK_DIR" 2>/dev/null || true
+  return $rc
 }
 
 read_lockfile() {

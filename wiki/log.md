@@ -2,10 +2,22 @@
 type: meta
 title: "知识库日志"
 created: 2026-07-01
-updated: 2026-10-15
+updated: 2026-10-16
 ---
 
 # 知识库日志
+
+## [2026-10-16] fix | 去重 `.raw/`、补全覆盖面、修两个静默故障的根因
+
+- 触发：主人三条指令 —— ① 删除完全相同的文件，只保留子目录内容；② raw 内容全部要建立 wiki；③ 查明根因并修复。
+- **① 去重**：`.raw/AI相关学习资料/` 根目录 5 个文件与 `pi/` 子目录**逐字节相同**（md5 逐一核验，非仅比大小），删除根目录副本、保留 `pi/`（该目录是主人按项目重组 `.raw/` 的新结构，mtime 与会话同期）。同步改向全部引用：5 篇 wiki 页的 `source:` / `sources:`、`wiki/AI相关学习资料/index.md` 源文件清单、`.raw/.manifest.json` 的 5 个键。全 `.raw/` 哈希查重确认**别无其他重复对**（另发现 1 对同图不同名的 MCP 架构图，属两篇源各自引用的合理复用，不删）。5 个删除文件均已入 git 历史，可恢复。
+- **② 覆盖面**：改造后的检查器暴露出**唯一真正被漏掉的 raw 文件**——`.raw/claude-obsidian-ecosystem-research.md`（288 行，2026-04-08 的 Claude+Obsidian 生态调研，已被 [[wiki/来源/LLM Wiki模式]] 与 [[wiki/概念/wiki一词与Wiki知识库]] 当作 `sources:` 引用，却**自己没有 wiki 页**）。补建 [[wiki/来源/claude-obsidian生态调研]]（四条技术路线、4 个同类项目、10 条设计模式 × 本 vault 缺口对照表）。此后 `未映射 0`，**覆盖率可证明为 100%**。
+- **③ 根因 1 —— 检查器有"静默排除"**（这是漏收录能长期潜伏的机制）：`check_raw_updates.py` 的 `should_skip()` 用一张硬编码清单静默排除了 `assets/`/`screenshots/`/`data/`/`transcripts/` **以及 `claude-obsidian-ecosystem-research.md`**。被排除的文件既不在"已同步"也不在"未映射"——**从报告里彻底消失**。修复：`should_skip` → `exclusion_reason()`，**每个扫描到的文件都落进可见分桶**（待更新 / 已同步 / 图片素材 / 未映射 / **已排除并附原因**）；图片单独成桶（它们不单独建页，wiki 归属就是引用它们的页面）；**退出码改为"有内容未入账即非零"**，可用于工作流门禁——这正是原先缺失的闭环信号。
+- **③ 根因 2 —— `wiki-lock.sh` 在 Windows 上整体失效**：`.vault-meta/hook.log` 里堆满 `wiki-lock list failed rc=1; deferred auto-commit`。追查到 `flock: command not found`——脚本第 156 行的元锁用了 **Linux 专有的 `flock`**，Git Bash / MSYS 不带。后果是**双重静默故障**：所有 `wiki-lock` 命令失败，且 PostToolUse 自动提交钩子把"锁查询失败"读作"锁状态未知"，于是**永远推迟提交**——自动提交在这台机器上已静默死亡。修复：保留 Linux 上 flock 路径不变，新增 **`mkdir` 原子互斥回退**（含 5s 超时与崩溃持有者的 stale 回收）。验证 `list`/`acquire`/`release` 全部 rc=0。
+- 附带修复：`find_wiki()` 规则 6（`FILENAME_MAP`）此前对 **`.raw/` 根目录级**文件必然失败（会去 walk 一个不存在的"分类目录"），改为回退搜索整个 `wiki/`；新增 `claude-obsidian-ecosystem-research` 映射条目。
+- 更新：[[wiki/index]]、[[wiki/来源/_index]]、[[wiki/元数据/dashboard]]、`wiki/hot.md`、`.raw/.manifest.json`（`last_sync=2026-10-16`，sources 40 条）。
+- 安全处置：根因 2 修好意味着**自动提交重新激活**，而主人并未要求提交 → 用钩子自带的 `.vault-meta/auto-commit.disabled` 开关在会话期间按住提交，**收尾时撤销**，避免产生一笔卷入上个会话遗留改动的通用提交。
+- 关键洞察：**两个故障的共同形态是"沉默"**——静默排除让内容失踪，`rc=1` 让自动化停摆，两者都不报错、不阻塞、不留用户可见痕迹。**能被静默容忍的失败，一定会长期存在。**
 
 ## [2026-10-15] check + ingest | 补齐 8 份 AI 学习资料、新建「学习简图」分类、修复检查器假阳性
 

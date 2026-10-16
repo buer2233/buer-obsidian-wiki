@@ -30,5 +30,14 @@
 ## Git 环境
 - 远端 origin = git@github.com:buer2233/buer-obsidian-wiki.git，分支 main。
 - ⚠️ **推送必须加 `GIT_SSH_COMMAND="ssh"`**：直接 `git push` 会报 `Could not read from remote repository`，但 `ssh -T git@github.com` 认证正常（22/443 均可）。
-- 提交排除项（沿用既有规则）：`file/`、`wiki/笔记/image-example-wiki-map-view.png.md`。
+- 提交排除项（沿用既有规则）：`wiki/笔记/image-example-wiki-map-view.png.md`。⚠️ 注意：`file/` 实际**未被** .gitignore 排除，`file/digital-curator-card.html` 处于 git 跟踪中（提交 c12cd5d）。
 - 本机怪象：`refs/remotes/origin/` 引用无法持久化，`git status` 显示 `[gone]`；纯展示性问题，用 `git ls-remote origin main` 核实远端真实状态。
+
+## GitHub Pages 展示页（2026-09-10 已上线，实测）
+- 仓库 `buer2233/buer-obsidian-wiki` 为 **public**，`has_pages=true`，Pages 源 = main 分支 `/docs`。
+- 展示页文件：`docs/index.html`（内容同 `file/digital-curator-card.html`，标题「邓万鹏 · 数字生活策展人」）+ `docs/.nojekyll`；提交 7d294c8「新增GitHub展示页」，已推送远端。
+- 线上地址 https://buer2233.github.io/buer-obsidian-wiki/ ，实测 HTTP 200、标题正确。
+- 仓库 About → Website 已填该地址（GitHub API `homepage` 字段确认）。
+- **费用结论**：public 仓库的 GitHub Pages **永久免费**，无时间限制、无需信用卡、无用量强制升级。仅当仓库转 **private** 才需 GitHub Pro $4/月。
+- 免费软限制：站点 ≤1GB、带宽 100GB/月、构建 10 次/小时、不支持服务端代码（PHP/Python/Node 后端）、禁用于电商交易类站点。
+- Pages 设置页的 **Visibility（GitHub Enterprise）** 是「站点私有化、仅企业成员 SSO 可见」开关，需 Enterprise Cloud $21/用户/月，本仓库需求用不到。
