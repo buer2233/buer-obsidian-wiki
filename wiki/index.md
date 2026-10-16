@@ -2,7 +2,7 @@
 type: meta
 title: "知识库索引"
 created: 2026-07-01
-updated: 2026-09-10
+updated: 2026-09-23
 ---
 
 # 知识库索引
@@ -97,7 +97,7 @@ updated: 2026-09-10
 - [[vibecoding总结|vibecoding总结]] — 使用过程总结
 - [[语雀/个人博客|个人博客]] — 博客规划
 
-## AI相关学习资料（2026-08-27 新增，2026-09-10 扩充）
+## AI相关学习资料（2026-08-27 新增，2026-10-15 扩充）
 AI 产品测试与 AI 编码 Agent 的进阶学习资料（源自 `.raw/AI相关学习资料/`）：
 
 **大模型基础**
@@ -117,6 +117,21 @@ AI 产品测试与 AI 编码 Agent 的进阶学习资料（源自 `.raw/AI相关
 - [[wiki/AI相关学习资料/Graph Engineering从概念到测试落地|Graph Engineering从概念到测试落地]] — Loop→Graph 范式跃迁与测试落地
 - [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点|AI产品测试进阶路线与面试考点]] — LLM评测原理、RAG指标、Agent四维（概念版）
 - [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点-进阶版|进阶版：eval体系工程化落地]] — 三层评分器、五维评测、双套件
+
+**AI 应用工程（RAG / Ontology）**
+- [[wiki/AI相关学习资料/RAG的流程与应用|RAG的流程与应用]] — 六层工程链路（价值→数据→向量→存储→内核→实战），检索内核 IndexFlatL2 / IVF-PQ / HNSW
+- [[wiki/AI相关学习资料/Ontology本体工程从概念到企业流程与测试流程落地|Ontology本体工程]] — 语义网技术栈、RDF/IRI、本体驱动工作流转换、本体约束推理评测与测试落地
+
+**AI 测试工具（Jev / REA）**
+- [[wiki/AI相关学习资料/Jev决策模型(System One)学习参考资料|Jev决策模型（System One）]] — 卡尼曼双系统认知模型的工程化：state 输入、三种决策原语、置信度输出
+- [[wiki/AI相关学习资料/Jev用于UI自动化测试可行性分析与AI测试工具横向对比|Jev用于UI自动化测试可行性分析]] — 「动作决策层」定位与三大 AI 测试工具横向对比
+- [[wiki/AI相关学习资料/TypeSafe_Jev国内使用指南(官网导航+四条接入路径+实测连通性)|TypeSafe Jev国内使用指南]] — 四条接入路径、官网导航与实测连通性
+- [[wiki/AI相关学习资料/REA逆向工程MCP工具学习手册|REA逆向工程MCP工具学习手册]] — REA（CLI + MCP Server）逆向工具与官方案例实操
+
+**工程效能与基础设施**
+- [[wiki/AI相关学习资料/Anthropic源代码控制系统重设计|Anthropic源代码控制系统重设计]] — AI 让合并量涨 10 倍后 git 触顶；Scion 重造与三级缓存
+- [[wiki/AI相关学习资料/AI工具资源占用沟通与面试应答|AI工具资源占用沟通与面试应答]] — 界面底座/任务执行/上下文管理三层成本拆解 + 向上沟通话术
+
 - [[wiki/AI相关学习资料/index|AI相关学习资料索引]]
 
 ## 测试开发相关学习资料（2026-09-10 新增）
@@ -140,6 +155,23 @@ Claude Code + Obsidian 实战记录：
 ## 博客与经验分享
 - [[笔记/用Obsidian+Claude Code解决Git推送问题的实战记录|Obsidian实战：AI从知识库检索方案解决问题]] — Claude Code + Obsidian 的真实使用案例
 
+## wiki 概念与 LLM Wiki 模式（2026-09-23 新增）
+从「wiki 一词的三层含义」出发，厘清 wiki 概念、本 vault 所属的 Karpathy LLM Wiki 模式，及其与 chunk-first RAG 的取舍：
+
+- [[wiki/概念/wiki一词与Wiki知识库|wiki 一词与 Wiki 知识库]] — 单词 / 技术 / 知识库三层含义与递进关系
+- [[wiki/来源/LLM Wiki模式|LLM Wiki 模式]] — Karpathy 2026-04-04 gist：三层架构 + ingest/query/lint
+- [[wiki/对比/LLM Wiki与chunk-first RAG对比|LLM Wiki 与 chunk-first RAG 对比]] — 八个维度对比与选型判断
+- [[wiki/实体/Ward Cunningham|Ward Cunningham]] — wiki 概念发明人与命名者
+- [[wiki/问答/2026-09-23_wiki一词与Wiki知识库|问答：三者关系]] — 已归档问答（本 vault 首次归档）
+- [[wiki/笔记/2026-09-23_wiki一词与Wiki知识库|wiki 概念归档实录]] — 本轮归档过程与 4 个踩坑记录
+- [[wiki/来源/claude-obsidian生态调研|Claude + Obsidian 生态调研（2026-04-08）]] — 16+ 同类项目横切调研、10 条设计模式与本 vault 缺口对照（2026-10-16 补录，此前被检查器静默排除）
+
+## 学习简图（2026-10-15 新增）
+「一图流」速查页：把 `.raw/学习简图/` 下的原始思维导图翻译成**可检索的结构**（页面内嵌原图 + 文字速查表）。
+
+- [[wiki/学习简图/数据结构总览|数据结构总览（速查图）]] — 12 种基础数据结构的描述/适用/Python 写法速查，附「按问题特征选型」重组表
+- [[wiki/学习简图/_index|学习简图索引]]
+
 <!-- AUTO-CATALOG:START -->
 
 ## 全量页面索引
@@ -147,13 +179,21 @@ Claude Code + Obsidian 实战记录：
 ### AI相关学习资料
 - [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点|AI产品测试进阶路线与面试考点]]
 - [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点-进阶版|AI产品测试进阶路线与面试考点-进阶版]]
+- [[wiki/AI相关学习资料/AI工具资源占用沟通与面试应答|AI工具资源占用沟通与面试应答]]
 - [[wiki/AI相关学习资料/AI编码Agent五工具对比分析报告|AI编码Agent五工具对比分析报告]]
+- [[wiki/AI相关学习资料/Anthropic源代码控制系统重设计|Anthropic源代码控制系统重设计]]
 - [[wiki/AI相关学习资料/Graph Engineering从概念到测试落地|Graph Engineering从概念到测试落地]]
+- [[wiki/AI相关学习资料/Jev决策模型(System One)学习参考资料|Jev决策模型(System One)学习参考资料]]
+- [[wiki/AI相关学习资料/Jev用于UI自动化测试可行性分析与AI测试工具横向对比|Jev用于UI自动化测试可行性分析与AI测试工具横向对比]]
 - [[wiki/AI相关学习资料/OMP使用手册|OMP使用手册]]
 - [[wiki/AI相关学习资料/OMP的设计经验|OMP的设计经验]]
+- [[wiki/AI相关学习资料/Ontology本体工程从概念到企业流程与测试流程落地|Ontology本体工程从概念到企业流程与测试流程落地]]
 - [[wiki/AI相关学习资料/Pi与AI编程Agent对比分析|Pi与AI编程Agent对比分析]]
 - [[wiki/AI相关学习资料/Pi源码精读顺序清单|Pi源码精读顺序清单]]
 - [[wiki/AI相关学习资料/Pi的AI设计经验|Pi的AI设计经验]]
+- [[wiki/AI相关学习资料/RAG的流程与应用|RAG的流程与应用]]
+- [[wiki/AI相关学习资料/REA逆向工程MCP工具学习手册|REA逆向工程MCP工具学习手册]]
+- [[wiki/AI相关学习资料/TypeSafe_Jev国内使用指南(官网导航+四条接入路径+实测连通性)|TypeSafe_Jev国内使用指南(官网导航+四条接入路径+实测连通性)]]
 - [[wiki/AI相关学习资料/大模型必学基础知识|大模型必学基础知识]]
 - [[wiki/AI相关学习资料/大模型核心原理|大模型核心原理]]
 - [[wiki/AI相关学习资料/测试开发如何使用DSH|测试开发如何使用DSH]]
@@ -178,14 +218,26 @@ Claude Code + Obsidian 实战记录：
 - [[lint-report-2026-07-01]]
 - [[lint-report-2026-07-08]]
 
+### 学习简图
+- [[wiki/学习简图/数据结构总览|数据结构总览]]
+- [[wiki/学习简图/_index|_index]]
+
+### 概念
+- [[wiki/概念/wiki一词与Wiki知识库|wiki一词与Wiki知识库]]
+- [[wiki/概念/_index|_index]]
+
 ### 实体
 - [[实体/_index|_index]]
+- [[wiki/实体/Ward Cunningham|Ward Cunningham]]
 
 ### 对比
 - [[对比/_index|_index]]
+- [[wiki/对比/LLM Wiki与chunk-first RAG对比|LLM Wiki与chunk-first RAG对比]]
 
 ### 来源
 - [[来源/_index|_index]]
+- [[wiki/来源/LLM Wiki模式|LLM Wiki模式]]
+- [[wiki/来源/claude-obsidian生态调研|claude-obsidian生态调研]]
 
 ### 根目录
 - [[overview]]
@@ -194,8 +246,9 @@ Claude Code + Obsidian 实战记录：
 - [[目标/_index|_index]]
 
 ### 笔记
-- [[image-example-wiki-map-view.png]]
 - [[笔记/index|index]]
+- [[wiki/笔记/2026-09-23_wiki一词与Wiki知识库|2026-09-23_wiki一词与Wiki知识库]]
+- [[image-example-wiki-map-view.png]]
 - [[用Obsidian+Claude Code解决Git推送问题的实战记录]]
 
 ### 语雀
@@ -322,6 +375,7 @@ Claude Code + Obsidian 实战记录：
 
 ### 问答
 - [[问答/_index|_index]]
+- [[wiki/问答/2026-09-23_wiki一词与Wiki知识库|2026-09-23_wiki一词与Wiki知识库]]
 
 ### 面试题
 - [[2026-07-07_阅安科技面试题整理]]

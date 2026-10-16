@@ -1,7 +1,7 @@
 ---
 type: reference
 title: "OMP（Oh My Pi）使用手册"
-source: ".raw/AI相关学习资料/OMP使用手册.md"
+source: ".raw/AI相关学习资料/pi/OMP使用手册.md"
 created: 2026-09-10
 updated: 2026-09-10
 tags:
@@ -339,4 +339,4 @@ modelRoles:
 
 ## 源文件
 
-- `.raw/AI相关学习资料/OMP使用手册.md`
+- `.raw/AI相关学习资料/pi/OMP使用手册.md`

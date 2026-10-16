@@ -1,7 +1,7 @@
 ---
 type: note
 title: "Pi 的 AI 设计经验"
-source: ".raw/AI相关学习资料/Pi的AI设计经验.md"
+source: ".raw/AI相关学习资料/pi/Pi的AI设计经验.md"
 created: 2026-09-10
 updated: 2026-09-10
 tags:
@@ -349,4 +349,4 @@ describeEval("Pi smoke", { harness }, (it) => {
 
 ## 源文件
 
-- `.raw/AI相关学习资料/Pi的AI设计经验.md`
+- `.raw/AI相关学习资料/pi/Pi的AI设计经验.md`

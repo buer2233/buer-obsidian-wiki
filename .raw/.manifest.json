@@ -1,7 +1,7 @@
 {
   "version": 1,
   "created": "2026-04-23",
-  "last_sync": "2026-09-10",
+  "last_sync": "2026-10-16",
   "description": "Ingest delta tracker and address map for the claude-obsidian vault. Do not hand-edit; wiki-ingest maintains this.",
   "sources": {
     "yuque/AI自动化开发计划.md": {
@@ -94,11 +94,6 @@
       "status": "created",
       "wiki_path": "wiki/AI相关学习资料/AI产品测试进阶路线与面试考点-进阶版.md"
     },
-    "AI相关学习资料/Pi与AI编程Agent对比分析.html": {
-      "ingested": "2026-09-10",
-      "status": "updated",
-      "wiki_path": "wiki/AI相关学习资料/Pi与AI编程Agent对比分析.md"
-    },
     "AI相关学习资料/大模型核心原理.md": {
       "ingested": "2026-09-10",
       "status": "created",
@@ -113,26 +108,6 @@
       "ingested": "2026-09-10",
       "status": "created",
       "wiki_path": "wiki/AI相关学习资料/AI编码Agent五工具对比分析报告.md"
-    },
-    "AI相关学习资料/OMP使用手册.md": {
-      "ingested": "2026-09-10",
-      "status": "created",
-      "wiki_path": "wiki/AI相关学习资料/OMP使用手册.md"
-    },
-    "AI相关学习资料/OMP的设计经验.md": {
-      "ingested": "2026-09-10",
-      "status": "created",
-      "wiki_path": "wiki/AI相关学习资料/OMP的设计经验.md"
-    },
-    "AI相关学习资料/Pi的AI设计经验.md": {
-      "ingested": "2026-09-10",
-      "status": "created",
-      "wiki_path": "wiki/AI相关学习资料/Pi的AI设计经验.md"
-    },
-    "AI相关学习资料/Pi源码精读顺序清单.html": {
-      "ingested": "2026-09-10",
-      "status": "created",
-      "wiki_path": "wiki/AI相关学习资料/Pi源码精读顺序清单.md"
     },
     "AI相关学习资料/测试开发如何使用DSH.md": {
       "ingested": "2026-09-10",
@@ -153,6 +128,81 @@
       "ingested": "2026-09-10",
       "status": "created",
       "wiki_path": "wiki/测试开发相关学习资料/JaCoCo代码覆盖率工具从入门到工程落地.md"
+    },
+    "AI相关学习资料/AI工具资源占用沟通与面试应答.md": {
+      "ingested": "2026-10-15",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/AI工具资源占用沟通与面试应答.md"
+    },
+    "AI相关学习资料/Anthropic源代码控制系统重设计.md": {
+      "ingested": "2026-10-15",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/Anthropic源代码控制系统重设计.md"
+    },
+    "AI相关学习资料/Ontology本体工程从概念到企业流程与测试流程落地.md": {
+      "ingested": "2026-10-15",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/Ontology本体工程从概念到企业流程与测试流程落地.md"
+    },
+    "AI相关学习资料/RAG的流程与应用.md": {
+      "ingested": "2026-10-15",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/RAG的流程与应用.md"
+    },
+    "AI相关学习资料/REA逆向工程MCP工具学习手册.md": {
+      "ingested": "2026-10-15",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/REA逆向工程MCP工具学习手册.md"
+    },
+    "AI相关学习资料/jev/Jev决策模型(System One)学习参考资料.md": {
+      "ingested": "2026-10-15",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/Jev决策模型(System One)学习参考资料.md"
+    },
+    "AI相关学习资料/jev/Jev用于UI自动化测试可行性分析与AI测试工具横向对比.md": {
+      "ingested": "2026-10-15",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/Jev用于UI自动化测试可行性分析与AI测试工具横向对比.md"
+    },
+    "AI相关学习资料/jev/TypeSafe_Jev国内使用指南(官网导航+四条接入路径+实测连通性).md": {
+      "ingested": "2026-10-15",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/TypeSafe_Jev国内使用指南(官网导航+四条接入路径+实测连通性).md"
+    },
+    "学习简图/数据结构总览.png": {
+      "ingested": "2026-10-15",
+      "status": "created",
+      "wiki_path": "wiki/学习简图/数据结构总览.md"
+    },
+    "AI相关学习资料/pi/OMP使用手册.md": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/OMP使用手册.md"
+    },
+    "AI相关学习资料/pi/OMP的设计经验.md": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/OMP的设计经验.md"
+    },
+    "AI相关学习资料/pi/Pi的AI设计经验.md": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/Pi的AI设计经验.md"
+    },
+    "AI相关学习资料/pi/Pi与AI编程Agent对比分析.html": {
+      "ingested": "2026-09-10",
+      "status": "updated",
+      "wiki_path": "wiki/AI相关学习资料/Pi与AI编程Agent对比分析.md"
+    },
+    "AI相关学习资料/pi/Pi源码精读顺序清单.html": {
+      "ingested": "2026-09-10",
+      "status": "created",
+      "wiki_path": "wiki/AI相关学习资料/Pi源码精读顺序清单.md"
+    },
+    "claude-obsidian-ecosystem-research.md": {
+      "ingested": "2026-10-16",
+      "status": "created",
+      "wiki_path": "wiki/来源/claude-obsidian生态调研.md"
     }
   },
   "address_map": {

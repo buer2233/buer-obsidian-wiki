@@ -1,7 +1,7 @@
 ---
 type: note
 title: "OMP 的 AI 设计经验"
-source: ".raw/AI相关学习资料/OMP的设计经验.md"
+source: ".raw/AI相关学习资料/pi/OMP的设计经验.md"
 created: 2026-09-10
 updated: 2026-09-10
 tags:
@@ -277,4 +277,4 @@ AGENTS.md 专门记录了被驳回的方案（sccache、mold、dev 上 `panic="a
 
 ## 源文件
 
-- `.raw/AI相关学习资料/OMP的设计经验.md`
+- `.raw/AI相关学习资料/pi/OMP的设计经验.md`

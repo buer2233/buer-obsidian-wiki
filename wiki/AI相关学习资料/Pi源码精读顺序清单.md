@@ -1,7 +1,7 @@
 ---
 type: reference
 title: "Pi 源码精读顺序清单"
-source: ".raw/AI相关学习资料/Pi源码精读顺序清单.html"
+source: ".raw/AI相关学习资料/pi/Pi源码精读顺序清单.html"
 created: 2026-09-10
 updated: 2026-09-10
 tags:
@@ -136,6 +136,6 @@ npm run build                  # 构建所有包（首次较久）
 
 ## 源文件
 
-- `.raw/AI相关学习资料/Pi源码精读顺序清单.html`
+- `.raw/AI相关学习资料/pi/Pi源码精读顺序清单.html`
 
 > 注：以上目录结构为 2026-08-27 检索时点快照，仓库迭代快，若路径略有出入以 `git pull` 后的实际为准；`client`/`server` 的精确职责建议以各自包内 README 为准。仓库地址：github.com/earendil-works/pi

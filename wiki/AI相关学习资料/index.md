@@ -2,7 +2,7 @@
 type: index
 title: "AI 相关学习资料"
 created: 2026-08-27
-updated: 2026-09-10
+updated: 2026-10-15
 tags:
   - AI
   - 学习资料
@@ -29,12 +29,29 @@ status: live
 - [[wiki/AI相关学习资料/OMP使用手册|OMP 使用手册]] — oh-my-pi 安装、配置、模型接入与日常使用
 - [[wiki/AI相关学习资料/OMP的设计经验|OMP 的设计经验]] — OMP 架构设计取舍与生态兼容性
 
+### AI 测试工具（Jev / REA）
+
+- [[wiki/AI相关学习资料/Jev决策模型(System One)学习参考资料|Jev 决策模型（System One）]] — 卡尼曼双系统认知模型的工程化：state 输入、三种决策原语、置信度输出、RLCD 训练目标
+- [[wiki/AI相关学习资料/Jev用于UI自动化测试可行性分析与AI测试工具横向对比|Jev 用于 UI 自动化测试可行性分析与 AI 测试工具横向对比]] — Jev 是「动作决策层」而非视觉大脑；三大工具横向对比与选型决策
+- [[wiki/AI相关学习资料/TypeSafe_Jev国内使用指南(官网导航+四条接入路径+实测连通性)|TypeSafe Jev 国内使用指南]] — 四条接入路径、官网导航与实测连通性数据
+- [[wiki/AI相关学习资料/REA逆向工程MCP工具学习手册|REA 逆向工程 MCP 工具学习手册]] — REA（CLI + MCP Server 双形态）逆向工具、MCP 协议接入与官方案例实操
+
 ### AI 测试与工程范式
 
 - [[wiki/AI相关学习资料/测试开发如何使用DSH|测试开发如何使用 DSH]] — 五大测试领域的 DSH 落地方案
 - [[wiki/AI相关学习资料/Graph Engineering从概念到测试落地|Graph Engineering：从概念到测试落地]] — Loop→Graph 范式跃迁、四大负向优化陷阱、三大防线、测试落地四场景
 - [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点|AI 产品测试进阶路线与面试考点（概念版）]] — LLM 评测原理、RAG 指标、Agent 四维、框架选型、13 个面试考点
 - [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点-进阶版|进阶版：eval 体系工程化落地]] — 三层评分器、五维评测、双套件、基线管理、10 个进阶考点
+
+### AI 应用工程（RAG / Ontology）
+
+- [[wiki/AI相关学习资料/RAG的流程与应用|RAG 的流程与应用]] — 六层工程链路（价值层→数据层→向量层→存储层→内核层→实战层），重点在向量检索内核 IndexFlatL2 / IVF-PQ / HNSW
+- [[wiki/AI相关学习资料/Ontology本体工程从概念到企业流程与测试流程落地|Ontology 本体工程：从概念到企业流程与测试流程落地]] — 语义网技术栈、RDF 三元组与 IRI、本体驱动工作流转换、本体约束推理评测与测试落地
+
+### 工程效能与基础设施
+
+- [[wiki/AI相关学习资料/Anthropic源代码控制系统重设计|Anthropic 源代码控制系统重设计]] — AI 让合并量 4 个月涨 10 倍后 git 触顶；Scion 重造：changeset 结构、三级缓存、检出快两个数量级
+- [[wiki/AI相关学习资料/AI工具资源占用沟通与面试应答|AI 工具资源占用：向上沟通话术与面试应答]] — 界面底座/任务执行/上下文管理三层成本拆解，含实测数据与减负清单
 
 ## 🔗 关联文档
 
@@ -59,15 +76,23 @@ status: live
 - `.raw/AI相关学习资料/大模型核心原理.md`
 - `.raw/AI相关学习资料/大模型必学基础知识.md`
 - `.raw/AI相关学习资料/AI编码Agent五工具对比分析报告.md`
-- `.raw/AI相关学习资料/OMP使用手册.md`
-- `.raw/AI相关学习资料/OMP的设计经验.md`
-- `.raw/AI相关学习资料/Pi的AI设计经验.md`
-- `.raw/AI相关学习资料/Pi源码精读顺序清单.html`
+- `.raw/AI相关学习资料/pi/OMP使用手册.md`
+- `.raw/AI相关学习资料/pi/OMP的设计经验.md`
+- `.raw/AI相关学习资料/pi/Pi的AI设计经验.md`
+- `.raw/AI相关学习资料/pi/Pi源码精读顺序清单.html`
 - `.raw/AI相关学习资料/测试开发如何使用DSH.md`
 - `.raw/AI相关学习资料/Graph Engineering从概念到测试落地.md`
 - `.raw/AI相关学习资料/AI产品测试进阶路线与面试考点.html`
 - `.raw/AI相关学习资料/AI产品测试进阶路线与面试考点-进阶版.md`
-- `.raw/AI相关学习资料/Pi与AI编程Agent对比分析.html`
+- `.raw/AI相关学习资料/pi/Pi与AI编程Agent对比分析.html`
+- `.raw/AI相关学习资料/AI工具资源占用沟通与面试应答.md`
+- `.raw/AI相关学习资料/Anthropic源代码控制系统重设计.md`
+- `.raw/AI相关学习资料/Ontology本体工程从概念到企业流程与测试流程落地.md`
+- `.raw/AI相关学习资料/RAG的流程与应用.md`
+- `.raw/AI相关学习资料/REA逆向工程MCP工具学习手册.md`
+- `.raw/AI相关学习资料/jev/Jev决策模型(System One)学习参考资料.md`
+- `.raw/AI相关学习资料/jev/Jev用于UI自动化测试可行性分析与AI测试工具横向对比.md`
+- `.raw/AI相关学习资料/jev/TypeSafe_Jev国内使用指南(官网导航+四条接入路径+实测连通性).md`
 
 <!-- AUTO-CATALOG:START -->
 
@@ -75,15 +100,23 @@ status: live
 
 - [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点|AI产品测试进阶路线与面试考点]] — AI 产品测试进阶路线与面试考点（概念版）
 - [[wiki/AI相关学习资料/AI产品测试进阶路线与面试考点-进阶版|AI产品测试进阶路线与面试考点-进阶版]] — AI 产品测试进阶版：eval 体系工程化落地
+- [[wiki/AI相关学习资料/AI工具资源占用沟通与面试应答|AI工具资源占用沟通与面试应答]] — AI 工具资源占用：向上沟通话术与面试应答
 - [[wiki/AI相关学习资料/AI编码Agent五工具对比分析报告|AI编码Agent五工具对比分析报告]] — AI 编码 Agent 五工具对比分析报告
+- [[wiki/AI相关学习资料/Anthropic源代码控制系统重设计|Anthropic源代码控制系统重设计]] — Anthropic 源代码控制系统重设计（Scion）
 - [[wiki/AI相关学习资料/Graph Engineering从概念到测试落地|Graph Engineering从概念到测试落地]] — Graph Engineering：从 Loop 到 Graph 的范式跃迁及测试落地
+- [[wiki/AI相关学习资料/Jev决策模型(System One)学习参考资料|Jev决策模型(System One)学习参考资料]] — Jev 决策模型（System One）学习参考资料
+- [[wiki/AI相关学习资料/Jev用于UI自动化测试可行性分析与AI测试工具横向对比|Jev用于UI自动化测试可行性分析与AI测试工具横向对比]] — Jev 用于 UI 自动化测试：可行性分析与 AI 测试工具横向对比
 - [[wiki/AI相关学习资料/OMP使用手册|OMP使用手册]] — OMP（oh-my-pi）使用手册
 - [[wiki/AI相关学习资料/OMP的设计经验|OMP的设计经验]] — OMP 的设计经验
+- [[wiki/AI相关学习资料/Ontology本体工程从概念到企业流程与测试流程落地|Ontology本体工程从概念到企业流程与测试流程落地]] — Ontology 本体工程：从概念到企业流程与测试流程落地
 - [[wiki/AI相关学习资料/Pi与AI编程Agent对比分析|Pi与AI编程Agent对比分析]] — Pi 与 AI 编程 Agent 对比分析
 - [[wiki/AI相关学习资料/Pi源码精读顺序清单|Pi源码精读顺序清单]] — Pi 源码精读顺序清单
 - [[wiki/AI相关学习资料/Pi的AI设计经验|Pi的AI设计经验]] — Pi 的 AI 设计经验
+- [[wiki/AI相关学习资料/RAG的流程与应用|RAG的流程与应用]] — RAG 的流程与应用：六层工程链路与检索内核
+- [[wiki/AI相关学习资料/REA逆向工程MCP工具学习手册|REA逆向工程MCP工具学习手册]] — REA：逆向工程 MCP 工具学习手册
+- [[wiki/AI相关学习资料/TypeSafe_Jev国内使用指南(官网导航+四条接入路径+实测连通性)|TypeSafe_Jev国内使用指南]] — TypeSafe Jev 国内使用指南：官网导航 + 四条接入路径 + 实测连通性
 - [[wiki/AI相关学习资料/大模型必学基础知识|大模型必学基础知识]] — 大模型必学基础知识
 - [[wiki/AI相关学习资料/大模型核心原理|大模型核心原理]] — 大模型核心原理
-- [[wiki/AI相关学习资料/测试开发如何使用DSH|测试开发如何使用DSH]] — 测试开发如何使用 DSH
+- [[wiki/AI相关学习资料/测试开发如何使用DSH|测试开发如何使用DSH]] — 测试开发如何使用DSH
 
 <!-- AUTO-CATALOG:END -->

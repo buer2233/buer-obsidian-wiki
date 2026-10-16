@@ -2,10 +2,38 @@
 type: meta
 title: "知识库日志"
 created: 2026-07-01
-updated: 2026-09-10
+updated: 2026-10-15
 ---
 
 # 知识库日志
+
+## [2026-10-15] check + ingest | 补齐 8 份 AI 学习资料、新建「学习简图」分类、修复检查器假阳性
+
+- 触发：执行 Wiki 检查，收录未纳入 wiki 的文件。
+- 检查：`scripts/check_raw_updates.py` 扫描 178 个文件 → 待更新 0 / 已同步 100 / 未映射 74 / 跳过 4。**74 项经人工核对拆为三类**：真未收录 8 篇 md、脚本假阳性 33 项、孤儿素材 3 项。
+- 新建页面（`wiki/AI相关学习资料/`，7 篇）：[[wiki/AI相关学习资料/RAG的流程与应用]]、[[wiki/AI相关学习资料/REA逆向工程MCP工具学习手册]]、[[wiki/AI相关学习资料/Ontology本体工程从概念到企业流程与测试流程落地]]、[[wiki/AI相关学习资料/Anthropic源代码控制系统重设计]]、[[wiki/AI相关学习资料/AI工具资源占用沟通与面试应答]]、[[wiki/AI相关学习资料/Jev决策模型(System One)学习参考资料]]、[[wiki/AI相关学习资料/Jev用于UI自动化测试可行性分析与AI测试工具横向对比]]、[[wiki/AI相关学习资料/TypeSafe_Jev国内使用指南(官网导航+四条接入路径+实测连通性)]]（共 8 篇）。
+- 新建分类：`wiki/学习简图/`（[[wiki/学习简图/数据结构总览]] + [[wiki/学习简图/_index]]）——把 `.raw/学习简图/` 下的「一图流」思维导图翻译成**可检索的结构**（内嵌原图 + 文字速查表）。
+- 孤儿素材归位：`.raw/AI相关学习资料/images/raw_p4_xref182/183.png` 经看图确认是 Transformer 原论文 Figure 2 的「缩放点积注意力流程」与「多头注意力结构」，接入 [[wiki/AI相关学习资料/大模型核心原理]] §3.3（该节此前无配图）。
+- 新建素材：38 张配图复制至 `_attachments/images/AI相关学习资料/{RAG的流程与应用,REA逆向工程MCP工具学习手册,Ontology本体工程,Anthropic源代码控制系统重设计}/`；1 张思维导图复制至 `_attachments/images/学习简图/`。`_attachments` 由 22 → 61 个文件。
+- **检查器修复（`scripts/check_raw_updates.py`）**：① Windows 控制台 GBK 编码下 emoji 触发 `UnicodeEncodeError` 直接崩溃 → 启动时 `reconfigure(encoding='utf-8')`；② 新增规则 4b「同分类内按文件名回退匹配」——消除 `pi/` 拍平导致的 5 项假阳性（原始 33 项假阳性中，另 28 项由新增的图片引用判定消除）；③ 图片改判为「**被 wiki 页引用即视为已收录**」，同时能反向抓出「复制了却无人引用」的孤儿附件。修后报告：**未映射 0 / 待更新 0**。
+- 校验：`wiki-linkcheck.py` 逐文件检查 8 篇新页 + 2 篇学习简图页 + 2 篇改动页，**断链 0、歧义 0**；38 + 7 处图片路径逐条 `[ -f ]` 验证存在；检查器单元行为测试 6/6 通过（确认放宽后仍能报出"不存在的图片/未收录文档"）。
+- 更新：[[wiki/index]]（新增「学习简图」板块 + AI 分类 8 项 + 全量目录）、[[wiki/AI相关学习资料/index]]（20 页目录重排 + 源文件 8 条）、[[wiki/元数据/dashboard]]、`.raw/.manifest.json`（9 条新源登记，`last_sync=2026-10-15`）。
+- 关键洞察：**检查脚本负责「召回」，人工核对负责「精确」**。74 项未映射里真正需要处理的只有 8 项（11%）；若照脚本输出批量建页，会为 5 个逐字节重复文件建 5 个冗余页、为 33 张已引用图片建页。**修检测器比改内容布局更根本**——否则每次检查都要人肉筛掉同一批假阳性，检查本身失去可信度。
+- 源文件自身问题（已在页内用 `[!gap]` 标注，未静默沿用）：① `RAG的流程与应用` §7.1/§5.3 称 HNSW「三个坑」但实列 4 项，页面按事实表述为四项；② `Ontology本体工程` 中 Palantir 量化数据为厂商自述且 NHS FDP 案例有实质争议；③ `Anthropic源代码控制系统重设计` 中「CI 检出 175 秒」与「31 秒→3.5 秒」两处口径并存，未说明是否不同时期。
+- **遗留（未处理，需主人决策）**：① `.raw/AI相关学习资料/pi/` 下 5 个文件与根目录**逐字节相同**（冗余副本，未删除）；② `scripts/rebuild_wiki_links.py` 仍不可整体运行——其 `wiki_target()` 生成不带 `wiki/` 前缀的链接，且会**整体覆盖 `wiki/hot.md`**；本次仅以 `import` 方式调用其 `update_root_index()` 做差异预览，**最终未运行**（预览显示它会把手写目录里的 `[[wiki/AI相关学习资料/X|X]]` 降级为裸链接 `[[X]]`，故改为手工维护目录）；③ 全库仍有约 70 处 basename 歧义链接（`.raw` 同名导致）。
+
+## [2026-09-23] archive + ingest | wiki 概念问答归档（首次贯通问答闭环）
+
+- 来源：`.raw/笔记/2026-09-23_wiki一词与Wiki知识库.md`（WorkBuddy 会话原始记录）
+- 归档问答：[[wiki/问答/2026-09-23_wiki一词与Wiki知识库|wiki、wiki技术、Wiki知识库三者关系]]
+- 创建的页面：[[wiki/概念/wiki一词与Wiki知识库]]、[[wiki/来源/LLM Wiki模式]]、[[wiki/对比/LLM Wiki与chunk-first RAG对比]]、[[wiki/实体/Ward Cunningham]]、[[wiki/笔记/2026-09-23_wiki一词与Wiki知识库]]、[[wiki/概念/_index]]
+- 更新的页面：[[wiki/index]]、[[wiki/笔记/index]]、[[wiki/元数据/dashboard]]、[[wiki/问答/_index]]、[[wiki/实体/_index]]、[[wiki/对比/_index]]、[[wiki/来源/_index]]
+- 关键洞察：**本 vault 第一个归档问答，「好答案写回 wiki 形成复利」这一环首次跑通**。此前 `wiki/问答/` 自 2026-07-01 创建以来一直为空——知识在聊天中产生却从未沉淀，正是 Karpathy 所指的「不累积」问题的具体表现。
+- 概念层结论：`wiki` 三层含义（单词 → 技术 → 知识库）构成单向链，**单词命名技术，技术生产知识库**；本 vault 属 Karpathy LLM Wiki 模式（三层架构 + ingest/query/lint）。
+- 附带纠正三条环境事实：① vault 根为 `D:\AI\Hermes\claude-obsidian`（非工作区 `learn`）；② `.raw/` 源引用**不能用 wikilink**（触发 git pathspec 歧义），全库约定为 frontmatter 纯字符串；③ `obsidian_simple_search` 全库搜索会因返回量超限而失败，须改用目录列举 + 定向读取。
+- 流程修正：`.raw/笔记/X.md` 须 1:1 映射到 `wiki/笔记/X.md`（`check_raw_updates.py` 对 `笔记/`、`Codex/` 走同路径直接映射），仅建 `wiki/问答/` 会被判「未映射」且静默不报错 → 已补齐笔记页。
+- 校验结果：`wiki-linkcheck.py` 逐文件校验新页**歧义 0**；`git show HEAD` 差集确认**新引入断链 0**，并修复 `dashboard.md` 既有断链 5 处；`check_raw_updates.py` **待更新 0**。
+- 核实动作：词源与 LLM Wiki 模式事实经在线检索复核（检索日期 2026-09-23）。
 
 ## 2026-09-10 - 摄入 | 11 份新学习资料（AI + 测试开发）
 

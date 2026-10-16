@@ -1,7 +1,7 @@
 ---
 type: comparison
 title: "Pi 与 AI 编程 Agent 对比分析"
-source: ".raw/AI相关学习资料/Pi与AI编程Agent对比分析.html"
+source: ".raw/AI相关学习资料/pi/Pi与AI编程Agent对比分析.html"
 subjects:
   - "Pi（Armin Ronacher）"
   - "Claude Code"
@@ -31,7 +31,7 @@ related:
   - "[[wiki/语雀/claude-code/Harness Engineering（驾驭工程）]]"
   - "[[wiki/软件测试学习资料/16_AI_UI自动化_browser-use二次开发学习资料]]"
 sources:
-  - ".raw/AI相关学习资料/Pi与AI编程Agent对比分析.html"
+  - ".raw/AI相关学习资料/pi/Pi与AI编程Agent对比分析.html"
 ---
 
 # Pi 与 AI 编程 Agent 对比分析
@@ -241,7 +241,7 @@ def test_pi_agent_produces_valid_json():
 
 ## 来源
 
-- `.raw/AI相关学习资料/Pi与AI编程Agent对比分析.html`（2026-08-27）
+- `.raw/AI相关学习资料/pi/Pi与AI编程Agent对比分析.html`（2026-08-27）
 - Pi 官方仓库：github.com/earendil-works/pi；文档：pi.dev/docs/latest
 - Claude Code：code.claude.com/docs；Codex：github.com/openai/codex；dsh：github.com/deepseek-ai/deepseek-harness
 - ⚠️ Stars/版本/性能指标为 2026-08-27 时点快照，迭代极快，以官方仓库为准
